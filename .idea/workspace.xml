@@ -2,28 +2,96 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3640bc8a-1436-480b-8214-c50edc451081" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/OpenSans-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/OpenSans-BoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/OpenSans-ExtraBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/OpenSans-ExtraBoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/OpenSans-Italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/OpenSans-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/OpenSans-LightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/OpenSans-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/OpenSans-SemiBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Fonts/OpenSans-SemiBoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_bar_chart.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_line_chart.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_linear_percent_indicator.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_percent_indicator.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ChartWidgets/line_chart_titles.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_bar_chart.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_line_chart.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_percent_indicator.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_drawer.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widget_all_tasks_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_add_task_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_home_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_performance_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_single_task_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Models/User.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Models/goal_class.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Models/idea_class.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Models/plan_class.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/active_task_single_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/add_task_goal_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/add_task_idea_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/add_task_plan_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/all_tasks_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/edit_task_single_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/finished_task_single_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/home_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/performance_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/fill_arrays_functions.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/sort_functions.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1lY0zks2VDabd22NomJP0zOokI9" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/ChartWidgets" />
+      <recent name="$PROJECT_DIR$/lib/Models" />
+      <recent name="$PROJECT_DIR$/lib/Views" />
+      <recent name="$PROJECT_DIR$/lib/CustomWidgets" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -35,6 +103,112 @@
       <option name="presentableId" value="Default" />
       <updated>1607758982360</updated>
     </task>
+    <task id="LOCAL-00001" summary="commit">
+      <created>1607759729644</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607759729644</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="208" y="23" width="1024" height="823" key="#Project_Structure" timestamp="1607775203407">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="208" y="23" width="1024" height="823" key="#Project_Structure/0.23.1440.823@0.23.1440.823" timestamp="1607775203407" />
+    <state x="302" y="129" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1608320233720">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="302" y="129" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog/0.23.1440.823@0.23.1440.823" timestamp="1608320233720" />
+    <state x="533" y="157" key="#com.intellij.ide.util.MemberChooser" timestamp="1609165379879">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="533" y="157" key="#com.intellij.ide.util.MemberChooser/0.23.1440.823@0.23.1440.823" timestamp="1609165379879" />
+    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.23.1440.825@0.23.1440.825" timestamp="1608805504639" />
+    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.23.1440.827@0.23.1440.827" timestamp="1608750831406" />
+    <state x="458" y="188" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609063278390">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="458" y="188" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.823@0.23.1440.823" timestamp="1609063278390" />
+    <state x="583" y="207" key="AndroidProcessChooserDialog" timestamp="1608139059481">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="583" y="207" key="AndroidProcessChooserDialog/0.23.1440.823@0.23.1440.823" timestamp="1608139059481" />
+    <state x="339" y="36" key="CommitChangelistDialog2" timestamp="1609317423508">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.823@0.23.1440.823" timestamp="1609317423508" />
+    <state x="474" y="197" key="FileChooserDialogImpl" timestamp="1608320196191">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="474" y="197" key="FileChooserDialogImpl/0.23.1440.823@0.23.1440.823" timestamp="1608320196191" />
+    <state width="1398" height="76" key="GridCell.Tab.0.bottom" timestamp="1609253956878">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1398" height="76" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1609253956878" />
+    <state width="1398" height="176" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1608815489566" />
+    <state width="1398" height="76" key="GridCell.Tab.0.center" timestamp="1609253956877">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1398" height="76" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1609253956877" />
+    <state width="1398" height="176" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1608815489566" />
+    <state width="1398" height="76" key="GridCell.Tab.0.left" timestamp="1609253956877">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1398" height="76" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1609253956877" />
+    <state width="1398" height="176" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1608815489565" />
+    <state width="1398" height="76" key="GridCell.Tab.0.right" timestamp="1609253956878">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1398" height="76" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1609253956878" />
+    <state width="1398" height="176" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1608815489566" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1607759745399">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.823@0.23.1440.823" timestamp="1607759745399" />
+    <state x="100" y="137" width="1240" height="623" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1609221662380">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="100" y="137" width="1240" height="623" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1440.823@0.23.1440.823" timestamp="1609221662380" />
+    <state x="500" y="358" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607886441112">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="500" y="358" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.823@0.23.1440.823" timestamp="1607886441112" />
+    <state x="260" y="23" width="852" height="823" key="find.popup" timestamp="1608320203851">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="260" y="23" width="852" height="823" key="find.popup/0.23.1440.823@0.23.1440.823" timestamp="1608320203851" />
+    <state x="371" y="57" key="new project wizard" timestamp="1608057368114">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="371" y="57" key="new project wizard/0.23.1440.823@0.23.1440.823" timestamp="1608057368114" />
+    <state x="385" y="172" width="670" height="675" key="search.everywhere.popup" timestamp="1609154886370">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="385" y="172" width="670" height="675" key="search.everywhere.popup/0.23.1440.823@0.23.1440.823" timestamp="1609154886370" />
+    <state x="385" y="172" width="670" height="676" key="search.everywhere.popup/0.23.1440.825@0.23.1440.825" timestamp="1608805917330" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/Views/add_task_plan_view.dart</url>
+          <line>313</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/Views/home_view.dart</url>
+          <line>224</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
