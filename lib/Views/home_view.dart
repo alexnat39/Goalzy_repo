@@ -21,40 +21,46 @@ import '../Models/idea_class.dart';
 import 'package:intl/intl.dart';
 
 //URGENT
-//todo fix edit view popup screen (make tasks in database be editable)
-//todo make tasks show up in all tasks view
 //todo fix dismissables on all task views
 //todo add colors to goal/plan/idea widgets
-//todo add delete features to database
 //todo connect database data with showing progress indicators/graphs
 
 //NON_URGENT
 //todo add priority to task + goal type (long term/short term)
 //todo make the plan container fit all the needed text
 
+
+
 class HomePage extends StatefulWidget {
   HomePageState createState() => HomePageState();
+
 }
-
+int activeGoalsCounter = 0;
+int activePlansCounter = 0;
+int ideasCounter = 0;
 class HomePageState extends State<HomePage> {
-
   List<Widget> goalWidgetsArray = new List();
   List<Widget> planWidgetsArray = new List();
   List<Widget> ideaWidgetsArray = new List();
-
 
   //fillOutPlansArrays();
 
   @override
   initState() {
     super.initState();
+    activeGoalsCounter = 0;
+    activePlansCounter = 0;
+    ideasCounter = 0;
     getAllGoals();
     getAllPlans();
     getAllIdeas();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+
     //emptying array before filling them (to avoid duplicated widgets)
     goalWidgetsArray.clear();
     planWidgetsArray.clear();
@@ -212,9 +218,12 @@ class HomePageState extends State<HomePage> {
             Row(children: [
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.015),
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height * 0.015),
                   child: buildThreeProgressWidgets(
-                        context, MediaQuery.of(context).size.height * 0.25, PlanPercentIndicatorHomePage(5.0,0.0)),
+                      context,
+                      MediaQuery.of(context).size.height * 0.25,
+                      PlanPercentIndicatorHomePage(5.0, 0.0)),
                 ),
               ),
             ]),
@@ -222,8 +231,9 @@ class HomePageState extends State<HomePage> {
               children: [
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.01),
-                    height: MediaQuery.of(context).size.height * 0.13,
+                      margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height * 0.01),
+                      height: MediaQuery.of(context).size.height * 0.13,
                       child: LineChartPlanWidget()),
                 ),
               ],
@@ -246,7 +256,6 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-
   GoalService _goalService;
   List<Goal> _goalList = new List<Goal>();
   //reads all the goals from the SQL database
@@ -267,10 +276,12 @@ class HomePageState extends State<HomePage> {
         currentGoal.color = goal['color'];
         //adding goal to the goal widgets array
         _goalList.insert(0, currentGoal);
+        if (currentGoal.finished == 0) {
+          activeGoalsCounter++;
+        }
       });
     });
   }
-
 
   //reads all the plans from the SQL database
   PlanService _planService;
@@ -292,6 +303,9 @@ class HomePageState extends State<HomePage> {
         currentPlan.color = plan['color'];
         //adding goal to the goal widgets array
         _planList.insert(0, currentPlan);
+        if (currentPlan.finished == 0) {
+          activePlansCounter++;
+        }
       });
     });
   }
@@ -314,17 +328,17 @@ class HomePageState extends State<HomePage> {
         currentIdea.color = idea['color'];
         //adding goal to the goal widgets array
         _ideaList.insert(0, currentIdea);
+        ideasCounter++;
       });
     });
   }
-
 }
 
 /**
  * funciton for filling in goalWidgetsArray
  */
 void _fillGoalWidgetsArray(BuildContext context, var list, _goalWidgetsArray) {
-  if (list.length == 0) {
+  if (activeGoalsCounter == 0) {
     _goalWidgetsArray.add(CustomAddGoalButton(
         navigateFunction: () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomePage()))));
@@ -332,7 +346,8 @@ void _fillGoalWidgetsArray(BuildContext context, var list, _goalWidgetsArray) {
     for (int i = 0; i < list.length; i++) {
       Goal currentGoal = list[i];
       if (currentGoal.finished == 0) {
-        String deadlineString = currentGoal.deadline.substring(0, currentGoal.deadline.indexOf(" "));
+        String deadlineString = currentGoal.deadline
+            .substring(0, currentGoal.deadline.indexOf(" "));
         _goalWidgetsArray.add(CustomGoalHomeWidget(
             currentGoal.getTitle(),
             currentGoal.getSubTitle(),
@@ -349,8 +364,9 @@ void _fillGoalWidgetsArray(BuildContext context, var list, _goalWidgetsArray) {
 /**
  * funciton for filling in planWidgetsArray
  */
-void _fillPlanWidgetsArray(BuildContext context, var list, var _planWidgetsArray) {
-  if (list.length == 0) {
+void _fillPlanWidgetsArray(
+    BuildContext context, var list, var _planWidgetsArray) {
+  if (activePlansCounter == 0) {
     _planWidgetsArray.add(CustomAddPlanButton(
       navigateFunction: () => Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomePage())),
@@ -359,8 +375,11 @@ void _fillPlanWidgetsArray(BuildContext context, var list, var _planWidgetsArray
     for (int i = 0; i < list.length; i++) {
       Plan currentPlan = list[i];
       if (currentPlan.finished == 0) {
-        String deadlineDateString = currentPlan.deadline.substring(0, currentPlan.deadline.indexOf(" "));
-        String deadlineTimeString = currentPlan.deadline.substring(currentPlan.deadline.indexOf(" ") + 1,  currentPlan.deadline.lastIndexOf(":"));
+        String deadlineDateString = currentPlan.deadline
+            .substring(0, currentPlan.deadline.indexOf(" "));
+        String deadlineTimeString = currentPlan.deadline.substring(
+            currentPlan.deadline.indexOf(" ") + 1,
+            currentPlan.deadline.lastIndexOf(":"));
 
         _planWidgetsArray.add(CustomPlanHomeWidget(
             currentPlan.getTitle(),
@@ -379,7 +398,8 @@ void _fillPlanWidgetsArray(BuildContext context, var list, var _planWidgetsArray
 /**
  * funciton for filling in ideaWidgetsArray
  */
-void _fillIdeaWidgetsArray(BuildContext context, var list, var _ideaWidgetsArray) {
+void _fillIdeaWidgetsArray(
+    BuildContext context, var list, var _ideaWidgetsArray) {
   if (list.length == 0) {
     _ideaWidgetsArray.add(CustomAddIdeaButton(
       navigateFunction: () => Navigator.push(
@@ -388,11 +408,8 @@ void _fillIdeaWidgetsArray(BuildContext context, var list, var _ideaWidgetsArray
   } else {
     for (int i = 0; i < list.length; i++) {
       Idea currentIdea = list[i];
-      _ideaWidgetsArray.add(CustomIdeaHomeWidget(
-          currentIdea.getTitle(),
-          currentIdea.getSubtitle(),
-          Color(currentIdea.color),
-          currentIdea));
+      _ideaWidgetsArray.add(CustomIdeaHomeWidget(currentIdea.getTitle(),
+          currentIdea.getSubtitle(), Color(currentIdea.color), currentIdea));
     }
   }
 }

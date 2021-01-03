@@ -355,26 +355,6 @@ class AddTaskGoalView extends StatelessWidget {
   }
 }
 
-// void _addGoal(BuildContext context, String title, String subtitle,
-//     String description, DateTime deadline) {
-//   title = title.trim();
-//   subtitle = subtitle.trim();
-//   if (description == null) {
-//     description = "";
-//   }
-//
-//   description = description.trim();
-//
-//   Goal goal = new Goal(
-//       title,
-//       subtitle,
-//       description,
-//       deadline,
-//       colorsForGoalWidgets[User.allGoals.length % colorsForGoalWidgets.length],
-//       false, DateTime.now());
-//
-//   User.allGoals.add(goal);
-// }
 
 Future<void> _addGoalSQL(BuildContext context, String title, String subtitle,
     String description, DateTime deadline) async {
@@ -394,10 +374,11 @@ Future<void> _addGoalSQL(BuildContext context, String title, String subtitle,
   _goal.description = description;
   _goal.deadline = deadline.toString();
   _goal.finished = 0;
-  _goal.color = colorsForGoalWidgets[2].value;
+  _goal.color = colorsForGoalWidgets[activeGoalsCounter % 7].value;
   _goal.dateAdded = DateTime.now().toString();
+  activeGoalsCounter++;
 
-  var result = await _goalService.saveGoal(_goal);
+  await _goalService.saveGoal(_goal);
 
 }
 

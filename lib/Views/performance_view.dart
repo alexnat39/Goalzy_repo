@@ -226,6 +226,7 @@ Widget buildThreeProgressWidgets(BuildContext context, var customHeight, Widget 
         //MediaQuery.of(context).size.height * 0.3
       height: customHeight,
       child: ListView(
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           children: [

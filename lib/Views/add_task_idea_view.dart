@@ -343,8 +343,9 @@ Future<void> _addIdeaSQL (
   _idea.title = title;
   _idea.subtitle = subtitle;
   _idea.description = description;
-  _idea.color = colorsForIdeaWidgets[2].value;
+  _idea.color = colorsForIdeaWidgets[ideasCounter % 7].value;
   _idea.dateAdded = DateTime.now().toString();
+  ideasCounter++;
 
   var _ideaService = IdeaService();
   var result = await _ideaService.saveIdea(_idea);

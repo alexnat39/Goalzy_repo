@@ -425,9 +425,11 @@ Future<void> _addPlanSQL(BuildContext context, String title, String subtitle,
   _plan.description = description;
   _plan.deadline = deadline.toString();
   _plan.finished = 0;
-  _plan.color = colorsForPlanWidgets[2].value;
+  _plan.color = colorsForPlanWidgets[activePlansCounter % 7].value;
   _plan.dateAdded = DateTime.now().toString();
+  activePlansCounter++;
+
 
   var _planService = PlanService();
-  var result = await _planService.savePlan(_plan);
+  await _planService.savePlan(_plan);
 }

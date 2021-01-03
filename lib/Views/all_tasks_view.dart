@@ -7,6 +7,9 @@ import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
+import 'package:goalzy_app/Services/goal_service.dart';
+import 'package:goalzy_app/Services/idea_service.dart';
+import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/add_task_idea_view.dart';
 import 'package:goalzy_app/Views/add_task_plan_view.dart';
 import 'package:goalzy_app/fill_arrays_functions.dart';
@@ -21,11 +24,14 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class AllTasksPage extends StatefulWidget {
   int currentIndex;
-
   AllTasksPage(this.currentIndex);
-
   _AllTasksPageState createState() => _AllTasksPageState();
 }
+
+List<Goal> goalList = new List<Goal>();
+List<Plan> planList = new List<Plan>();
+List<Idea> ideaList = new List<Idea>();
+
 
 
 List<Widget> _goalWidgetsArray = new List();
@@ -33,6 +39,15 @@ List<Widget> _planWidgetsArray = new List();
 List<Widget> _ideaWidgetsArray = new List();
 
 class _AllTasksPageState extends State<AllTasksPage> {
+
+
+  @override
+  initState() {
+    super.initState();
+    getAllGoals();
+    getAllPlans();
+    getAllIdeas();
+  }
   @override
   Widget build(BuildContext context) {
     final List<Tab> _tabs = [
@@ -45,14 +60,14 @@ class _AllTasksPageState extends State<AllTasksPage> {
     // fillRemainingPlans();
 
     //emptying the arrays to avoid duplicated widgets
-    _goalWidgetsArray.removeRange(0, _goalWidgetsArray.length);
-    _planWidgetsArray.removeRange(0, _planWidgetsArray.length);
-    _ideaWidgetsArray.removeRange(0, _ideaWidgetsArray.length);
+    _goalWidgetsArray.clear();
+    _planWidgetsArray.clear();
+    _ideaWidgetsArray.clear();
 
     //filling in the arrays with new widgets
-    _fillGoalWidgetsArray();
-    _fillPlanWidgetsArray();
-    _fillIdeaWidgetsArray();
+    _fillGoalWidgetsArray(goalList);
+    _fillPlanWidgetsArray(planList);
+    _fillIdeaWidgetsArray(ideaList);
 
     return WillPopScope(
       onWillPop: () async => !Navigator.of(context).userGestureInProgress,
@@ -200,6 +215,73 @@ class _AllTasksPageState extends State<AllTasksPage> {
       ),
     );
   }
+  GoalService _goalService;
+  //reads all the goals from the SQL database
+  getAllGoals() async {
+    _goalService = GoalService();
+    goalList = List<Goal>();
+    var goals = await _goalService.readGoals();
+    goals.forEach((goal) {
+      setState(() {
+        var currentGoal = new Goal();
+        currentGoal.id = goal['id'];
+        currentGoal.title = goal['title'];
+        currentGoal.subtitle = goal['subtitle'];
+        currentGoal.description = goal['description'];
+        currentGoal.finished = goal['finished'];
+        currentGoal.deadline = goal['deadline'];
+        currentGoal.dateAdded = goal['dateAdded'];
+        currentGoal.color = goal['color'];
+        //adding goal to the goal widgets array
+        goalList.insert(0, currentGoal);
+      });
+    });
+  }
+
+
+  //reads all the plans from the SQL database
+  PlanService _planService;
+  getAllPlans() async {
+    _planService = PlanService();
+    planList = List<Plan>();
+    var plans = await _planService.readPlans();
+    plans.forEach((plan) {
+      setState(() {
+        var currentPlan = new Plan();
+        currentPlan.id = plan['id'];
+        currentPlan.title = plan['title'];
+        currentPlan.subtitle = plan['subtitle'];
+        currentPlan.description = plan['description'];
+        currentPlan.finished = plan['finished'];
+        currentPlan.deadline = plan['deadline'];
+        currentPlan.dateAdded = plan['dateAdded'];
+        currentPlan.color = plan['color'];
+        //adding goal to the goal widgets array
+        planList.insert(0, currentPlan);
+      });
+    });
+  }
+
+  //reads all the ideas from the SQL database
+  IdeaService _ideaService;
+  getAllIdeas() async {
+    _ideaService = IdeaService();
+    ideaList = List<Idea>();
+    var ideas = await _ideaService.readIdeas();
+    ideas.forEach((idea) {
+      setState(() {
+        var currentIdea = new Idea();
+        currentIdea.id = idea['id'];
+        currentIdea.title = idea['title'];
+        currentIdea.subtitle = idea['subtitle'];
+        currentIdea.description = idea['description'];
+        currentIdea.dateAdded = idea['dateAdded'];
+        currentIdea.color = idea['color'];
+        //adding goal to the goal widgets array
+        ideaList.insert(0, currentIdea);
+      });
+    });
+  }
 }
 
 
@@ -283,6 +365,8 @@ class AllTasksGoals extends StatefulWidget {
 }
 
 class _AllTasksGoalsState extends State<AllTasksGoals> {
+  var _goalService = GoalService();
+
   @override
   Widget build(BuildContext context) {
     return StatefulBuilder(
@@ -392,37 +476,26 @@ class _AllTasksGoalsState extends State<AllTasksGoals> {
                                     borderRadius: BorderRadius.circular(10)),
                               ),
                               key: UniqueKey(),
-                              onDismissed: (direction) {
-                                // Remove the item from the data source.
+                              onDismissed: (direction) async {
+                                var _currentGoal = goalList[index];
+                                goalList.removeAt(index);
                                 if (direction == DismissDirection.startToEnd) {
+                                  _goalService.deleteGoal(_currentGoal.id);
+                                  activeGoalsCounter--;
                                   setState(() {
                                     _goalWidgetsArray.removeAt(index);
                                   });
-                                  var goalIndex = User.allGoals.indexOf(User
-                                          .remainingGoals[
-                                      User.remainingGoals.length - 1 - index]);
-                                  User.remainingGoals.removeAt(
-                                      User.remainingGoals.length - 1 - index);
-                                  User.allGoals.removeAt(goalIndex);
                                 } else if (direction ==
                                     DismissDirection.endToStart) {
-                                  // Remove the item from the data source.
+                                  activeGoalsCounter--;
+                                  // Remove the item from the database.
+                                  var goalFromSQL = await _goalService.readGoalById(_currentGoal.id);
+                                  _currentGoal.id = goalFromSQL[0]['id'];
+                                  _currentGoal.finished = 1;
+                                  await _goalService.updateGoal(_currentGoal);
                                   setState(() {
                                     _goalWidgetsArray.removeAt(index);
                                   });
-                                  var goalIndex = User.allGoals.indexOf(User
-                                          .remainingGoals[
-                                      User.remainingGoals.length - 1 - index]);
-                                  User.finishedGoals.add(User.allGoals[
-                                      User.remainingGoals.length - 1 - index]);
-                                  User.remainingGoals.removeAt(
-                                      User.remainingGoals.length - 1 - index);
-                                  // User.allGoals
-                                  //     .elementAt(goalIndex)
-                                  //     .setFinished(true);
-                                  // User.allGoals[
-                                  //         User.allGoals.length - 1 - index]
-                                  //     .setFinished(true);
                                 }
                               },
                             );
@@ -441,6 +514,9 @@ class AllTasksPlans extends StatefulWidget {
 }
 
 class _AllTasksPlansState extends State<AllTasksPlans> {
+  var _planService = PlanService();
+
+
   @override
   Widget build(BuildContext context) {
     return StatefulBuilder(
@@ -550,35 +626,27 @@ class _AllTasksPlansState extends State<AllTasksPlans> {
                                     borderRadius: BorderRadius.circular(10)),
                               ),
                               key: UniqueKey(),
-                              onDismissed: (direction) {
-                                // Remove the item from the data source.
+                              onDismissed: (direction) async {
+                                var _currentPlan = planList[index];
+                                planList.removeAt(index);
                                 if (direction == DismissDirection.startToEnd) {
-                                  // Remove the item from the data source.
+                                  _planService.deletePlan(_currentPlan.id);
+                                  activePlansCounter--;
                                   setState(() {
                                     _planWidgetsArray.removeAt(index);
                                   });
-                                  var planIndex = User.allPlans.indexOf(User
-                                          .remainingPlans[
-                                      User.remainingPlans.length - 1 - index]);
-                                  User.remainingPlans.removeAt(
-                                      User.remainingPlans.length - 1 - index);
-                                  User.allPlans.removeAt(planIndex);
+
                                 } else if (direction ==
                                     DismissDirection.endToStart) {
-                                  // Remove the item from the data source.
+                                  activePlansCounter--;
+                                  // Remove the item from the database.
+                                  var planFromSQL = await _planService.readPlanById(_currentPlan.id);
+                                  _currentPlan.id = planFromSQL[0]['id'];
+                                  _currentPlan.finished = 1;
+                                  await _planService.updatePlan(_currentPlan);
                                   setState(() {
                                     _planWidgetsArray.removeAt(index);
                                   });
-                                  var planIndex = User.allPlans.indexOf(User
-                                          .remainingPlans[
-                                      User.remainingPlans.length - 1 - index]);
-                                  User.finishedPlans.add(User.allPlans[
-                                      User.remainingPlans.length - 1 - index]);
-                                  User.remainingPlans.removeAt(
-                                      User.remainingPlans.length - 1 - index);
-                                  // User.allPlans
-                                  //     .elementAt(planIndex)
-                                  //     .setFinished(true);
                                 }
                               },
                             );
@@ -597,6 +665,7 @@ class AllTasksIdeas extends StatefulWidget {
 }
 
 class _AllTasksIdeasState extends State<AllTasksIdeas> {
+  var _ideaService = IdeaService();
   @override
   Widget build(BuildContext context) {
     return StatefulBuilder(
@@ -705,21 +774,23 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
                               ),
                               key: UniqueKey(),
                               onDismissed: (direction) {
+                                var _currentIdea = ideaList[index];
+                                ideaList.removeAt(index);
                                 if (direction == DismissDirection.startToEnd) {
-                                  // Remove the item from the data source.
+                                  // Remove the item from the database.
+                                  _ideaService.deleteIdea(_currentIdea.id);
+                                  ideasCounter--;
                                   setState(() {
                                     _ideaWidgetsArray.removeAt(index);
                                   });
-                                  User.allIdeas.removeAt(
-                                      User.allIdeas.length - 1 - index);
                                 } else if (direction ==
                                     DismissDirection.endToStart) {
-                                  // Remove the item from the data source.
+                                  // Remove the item from the database.
+                                  _ideaService.deleteIdea(_currentIdea.id);
+                                  ideasCounter--;
                                   setState(() {
                                     _ideaWidgetsArray.removeAt(index);
                                   });
-                                  User.allIdeas.removeAt(
-                                      User.allIdeas.length - 1 - index);
                                 }
                               },
                             );
@@ -735,51 +806,53 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
 /**
  * funciton for filling in goalWidgetsArray
  */
-void _fillGoalWidgetsArray() {
-  for (int i = 0; i < User.allGoals.length; i++) {
-    Goal currentGoal = User.allGoals[i];
-    // if (!currentGoal.isFinished()) {
-    //   DateTime deadline = currentGoal.getDeadline();
-    //   String deadlineString = "" + DateFormat('yyyy-MM-dd').format(deadline);
-    //   _goalWidgetsArray.add(CustomGoalAllTasksWidget(
-    //       currentGoal.getTitle(),
-    //       currentGoal.getSubTitle(),
-    //       deadlineString,
-    //       currentGoal.getDescription(),
-    //       currentGoal.getColor(),
-    //       currentGoal));
-    // }
+void _fillGoalWidgetsArray(list) {
+  for (int i = 0; i < list.length; i++) {
+    Goal currentGoal = list[i];
+     if (currentGoal.finished == 0) {
+       String deadlineDateString = currentGoal.deadline.substring(
+           0, currentGoal.deadline.indexOf(" "));
+      _goalWidgetsArray.add(CustomGoalAllTasksWidget(
+          currentGoal.getTitle(),
+          currentGoal.getSubTitle(),
+          deadlineDateString,
+          currentGoal.getDescription(),
+          Color(currentGoal.color),
+          currentGoal));
+     }
   }
-  _goalWidgetsArray = new List.from(_goalWidgetsArray.reversed);
 }
 
 /**
  * funciton for filling in planWidgetsArray
  */
-void _fillPlanWidgetsArray() {
-  for (int i = 0; i < User.remainingPlans.length; i++) {
-    Plan currentPlan = User.remainingPlans[i];
-    //DateTime deadline = currentPlan.getDeadline();
-    //String deadlineDateString = "" + DateFormat('yyyy-MM-dd').format(deadline);
-    //String deadlineTimeString = "" + DateFormat.Hm().format(deadline);
-    _planWidgetsArray.add(CustomPlanAllTasksWidget(
-        currentPlan.getTitle(),
-        currentPlan.getSubTitle(),
-        currentPlan.getDescription(),
-        currentPlan.deadline,
-        currentPlan.deadline,
-        Color(currentPlan.color),
-        currentPlan));
+void _fillPlanWidgetsArray(list) {
+  for (int i = 0; i < list.length; i++) {
+    Plan currentPlan = list[i];
+    if (currentPlan.finished == 0) {
+      String deadlineDateString = currentPlan.deadline.substring(
+          0, currentPlan.deadline.indexOf(" "));
+      String deadlineTimeString = currentPlan.deadline.substring(
+          currentPlan.deadline.indexOf(" ") + 1,
+          currentPlan.deadline.lastIndexOf(":"));
+      _planWidgetsArray.add(CustomPlanAllTasksWidget(
+          currentPlan.getTitle(),
+          currentPlan.getSubTitle(),
+          currentPlan.getDescription(),
+          deadlineDateString,
+          deadlineTimeString,
+          Color(currentPlan.color),
+          currentPlan));
+    }
   }
-  _planWidgetsArray = new List.from(_planWidgetsArray.reversed);
 }
 
 /**
  * funciton for filling in planWidgetsArray
  */
-void _fillIdeaWidgetsArray() {
-  for (int i = 0; i < User.allIdeas.length; i++) {
-    Idea currentIdea = User.allIdeas[i];
+void _fillIdeaWidgetsArray(var list) {
+  for (int i = 0; i < list.length; i++) {
+    Idea currentIdea = list[i];
     _ideaWidgetsArray.add(CustomIdeaAllTasksWidget(
         currentIdea.getTitle(),
         currentIdea.getSubtitle(),
@@ -787,5 +860,4 @@ void _fillIdeaWidgetsArray() {
         Color(currentIdea.color),
         currentIdea));
   }
-  _ideaWidgetsArray = new List.from(_ideaWidgetsArray.reversed);
 }
