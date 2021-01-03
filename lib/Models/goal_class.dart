@@ -4,73 +4,82 @@ import 'package:intl/intl.dart';
 
 
 class Goal {
-  String _title;
-  String _subtitle;
-  String _description;
-  DateTime _deadline;
-  Color _color;
-  bool _finished;
-  DateTime _dateAdded;
+  int id;
+  String title;
+  String subtitle;
+  String description;
+  String deadline;
+  int color;
+  int finished;
+  String dateAdded;
 
-  Goal(this._title, this._subtitle, this._description, this._deadline, this._color, this._finished, this._dateAdded);
+  goalMap() {
 
-  Color get color => _color;
+    var mapping = Map<String, dynamic>();
+    mapping['id'] = id;
+    mapping['title'] = title;
+    mapping['subtitle'] = subtitle;
+    mapping['description'] = description;
+    mapping['deadline'] = deadline;
+    //mapping['color'] = color;
+    mapping['finished'] = finished;
+    mapping['dateAdded'] = dateAdded;
+
+    return mapping;
+  }
+
+  //Goal(this.title, this.subtitle, this.description, this.deadline, this.color, this.finished, this.dateAdded);
+
+
+
+  //Color getColor() => color;
 
   /**
    * getter functions
    */
 
-  bool isFinished() => _finished;
 
-  DateTime getDeadline() {
-    return _deadline;
-  }
 
   String getSubTitle() {
-    return _subtitle;
+    return subtitle;
   }
 
   String getDescription() {
-    return _description;
+    return description;
   }
 
   String getTitle() {
-    return _title;
+    return title;
   }
 
-  DateTime get dateAdded => _dateAdded;
+
+ /// DateTime getDateAdded() => dateAdded;
 
 
   /**
    * setter functions
    */
-  setDeadline(DateTime value) {
-    _deadline = value;
-  }
+
 
   setDescription(String value) {
-    _description = value;
+    description = value;
   }
 
   setSubtitle(String value) {
-    _subtitle = value;
+    subtitle = value;
   }
 
   setTitle(String value) {
-    _title = value;
-  }
-
-  setFinished(bool value) {
-    _finished = value;
+    title = value;
   }
 
 
-  String dateToString() {
-    return DateFormat('MM-dd-yyyy').format(_deadline);
-  }
+
+
+
 
   @override
   String toString() {
-    return 'Goal{_title: $_title, _subtitle: $_subtitle, _deadline $_deadline}';
+    return 'Goal{_title: $title, _subtitle: $subtitle, description $description, _deadline $deadline, _dateAdded $dateAdded, isFinished $finished}';
   }
 }

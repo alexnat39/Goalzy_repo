@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
+import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
 import 'package:goalzy_app/Views/add_task_idea_view.dart';
 import '../CustomWidgets/custom_widgets_add_task_view.dart';
@@ -256,8 +257,9 @@ class AddTaskPlanView extends StatelessWidget {
                                         description =
                                             descriptionController.text;
 
-                                        _addPlan(context, title, subtitle,
-                                            description, deadline);
+                                        // _addPlan(context, title, subtitle,
+                                        //     description, deadline);
+                                        _addPlanSQL(context, title, subtitle, description, deadline);
 
                                         Navigator.of(context).pop();
                                         Navigator.of(context).pop();
@@ -387,21 +389,45 @@ class AddTaskPlanView extends StatelessWidget {
   }
 }
 
-void _addPlan(BuildContext context, String title, String subtitle,
-    String description, DateTime deadline) {
+// void _addPlan(BuildContext context, String title, String subtitle,
+//     String description, DateTime deadline) {
+//   title = title.trim();
+//   subtitle = subtitle.trim();
+//   if (description == null) {
+//     description = "";
+//   }
+//   description = description.trim();
+//   Plan plan = new Plan(
+//       title,
+//       subtitle,
+//       description,
+//       deadline,
+//       colorsForPlanWidgets[User.allPlans.length % colorsForPlanWidgets.length],
+//       false,
+//       DateTime.now());
+//   User.allPlans.add(plan);
+// }
+
+Future<void> _addPlanSQL(BuildContext context, String title, String subtitle,
+    String description, DateTime deadline) async {
   title = title.trim();
   subtitle = subtitle.trim();
+
   if (description == null) {
     description = "";
   }
+
   description = description.trim();
-  Plan plan = new Plan(
-      title,
-      subtitle,
-      description,
-      deadline,
-      colorsForPlanWidgets[User.allPlans.length % colorsForPlanWidgets.length],
-      false,
-      DateTime.now());
-  User.allPlans.add(plan);
+
+  var _plan = new Plan();
+  _plan.title = title;
+  _plan.subtitle = subtitle;
+  _plan.description = description;
+  _plan.deadline = deadline.toString();
+  _plan.finished = 0;
+  //_goal.color = color.toHex();
+  _plan.dateAdded = DateTime.now().toString();
+
+  var _planService = PlanService();
+  var result = await _planService.savePlan(_plan);
 }

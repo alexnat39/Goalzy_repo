@@ -41,8 +41,8 @@ class _AllTasksPageState extends State<AllTasksPage> {
       Tab(text: "Ideas")
     ];
     
-    fillRemainingGoals();
-    fillRemainingPlans();
+    // fillRemainingGoals();
+    // fillRemainingPlans();
 
     //emptying the arrays to avoid duplicated widgets
     _goalWidgetsArray.removeRange(0, _goalWidgetsArray.length);
@@ -249,13 +249,13 @@ void choiceAction(BuildContext context, var currentIndex, String value) {
   } else if (value == "Ascending Deadline") {
     //ascending is swapped with descending because we reverse a widgets array
     if (currentIndex == 0) {
-      User.allGoals = sortGoalsInDescendingDeadlineOrder(User.allGoals);
+     // User.allGoals = sortGoalsInDescendingDeadlineOrder(User.allGoals);
       Navigator.of(context).pop();
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => AllTasksPage(0)));
     }
     if (currentIndex == 1) {
-      User.allPlans = sortPlansInDescendingDeadlineOrder(User.allPlans);
+      //User.allPlans = sortPlansInDescendingDeadlineOrder(User.allPlans);
       Navigator.of(context).pop();
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => AllTasksPage(1)));
@@ -263,13 +263,13 @@ void choiceAction(BuildContext context, var currentIndex, String value) {
   } else if (value == "Descending Deadline") {
     if (currentIndex == 0) {
       //descending is swapped with ascending because we reverse a widgets array
-      User.allGoals = sortGoalsInAscendingDeadlineOrder(User.allGoals);
+      //User.allGoals = sortGoalsInAscendingDeadlineOrder(User.allGoals);
       Navigator.of(context).pop();
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => AllTasksPage(0)));
     }
     if (currentIndex == 1) {
-      User.allPlans = sortPlansInAscendingDeadlineOrder(User.allPlans);
+      //User.allPlans = sortPlansInAscendingDeadlineOrder(User.allPlans);
       Navigator.of(context).pop();
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => AllTasksPage(1)));
@@ -417,12 +417,12 @@ class _AllTasksGoalsState extends State<AllTasksGoals> {
                                       User.remainingGoals.length - 1 - index]);
                                   User.remainingGoals.removeAt(
                                       User.remainingGoals.length - 1 - index);
-                                  User.allGoals
-                                      .elementAt(goalIndex)
-                                      .setFinished(true);
-                                  User.allGoals[
-                                          User.allGoals.length - 1 - index]
-                                      .setFinished(true);
+                                  // User.allGoals
+                                  //     .elementAt(goalIndex)
+                                  //     .setFinished(true);
+                                  // User.allGoals[
+                                  //         User.allGoals.length - 1 - index]
+                                  //     .setFinished(true);
                                 }
                               },
                             );
@@ -576,9 +576,9 @@ class _AllTasksPlansState extends State<AllTasksPlans> {
                                       User.remainingPlans.length - 1 - index]);
                                   User.remainingPlans.removeAt(
                                       User.remainingPlans.length - 1 - index);
-                                  User.allPlans
-                                      .elementAt(planIndex)
-                                      .setFinished(true);
+                                  // User.allPlans
+                                  //     .elementAt(planIndex)
+                                  //     .setFinished(true);
                                 }
                               },
                             );
@@ -738,17 +738,17 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
 void _fillGoalWidgetsArray() {
   for (int i = 0; i < User.allGoals.length; i++) {
     Goal currentGoal = User.allGoals[i];
-    if (!currentGoal.isFinished()) {
-      DateTime deadline = currentGoal.getDeadline();
-      String deadlineString = "" + DateFormat('yyyy-MM-dd').format(deadline);
-      _goalWidgetsArray.add(CustomGoalAllTasksWidget(
-          currentGoal.getTitle(),
-          currentGoal.getSubTitle(),
-          deadlineString,
-          currentGoal.getDescription(),
-          currentGoal.color,
-          currentGoal));
-    }
+    // if (!currentGoal.isFinished()) {
+    //   DateTime deadline = currentGoal.getDeadline();
+    //   String deadlineString = "" + DateFormat('yyyy-MM-dd').format(deadline);
+    //   _goalWidgetsArray.add(CustomGoalAllTasksWidget(
+    //       currentGoal.getTitle(),
+    //       currentGoal.getSubTitle(),
+    //       deadlineString,
+    //       currentGoal.getDescription(),
+    //       currentGoal.getColor(),
+    //       currentGoal));
+    // }
   }
   _goalWidgetsArray = new List.from(_goalWidgetsArray.reversed);
 }
@@ -759,16 +759,16 @@ void _fillGoalWidgetsArray() {
 void _fillPlanWidgetsArray() {
   for (int i = 0; i < User.remainingPlans.length; i++) {
     Plan currentPlan = User.remainingPlans[i];
-    DateTime deadline = currentPlan.getDeadline();
-    String deadlineDateString = "" + DateFormat('yyyy-MM-dd').format(deadline);
-    String deadlineTimeString = "" + DateFormat.Hm().format(deadline);
+    //DateTime deadline = currentPlan.getDeadline();
+    //String deadlineDateString = "" + DateFormat('yyyy-MM-dd').format(deadline);
+    //String deadlineTimeString = "" + DateFormat.Hm().format(deadline);
     _planWidgetsArray.add(CustomPlanAllTasksWidget(
         currentPlan.getTitle(),
         currentPlan.getSubTitle(),
         currentPlan.getDescription(),
-        deadlineDateString,
-        deadlineTimeString,
-        currentPlan.color,
+        currentPlan.deadline,
+        currentPlan.deadline,
+        currentPlan.getColor(),
         currentPlan));
   }
   _planWidgetsArray = new List.from(_planWidgetsArray.reversed);
@@ -784,7 +784,7 @@ void _fillIdeaWidgetsArray() {
         currentIdea.getTitle(),
         currentIdea.getSubtitle(),
         currentIdea.getDescription(),
-        currentIdea.color,
+        currentIdea.getColor(),
         currentIdea));
   }
   _ideaWidgetsArray = new List.from(_ideaWidgetsArray.reversed);

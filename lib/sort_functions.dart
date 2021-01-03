@@ -6,22 +6,22 @@ import 'Models/plan_class.dart';
 /**
  * sorting goals and plans by deadline
  */
-List sortGoalsInAscendingDeadlineOrder(List<Goal> list) {
-  list.sort((a,b) => a.getDeadline().compareTo(b.getDeadline()));
-  return list;
-}
-List sortPlansInAscendingDeadlineOrder(List<Plan> list) {
-  list.sort((a, b) => a.getDeadline().compareTo(b.getDeadline()));
-  return list;
-}
-List sortGoalsInDescendingDeadlineOrder(List<Goal> list) {
-  list.sort((b,a) => a.getDeadline().compareTo(b.getDeadline()));
-  return list;
-}
-List sortPlansInDescendingDeadlineOrder(List<Plan> list) {
-  list.sort((b,a) => a.getDeadline().compareTo(b.getDeadline()));
-  return list;
-}
+// List sortGoalsInAscendingDeadlineOrder(List<Goal> list) {
+//   list.sort((a,b) => a.getDeadline().compareTo(b.getDeadline()));
+//   return list;
+// }
+// List sortPlansInAscendingDeadlineOrder(List<Plan> list) {
+//   list.sort((a, b) => a.getDeadline().compareTo(b.getDeadline()));
+//   return list;
+// }
+// List sortGoalsInDescendingDeadlineOrder(List<Goal> list) {
+//   list.sort((b,a) => a.getDeadline().compareTo(b.getDeadline()));
+//   return list;
+// }
+// List sortPlansInDescendingDeadlineOrder(List<Plan> list) {
+//   list.sort((b,a) => a.getDeadline().compareTo(b.getDeadline()));
+//   return list;
+// }
 
 
 /**

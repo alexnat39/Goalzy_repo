@@ -133,6 +133,7 @@ class _CustomGoalHomeWidgetState extends State<CustomGoalHomeWidget> {
             side: BorderSide(color: Colors.transparent)),
         color: widget.color,
         onPressed: () {
+
           GoalViewPopUp(widget.goal, navigateFunction: () => Navigator.push(context,
                    MaterialPageRoute(builder: (context) => HomePage())),).build(context);
         },

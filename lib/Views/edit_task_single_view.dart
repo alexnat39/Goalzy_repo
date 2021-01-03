@@ -4,7 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/CustomWidgets/custom_widgets_single_task_view.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
+import 'package:goalzy_app/Services/goal_service.dart';
+import 'package:goalzy_app/Services/idea_service.dart';
+import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import '../Models/goal_class.dart';
 import '../Models/idea_class.dart';
 import 'home_view.dart';
@@ -14,13 +18,18 @@ import 'home_view.dart';
  */
 class GoalEditViewPopUp extends StatelessWidget {
 
+  var _goalService = GoalService();
+  var _goalToBeEdited = Goal();
+
   final VoidCallback navigateFunction;
 
-  Goal goal;
+  Goal goalPassedIn;
   DateTime deadline;
   String description;
   String title;
   String subtitle;
+
+  var goalFromSQL;
 
   final _titleFormKey = GlobalKey<FormState>();
   final _subTitleFormKey = GlobalKey<FormState>();
@@ -32,17 +41,20 @@ class GoalEditViewPopUp extends StatelessWidget {
   TextEditingController subTitleController = new TextEditingController();
   TextEditingController descriptionController = new TextEditingController();
 
-  GoalEditViewPopUp(this.goal, {this.navigateFunction}) {
-    title = goal.getTitle();
-    subtitle = goal.getSubTitle();
-    deadline = goal.getDeadline();
-    description = goal.getDescription();
+  GoalEditViewPopUp(this.goalPassedIn, {this.navigateFunction}) {
+    title = goalPassedIn.title;
+    subtitle = goalPassedIn.subtitle;
+    deadline = DateTime.parse(goalPassedIn.deadline);
+    description = goalPassedIn.getDescription();
   }
 
 
 
   @override
   Widget build(BuildContext context) {
+
+    initializeDateFormatting();
+
     titleController = new TextEditingController(text: title);
     subTitleController = new TextEditingController(text: subtitle);
     descriptionController = new TextEditingController(text: description);
@@ -199,7 +211,7 @@ class GoalEditViewPopUp extends StatelessWidget {
                                 .size
                                 .width * 0.375,
                             child: CustomConfirmButton(navigateFunction: () =>
-                                confirmEditTask(goal, context)),
+                                confirmEditTask(goalPassedIn, context)),
                           ),
                         ]),
                   ),
@@ -211,16 +223,21 @@ class GoalEditViewPopUp extends StatelessWidget {
       },
     );
   }
-  void confirmEditTask(Goal goal, BuildContext context) {
-      _titleFormKey.currentState.validate();
+  void confirmEditTask(Goal _goal, BuildContext context) async {
+    goalFromSQL = await _goalService.readGoalById(goalPassedIn.id);
+
+    _titleFormKey.currentState.validate();
       _subTitleFormKey.currentState.validate();
       if (_titleIsValid &&
           _subTitleIsValid &&
           deadline != null) {
-        goal.setTitle(titleController.text);
-        goal.setSubtitle(subTitleController.text);
-        goal.setDescription(descriptionController.text);
-        goal.setDeadline(deadline);
+        _goal.id = goalFromSQL[0]['id'];
+        _goal.title = titleController.text;
+        _goal.subtitle = subTitleController.text;
+        _goal.description = descriptionController.text;
+        _goal.deadline = deadline.toString();
+        await _goalService.updateGoal(_goal);
+        //goal.setDeadline(deadline);
         Navigator.pop(context);
         Navigator.pop(context);
         Navigator.pop(context);
@@ -239,11 +256,17 @@ class PlanEditViewPopUp extends StatelessWidget {
 
   final VoidCallback navigateFunction;
 
-  Plan plan;
+  
+  var _planService = PlanService();
+  var _planToBeEdited = Plan();
+  
+  Plan planPassedIn;
   DateTime deadline;
   String description;
   String title;
   String subtitle;
+
+  var planFromSQL;
 
   Duration hourDeadline = new Duration(hours: 0, minutes: 0);
 
@@ -260,17 +283,20 @@ class PlanEditViewPopUp extends StatelessWidget {
   TextEditingController subTitleController = new TextEditingController();
   TextEditingController descriptionController = new TextEditingController();
 
-  PlanEditViewPopUp(this.plan, {this.navigateFunction}) {
-    title = plan.getTitle();
-    subtitle = plan.getSubTitle();
-    deadline = plan.getDeadline();
-    description = plan.getDescription();
+  PlanEditViewPopUp(this.planPassedIn, {this.navigateFunction}) {
+    title = planPassedIn.getTitle();
+    subtitle = planPassedIn.getSubTitle();
+    deadline = DateTime.parse(planPassedIn.deadline);
+    description = planPassedIn.getDescription();
   }
 
 
 
   @override
   Widget build(BuildContext context) {
+
+    initializeDateFormatting();
+
     titleController = new TextEditingController(text: title);
     subTitleController = new TextEditingController(text: subtitle);
     descriptionController = new TextEditingController(text: description);
@@ -446,7 +472,7 @@ class PlanEditViewPopUp extends StatelessWidget {
                                 .size
                                 .width * 0.375,
                             child: CustomConfirmButton(navigateFunction: () =>
-                                confirmEditTask(plan, context)),
+                                confirmEditTask(planPassedIn, context)),
                           ),
                         ]),
                   ),
@@ -458,8 +484,10 @@ class PlanEditViewPopUp extends StatelessWidget {
       },
     );
   }
-  void confirmEditTask(Plan plan, BuildContext context) {
-    print(DateTime.now().toString());
+  void confirmEditTask(Plan _plan, BuildContext context) async {
+
+    planFromSQL = await _planService.readPlanById(planPassedIn.id);
+
     _titleFormKey.currentState.validate();
     _subTitleFormKey.currentState.validate();
 
@@ -490,10 +518,12 @@ class PlanEditViewPopUp extends StatelessWidget {
     if (_titleIsValid &&
         _subTitleIsValid &&
         _deadlineIsValid) {
-      plan.setTitle(titleController.text);
-      plan.setSubtitle(subTitleController.text);
-      plan.setDescription(descriptionController.text);
-      plan.setDeadline(newDeadline);
+      _plan.id = planFromSQL[0]['id'];
+      _plan.title = titleController.text;
+      _plan.subtitle = subTitleController.text;
+      _plan.description = descriptionController.text;
+      _plan.deadline = newDeadline.toString();
+      await _planService.updatePlan(_plan);
       Navigator.pop(context);
       Navigator.pop(context);
       Navigator.pop(context);
@@ -510,13 +540,17 @@ class PlanEditViewPopUp extends StatelessWidget {
  */
 class IdeaEditViewPopUp extends StatelessWidget {
 
-  Idea idea;
-  String description;
-  String title;
-  String subtitle;
+
+  var _ideaService = IdeaService();
+  var _ideaToBeEdited = Idea();
+  var ideaFromSQL;
 
   final VoidCallback navigateFunction;
 
+  Idea ideaPassedIn;
+  String description;
+  String title;
+  String subtitle;
 
   final _titleFormKey = GlobalKey<FormState>();
   final _subTitleFormKey = GlobalKey<FormState>();
@@ -528,10 +562,10 @@ class IdeaEditViewPopUp extends StatelessWidget {
   TextEditingController subTitleController = new TextEditingController();
   TextEditingController descriptionController = new TextEditingController();
 
-  IdeaEditViewPopUp(this.idea, {this.navigateFunction}) {
-    title = idea.getTitle();
-    subtitle = idea.getSubtitle();
-    description = idea.getDescription();
+  IdeaEditViewPopUp(this.ideaPassedIn, {this.navigateFunction}) {
+    title = ideaPassedIn.getTitle();
+    subtitle = ideaPassedIn.getSubtitle();
+    description = ideaPassedIn.getDescription();
   }
 
 
@@ -671,7 +705,7 @@ class IdeaEditViewPopUp extends StatelessWidget {
                                   .size
                                   .width * 0.375,
                               child: CustomConfirmButton(navigateFunction: () =>
-                                  confirmEditTask(idea, context)),
+                                  confirmEditTask(ideaPassedIn, context)),
                             ),
                             Container(
                               width: MediaQuery
@@ -691,14 +725,17 @@ class IdeaEditViewPopUp extends StatelessWidget {
       },
     );
   }
-  void confirmEditTask(Idea idea, BuildContext context) {
+  void confirmEditTask(Idea _idea, BuildContext context) async {
+    ideaFromSQL = await _ideaService.readIdeaById(ideaPassedIn.id);
     _titleFormKey.currentState.validate();
     _subTitleFormKey.currentState.validate();
     if (_titleIsValid &&
         _subTitleIsValid) {
-      idea.setTitle(titleController.text);
-      idea.setSubtitle(subTitleController.text);
-      idea.setDescription(descriptionController.text);
+      _idea.id = ideaFromSQL[0]['id'];
+      _idea.title = titleController.text;
+      _idea.subtitle = subTitleController.text;
+      _idea.description = descriptionController.text;
+      await _ideaService.updateIdea(_idea);
       Navigator.pop(context);
       Navigator.pop(context);
       Navigator.pop(context);

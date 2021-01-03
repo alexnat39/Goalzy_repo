@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:goalzy_app/CustomWidgets/custom_widgets_home_view.dart';
 import 'package:goalzy_app/Models/User.dart';
+import 'package:goalzy_app/Services/goal_service.dart';
 import 'package:goalzy_app/Views/home_view.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -223,8 +224,9 @@ class AddTaskGoalView extends StatelessWidget {
                                         subtitle = subTitleController.text;
                                         description =
                                             descriptionController.text;
-                                        _addGoal(context, title, subtitle,
-                                            description, deadline);
+                                        // _addGoal(context, title, subtitle,
+                                        //     description, deadline);
+                                        _addGoalSQL(context, title, subtitle, description, deadline);
                                         Navigator.of(context).pop();
                                         Navigator.of(context).pop();
 
@@ -353,22 +355,51 @@ class AddTaskGoalView extends StatelessWidget {
   }
 }
 
-void _addGoal(BuildContext context, String title, String subtitle,
-    String description, DateTime deadline) {
+// void _addGoal(BuildContext context, String title, String subtitle,
+//     String description, DateTime deadline) {
+//   title = title.trim();
+//   subtitle = subtitle.trim();
+//   if (description == null) {
+//     description = "";
+//   }
+//
+//   description = description.trim();
+//
+//   Goal goal = new Goal(
+//       title,
+//       subtitle,
+//       description,
+//       deadline,
+//       colorsForGoalWidgets[User.allGoals.length % colorsForGoalWidgets.length],
+//       false, DateTime.now());
+//
+//   User.allGoals.add(goal);
+// }
+
+Future<void> _addGoalSQL(BuildContext context, String title, String subtitle,
+    String description, DateTime deadline) async {
   title = title.trim();
   subtitle = subtitle.trim();
+
   if (description == null) {
-    description = "";
+    description = " ";
   }
 
   description = description.trim();
 
-  Goal goal = new Goal(
-      title,
-      subtitle,
-      description,
-      deadline,
-      colorsForGoalWidgets[User.allGoals.length % colorsForGoalWidgets.length],
-      false, DateTime.now());
-  User.allGoals.add(goal);
+  var _goal = new Goal();
+  _goal.title = title;
+  _goal.subtitle = subtitle;
+  _goal.description = description;
+  _goal.deadline = deadline.toString();
+  _goal.finished = 0;
+  //_goal.color = color.toHex();
+  _goal.dateAdded = DateTime.now().toString();
+
+  var _goalService = GoalService();
+  var result = await _goalService.saveGoal(_goal);
+
 }
+
+
+

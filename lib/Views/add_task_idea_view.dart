@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:goalzy_app/Services/goal_service.dart';
+import 'package:goalzy_app/Services/idea_service.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../CustomWidgets/custom_widgets_add_task_view.dart';
@@ -198,7 +200,7 @@ class AddTaskIdeaView extends StatelessWidget {
                                         subtitle = subTitleController.text;
                                         description =
                                             descriptionController.text;
-                                        _addIdea(title, subtitle, description,
+                                        _addIdeaSQL(title, subtitle, description,
                                             context);
 
                                         Navigator.of(context).pop();
@@ -328,8 +330,8 @@ class AddTaskIdeaView extends StatelessWidget {
   }
 }
 
-void _addIdea(
-    String title, String subtitle, String description, BuildContext context) {
+Future<void> _addIdeaSQL (
+    String title, String subtitle, String description, BuildContext context) async {
   title = title.trim();
   subtitle = subtitle.trim();
   if (description == null) {
@@ -337,7 +339,13 @@ void _addIdea(
   }
   description = description.trim();
 
-  Idea idea = new Idea(title, subtitle, description,
-      colorsForIdeaWidgets[User.allIdeas.length % colorsForIdeaWidgets.length], DateTime.now());
-  User.allIdeas.add(idea);
+  var _idea = new Idea();
+  _idea.title = title;
+  _idea.subtitle = subtitle;
+  _idea.description = description;
+  //_goal.color = color.toHex();
+  _idea.dateAdded = DateTime.now().toString();
+
+  var _ideaService = IdeaService();
+  var result = await _ideaService.saveIdea(_idea);
 }

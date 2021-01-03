@@ -1,64 +1,70 @@
 import 'dart:ui';
 
 class Plan {
-  String _title;
-  String _subtitle;
-  String _description;
-  DateTime _deadline;
-  Color _color;
-  bool _finished;
-  final DateTime _dateAdded;
+  int id;
+  String title;
+  String subtitle;
+  String description;
+  String deadline;
+  Color color;
+  int finished;
+  String dateAdded;
 
-  Plan(this._title, this._subtitle, this._description, this._deadline, this._color, this._finished, this._dateAdded);
+  planMap() {
+    var mapping = Map<String, dynamic>();
+    mapping['id'] = id;
+    mapping['title'] = title;
+    mapping['subtitle'] = subtitle;
+    mapping['description'] = description;
+    mapping['deadline'] = deadline;
+    mapping['color'] = color;
+    mapping['finished'] = finished;
+    mapping['dateAdded'] = dateAdded;
+
+    return mapping;
+  }
+
+  //Plan(this.title, this.subtitle, this.description, this.deadline, this.color, this.finished, this.dateAdded);
 
 
-  Color get color => _color;
+  Color getColor() => color;
 
   /**
    * getter functions for Plan
    */
-  bool isFinished() => _finished;
 
   String getDescription() {
-    return _description;
+    return description;
   }
 
   String getSubTitle() {
-    return _subtitle;
+    return subtitle;
   }
 
   String getTitle() {
-    return _title;
+    return title;
   }
 
-  DateTime getDeadline() {
-    return _deadline;
-  }
 
-  DateTime get dateAdded => _dateAdded;
+
 
   /**
    * setter functions for Plan
    */
 
   void setDescription(String value) {
-    _description = value;
+    description = value;
   }
 
   void setSubtitle(String value) {
-    _subtitle = value;
+    subtitle = value;
   }
 
   void setTitle(String value) {
-    _title = value;
+    title = value;
   }
 
-  void setDeadline(DateTime value) {
-    _deadline = value;
-  }
 
-  void setFinished(bool value) {
-    _finished = value;
-  }
+
 
 }

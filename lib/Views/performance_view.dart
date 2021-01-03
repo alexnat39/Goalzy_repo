@@ -42,8 +42,8 @@ class _PerformancePageState extends State<PerformancePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    fillOutGoalsArrays();
-    fillOutPlansArrays();
+    // fillOutGoalsArrays();
+    // fillOutPlansArrays();
 
     _finishedPlanWidgetsArray.clear();
     _finishedGoalWidgetsArray.clear();
@@ -277,23 +277,23 @@ void _fillPlanWidgetsArray() {
     for (int i = 0; i < User.finishedPlans.length; i++) {
 
       Plan currentPlan = User.allPlans[i];
-      if (currentPlan.isFinished() == true && currentPlan.getDeadline().isAfter(startOfWeek) &&
-  currentPlan.getDeadline().isBefore(endOfWeek)) {
-        String deadlineDateString =
-            "" + DateFormat('yyyy-MM-dd').format(currentPlan.getDeadline());
-        String deadlineTimeString =
-            "" + DateFormat.Hm().format(currentPlan.getDeadline());
-        _finishedPlanWidgetsArray.add(CustomPlanPerformanceWidget(
-            currentPlan.getTitle(),
-            currentPlan.getSubTitle(),
-            currentPlan.getDescription(),
-            deadlineDateString,
-            deadlineTimeString,
-            currentPlan.color,
-            currentPlan));
-      } else {
-        continue;
-      }
+  //     if (currentPlan.isFinished() == true && currentPlan.getDeadline().isAfter(startOfWeek) &&
+  // currentPlan.getDeadline().isBefore(endOfWeek)) {
+  //       String deadlineDateString =
+  //           "" + DateFormat('yyyy-MM-dd').format(currentPlan.getDeadline());
+  //       String deadlineTimeString =
+  //           "" + DateFormat.Hm().format(currentPlan.getDeadline());
+  //       _finishedPlanWidgetsArray.add(CustomPlanPerformanceWidget(
+  //           currentPlan.getTitle(),
+  //           currentPlan.getSubTitle(),
+  //           currentPlan.getDescription(),
+  //           deadlineDateString,
+  //           deadlineTimeString,
+  //           currentPlan.getColor(),
+  //           currentPlan));
+  //     } else {
+  //       continue;
+  //     }
     }
     _finishedPlanWidgetsArray = new List.from(_finishedPlanWidgetsArray.reversed);
 }
@@ -304,17 +304,17 @@ void _fillPlanWidgetsArray() {
 void _fillGoalWidgetsArray() {
   for (int i = 0; i < User.allGoals.length; i++) {
     Goal currentGoal = User.allGoals[i];
-    if (currentGoal.isFinished()) {
-      DateTime deadline = currentGoal.getDeadline();
-      String deadlineString = "" + DateFormat('yyyy-MM-dd').format(deadline);
-      _finishedGoalWidgetsArray.add(CustomGoalPerformanceWidget(
-          currentGoal.getTitle(),
-          currentGoal.getSubTitle(),
-          deadlineString,
-          currentGoal.getDescription(),
-          currentGoal.color,
-          currentGoal));
-    }
+    // if (currentGoal.isFinished()) {
+    //   DateTime deadline = currentGoal.getDeadline();
+    //   String deadlineString = "" + DateFormat('yyyy-MM-dd').format(deadline);
+    //   _finishedGoalWidgetsArray.add(CustomGoalPerformanceWidget(
+    //       currentGoal.getTitle(),
+    //       currentGoal.getSubTitle(),
+    //       deadlineString,
+    //       currentGoal.getDescription(),
+    //       currentGoal.getColor(),
+    //       currentGoal));
+    // }
   }
   _finishedGoalWidgetsArray = new List.from(_finishedGoalWidgetsArray.reversed);
 }

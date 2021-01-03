@@ -6,6 +6,9 @@ import 'package:goalzy_app/ChartWidgets/plan_bar_chart.dart';
 import 'package:goalzy_app/ChartWidgets/plan_line_chart.dart';
 import 'package:goalzy_app/ChartWidgets/plan_percent_indicator.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
+import 'package:goalzy_app/Services/goal_service.dart';
+import 'package:goalzy_app/Services/idea_service.dart';
+import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
 import 'package:goalzy_app/Views/performance_view.dart';
 import 'package:goalzy_app/fill_arrays_functions.dart';
@@ -18,37 +21,49 @@ import '../Models/idea_class.dart';
 import 'package:intl/intl.dart';
 
 //URGENT
-//todo add graph for showing effectiveness of set plans + goals (y-axis is percentage of tasks completed in a day, x-axis is 7 days(1 week))
+//todo fix edit view popup screen (make tasks in database be editable)
+//todo make tasks show up in all tasks view
+//todo fix dismissables on all task views
+//todo add colors to goal/plan/idea widgets
+//todo add delete features to database
+//todo connect database data with showing progress indicators/graphs
 
 //NON_URGENT
 //todo add priority to task + goal type (long term/short term)
 //todo make the plan container fit all the needed text
 
 class HomePage extends StatefulWidget {
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-List<Widget> _goalWidgetsArray = new List();
-List<Widget> _planWidgetsArray = new List();
-List<Widget> _ideaWidgetsArray = new List();
+class HomePageState extends State<HomePage> {
 
-class _HomePageState extends State<HomePage> {
+  List<Widget> goalWidgetsArray = new List();
+  List<Widget> planWidgetsArray = new List();
+  List<Widget> ideaWidgetsArray = new List();
+
+
+  //fillOutPlansArrays();
+
+  @override
+  initState() {
+    super.initState();
+    getAllGoals();
+    getAllPlans();
+    getAllIdeas();
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    fillOutPlansArrays();
-
-
     //emptying array before filling them (to avoid duplicated widgets)
-    _goalWidgetsArray.removeRange(0, _goalWidgetsArray.length);
-    _planWidgetsArray.removeRange(0, _planWidgetsArray.length);
-    _ideaWidgetsArray.removeRange(0, _ideaWidgetsArray.length);
+    goalWidgetsArray.clear();
+    planWidgetsArray.clear();
+    ideaWidgetsArray.clear();
 
     //filling in widgets arrays
-    _fillGoalWidgetsArray(context);
-    _fillPlanWidgetsArray(context);
-    _fillIdeaWidgetsArray(context);
-
+    _fillGoalWidgetsArray(context, _goalList, goalWidgetsArray);
+    _fillPlanWidgetsArray(context, _planList, planWidgetsArray);
+    _fillIdeaWidgetsArray(context, _ideaList, ideaWidgetsArray);
 
     return WillPopScope(
       onWillPop: () async => !Navigator.of(context).userGestureInProgress,
@@ -106,10 +121,10 @@ class _HomePageState extends State<HomePage> {
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
-                            itemCount: _goalWidgetsArray.length,
+                            itemCount: goalWidgetsArray.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
-                                child: _goalWidgetsArray[index],
+                                child: goalWidgetsArray[index],
                               );
                             }),
                       )),
@@ -144,10 +159,10 @@ class _HomePageState extends State<HomePage> {
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
-                            itemCount: _planWidgetsArray.length,
+                            itemCount: planWidgetsArray.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
-                                child: _planWidgetsArray[index],
+                                child: planWidgetsArray[index],
                               );
                             }),
                       )),
@@ -182,10 +197,10 @@ class _HomePageState extends State<HomePage> {
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
-                            itemCount: _ideaWidgetsArray.length,
+                            itemCount: ideaWidgetsArray.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
-                                child: _ideaWidgetsArray[index],
+                                child: ideaWidgetsArray[index],
                               );
                             }),
                       )),
@@ -230,85 +245,157 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+
+  GoalService _goalService;
+  List<Goal> _goalList = new List<Goal>();
+  //reads all the goals from the SQL database
+  getAllGoals() async {
+    _goalService = GoalService();
+    _goalList = List<Goal>();
+    var goals = await _goalService.readGoals();
+    goals.forEach((goal) {
+      setState(() {
+        var currentGoal = new Goal();
+        currentGoal.id = goal['id'];
+        currentGoal.title = goal['title'];
+        currentGoal.subtitle = goal['subtitle'];
+        currentGoal.description = goal['description'];
+        currentGoal.finished = goal['finished'];
+        currentGoal.deadline = goal['deadline'];
+        currentGoal.dateAdded = goal['dateAdded'];
+        //todo add color to this goal
+        //adding goal to the goal widgets array
+        _goalList.insert(0, currentGoal);
+      });
+    });
+  }
+
+
+  //reads all the plans from the SQL database
+  PlanService _planService;
+  List<Plan> _planList = new List<Plan>();
+  getAllPlans() async {
+    _planService = PlanService();
+    _planList = List<Plan>();
+    var plans = await _planService.readPlans();
+    plans.forEach((plan) {
+      setState(() {
+        var currentPlan = new Plan();
+        currentPlan.id = plan['id'];
+        currentPlan.title = plan['title'];
+        currentPlan.subtitle = plan['subtitle'];
+        currentPlan.description = plan['description'];
+        currentPlan.finished = plan['finished'];
+        currentPlan.deadline = plan['deadline'];
+        currentPlan.dateAdded = plan['dateAdded'];
+        //todo add color to this plan
+        //adding goal to the goal widgets array
+        //_planList.add(currentPlan);
+        _planList.insert(0, currentPlan);
+      });
+    });
+  }
+
+  //reads all the ideas from the SQL database
+  IdeaService _ideaService;
+  List<Idea> _ideaList = new List<Idea>();
+  getAllIdeas() async {
+    _ideaService = IdeaService();
+    _ideaList = List<Idea>();
+    var ideas = await _ideaService.readIdeas();
+
+    ideas.forEach((idea) {
+      setState(() {
+        var currentIdea = new Idea();
+        currentIdea.id = idea['id'];
+        currentIdea.title = idea['title'];
+        currentIdea.subtitle = idea['subtitle'];
+        currentIdea.description = idea['description'];
+        currentIdea.dateAdded = idea['dateAdded'];
+        //todo add color to this goal
+        //adding goal to the goal widgets array
+        _ideaList.insert(0, currentIdea);
+      });
+    });
+  }
+
 }
 
 /**
  * funciton for filling in goalWidgetsArray
  */
-void _fillGoalWidgetsArray(BuildContext context) {
-  if (User.allGoals.length == 0 || User.finishedGoals.length == User.allGoals.length) {
+void _fillGoalWidgetsArray(BuildContext context, var list, _goalWidgetsArray) {
+  if (list.length == 0) {
     _goalWidgetsArray.add(CustomAddGoalButton(
-      navigateFunction: () => Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()))));
-
-
+        navigateFunction: () => Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()))));
   } else {
-    for (int i = 0; i < User.allGoals.length; i++) {
-      Goal currentGoal = User.allGoals[i];
-      if (currentGoal.isFinished() == false) {
-        String deadlineString = "" + DateFormat('yyyy-MM-dd').format(currentGoal.getDeadline());
+    for (int i = 0; i < list.length; i++) {
+      Goal currentGoal = list[i];
+      if (currentGoal.finished == 0) {
+        String deadlineString = currentGoal.deadline.substring(0, currentGoal.deadline.indexOf(" "));
         _goalWidgetsArray.add(CustomGoalHomeWidget(
             currentGoal.getTitle(),
             currentGoal.getSubTitle(),
             deadlineString,
-            currentGoal.color,
+            Colors.greenAccent,
             currentGoal));
       } else {
         continue;
       }
     }
-    _goalWidgetsArray = new List.from(_goalWidgetsArray.reversed);
   }
 }
 
 /**
  * funciton for filling in planWidgetsArray
  */
-void _fillPlanWidgetsArray(BuildContext context) {
-  if (User.allPlans.length == 0 || User.finishedPlans.length == User.allPlans.length) {
+void _fillPlanWidgetsArray(BuildContext context, var list, var _planWidgetsArray) {
+  if (list.length == 0) {
     _planWidgetsArray.add(CustomAddPlanButton(
       navigateFunction: () => Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomePage())),
     ));
   } else {
-    for (int i = 0; i < User.allPlans.length; i++) {
-      Plan currentPlan = User.allPlans[i];
-      if (currentPlan.isFinished() == false) {
-        String deadlineDateString =
-            "" + DateFormat('yyyy-MM-dd').format(currentPlan.getDeadline());
-        String deadlineTimeString =
-            "" + DateFormat.Hm().format(currentPlan.getDeadline());
+    for (int i = 0; i < list.length; i++) {
+      Plan currentPlan = list[i];
+      if (currentPlan.finished == 0) {
+        String deadlineDateString = currentPlan.deadline.substring(0, currentPlan.deadline.indexOf(" "));
+        String deadlineTimeString = currentPlan.deadline.substring(currentPlan.deadline.indexOf(" ") + 1,  currentPlan.deadline.lastIndexOf(":"));
+
         _planWidgetsArray.add(CustomPlanHomeWidget(
             currentPlan.getTitle(),
             currentPlan.getSubTitle(),
             deadlineDateString,
             deadlineTimeString,
-            currentPlan.color,
+            currentPlan.getColor(),
             currentPlan));
       } else {
         continue;
       }
     }
-    _planWidgetsArray = new List.from(_planWidgetsArray.reversed);
   }
 }
 
 /**
  * funciton for filling in ideaWidgetsArray
  */
-void _fillIdeaWidgetsArray(BuildContext context) {
-  if (User.allIdeas.length == 0) {
+void _fillIdeaWidgetsArray(BuildContext context, var list, var _ideaWidgetsArray) {
+  if (list.length == 0) {
     _ideaWidgetsArray.add(CustomAddIdeaButton(
       navigateFunction: () => Navigator.push(
           context, MaterialPageRoute(builder: (context) => HomePage())),
     ));
   } else {
-    for (int i = 0; i < User.allIdeas.length; i++) {
-      Idea currentIdea = User.allIdeas[i];
+    for (int i = 0; i < list.length; i++) {
+      Idea currentIdea = list[i];
       _ideaWidgetsArray.add(CustomIdeaHomeWidget(currentIdea.getTitle(),
-          currentIdea.getSubtitle(), currentIdea.color, currentIdea));
+          currentIdea.getSubtitle(), currentIdea.getColor(
+          ), currentIdea));
     }
-    _ideaWidgetsArray = new List.from(_ideaWidgetsArray.reversed);
   }
 }
+
+
 

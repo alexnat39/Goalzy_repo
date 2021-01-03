@@ -1,44 +1,56 @@
 import 'dart:ui';
 
 class Idea {
-  String _title;
-  String _subtitle;
-  String _description;
-  Color _color;
-  final DateTime _dateAdded;
+  int id;
+  String title;
+  String subtitle;
+  String description;
+  Color color;
+  String dateAdded;
 
+
+  ideaMap() {
+    var mapping = Map<String, dynamic>();
+    mapping['id'] = id;
+    mapping['title'] = title;
+    mapping['subtitle'] = subtitle;
+    mapping['description'] = description;
+   // mapping['color'] = getColor;
+    mapping['dateAdded'] = dateAdded;
+
+    return mapping;
+  }
   /**
    * getter functions
    */
-  Idea(this._title, this._subtitle, this._description, this._color, this._dateAdded);
+  // Idea(this.title, this.subtitle, this.description, this.color, this.dateAdded);
 
 
-  Color get color => _color;
+  Color getColor() => color;
 
   String getDescription() {
-    return _description;
+    return description;
   }
   String getTitle() {
-    return _title;
+    return title;
   }
   String getSubtitle() {
-    return _subtitle;
+    return subtitle;
   }
 
-  DateTime get dateAdded => _dateAdded;
 
   /**
    * setter functions
    */
   void setDescription(String value) {
-    _description = value;
+    description = value;
   }
 
   void setSubtitle(String value) {
-    _subtitle = value;
+    subtitle = value;
   }
 
   void setTitle(String value) {
-    _title = value;
+    title = value;
   }
 }

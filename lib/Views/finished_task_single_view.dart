@@ -21,7 +21,7 @@ class FinishedGoalViewPopUp extends StatelessWidget {
   String deadlineString;
 
 FinishedGoalViewPopUp(this.goal) {
-    deadlineString = "" + DateFormat('yyyy-MM-dd').format(goal.getDeadline());
+    //deadlineString = "" + DateFormat('yyyy-MM-dd').format(goal.getDeadline());
   }
 
   @override
@@ -118,7 +118,7 @@ FinishedGoalViewPopUp(this.goal) {
                           width: MediaQuery.of(context).size.width * 0.375,
                           child: CustomRestoreButton(
                               restoreFunction: () {
-                                goal.setFinished(false);
+                                //goal.setFinished(false);
                                 User.finishedGoals.remove(goal);
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => PerformancePage(0)));
                               }),
@@ -143,9 +143,9 @@ class FinishedPlanViewPopUp extends StatelessWidget {
   String deadlineTimeString;
 
   FinishedPlanViewPopUp(this.plan) {
-    deadlineDateString =
-        "" + DateFormat('yyyy-MM-dd').format(plan.getDeadline());
-    deadlineTimeString = "" + DateFormat.Hm().format(plan.getDeadline());
+    // deadlineDateString =
+    //     "" + DateFormat('yyyy-MM-dd').format(plan.deadline);
+    // deadlineTimeString = "" + DateFormat.Hm().format(plan.getDeadline());
   }
 
   @override
@@ -252,7 +252,7 @@ class FinishedPlanViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.375,
                           child: CustomRestoreButton(
                               restoreFunction: () {
-                                plan.setFinished(false);
+                                //plan.setFinished(false);
                                 User.finishedPlans.remove(plan);
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => PerformancePage(1)));
                               }),

@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/CustomWidgets/custom_widget_all_tasks_view.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
+import 'package:goalzy_app/Services/goal_service.dart';
+import 'package:goalzy_app/Services/idea_service.dart';
+import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
 import 'package:goalzy_app/Views/edit_task_single_view.dart';
 import 'package:intl/intl.dart';
@@ -16,12 +19,11 @@ import '../Models/idea_class.dart';
  */
 class GoalViewPopUp extends StatelessWidget {
   final VoidCallback navigateFunction;
+  var _goalService = GoalService();
+  Goal goalPassedIn;
 
-  Goal goal;
-  String deadlineString;
-
-  GoalViewPopUp(this.goal, {this.navigateFunction}) {
-    deadlineString = "" + DateFormat('yyyy-MM-dd').format(goal.getDeadline());
+  GoalViewPopUp(this.goalPassedIn, {this.navigateFunction}) {
+    //deadlineString = "" + DateFormat('yyyy-MM-dd').format(goal.deadline);
   }
 
   @override
@@ -53,7 +55,7 @@ class GoalViewPopUp extends StatelessWidget {
                           left: MediaQuery.of(context).size.width * 0.05,
                       ),
                       child: AutoSizeText(
-                        goal.getTitle(),
+                        goalPassedIn.getTitle(),
                         style: TextStyle(fontSize: 40, color: Colors.grey[400]),
                       ))
                 ]),
@@ -63,7 +65,7 @@ class GoalViewPopUp extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: MediaQuery.of(context).size.width * 0.05),
                     child: AutoSizeText(
-                      goal.getSubTitle(),
+                      goalPassedIn.getSubTitle(),
                       minFontSize: 15,
                       overflow: TextOverflow.ellipsis,
                        style: TextStyle(fontSize: 25, color: Colors.grey[400])
@@ -81,10 +83,10 @@ class GoalViewPopUp extends StatelessWidget {
                       child: Column(
                         children: [
                           AutoSizeText(
-                            (goal.getDescription() == null ||
-                                    goal.getDescription() == "")
+                            (goalPassedIn.getDescription() == null ||
+                                    goalPassedIn.getDescription() == " ")
                                 ? "No description available"
-                                : goal.getDescription(), style: TextStyle(color: Colors.grey[400]),
+                                : goalPassedIn.getDescription(), style: TextStyle(color: Colors.grey[400]),
                           ),
                         ],
                       ),
@@ -100,7 +102,7 @@ class GoalViewPopUp extends StatelessWidget {
                       bottom: MediaQuery.of(context).size.height * 0.01),
                   alignment: Alignment.bottomRight,
                   child: Text(
-                    deadlineString,
+                    goalPassedIn.deadline.substring(0, goalPassedIn.deadline.indexOf(" ")),
                     style: TextStyle(fontSize: 20),
                     maxLines: 1,
                   ),
@@ -114,20 +116,27 @@ class GoalViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomEditButton(
                               navigateFunction: () => GoalEditViewPopUp(
-                                    goal,
+                                    goalPassedIn,
                                     navigateFunction: navigateFunction,
                                   ).build(context)),
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomDeleteButton(
-                              deleteFunction: () => deleteTask(goal),
+                              deleteFunction: () {
+                                _goalService.deleteGoal(goalPassedIn.id);
+                              },
                               navigateFunction: navigateFunction),
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomFinishedButton(
-                            finishedFunction: () => finishTask(goal),
+                            finishedFunction: () async {
+                              var goalFromSQL = await _goalService.readGoalById(goalPassedIn.id);
+                              goalPassedIn.id = goalFromSQL[0]['id'];
+                              goalPassedIn.finished = 1;
+                              await _goalService.updateGoal(goalPassedIn);
+                            },
                             navigateFunction: navigateFunction,
                           ),
                         ),
@@ -146,16 +155,18 @@ class GoalViewPopUp extends StatelessWidget {
  * this class displays a plan information in a pop-up view
  */
 class PlanViewPopUp extends StatelessWidget {
-  Plan plan;
+
+  var _planService = PlanService();
+  Plan planPassedIn;
   String deadlineDateString;
   String deadlineTimeString;
 
   final VoidCallback navigateFunction;
 
-  PlanViewPopUp(this.plan, {this.navigateFunction}) {
-    deadlineDateString =
-        "" + DateFormat('yyyy-MM-dd').format(plan.getDeadline());
-    deadlineTimeString = "" + DateFormat.Hm().format(plan.getDeadline());
+  PlanViewPopUp(this.planPassedIn, {this.navigateFunction}) {
+    // deadlineDateString =
+    //     "" + DateFormat('yyyy-MM-dd').format(plan.getDeadline());
+    // deadlineTimeString = "" + DateFormat.Hm().format(plan.getDeadline());
   }
 
   @override
@@ -187,7 +198,7 @@ class PlanViewPopUp extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: MediaQuery.of(context).size.width * 0.05),
                       child: AutoSizeText(
-                        plan.getTitle(),
+                        planPassedIn.getTitle(),
                         style: TextStyle(fontSize: 40, color: Colors.grey[400]),
                       ))
                 ]),
@@ -197,7 +208,7 @@ class PlanViewPopUp extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: MediaQuery.of(context).size.width * 0.05),
                     child: AutoSizeText(
-                      plan.getSubTitle(),
+                      planPassedIn.getSubTitle(),
                       minFontSize: 15,
                       overflow: TextOverflow.ellipsis,
 
@@ -217,10 +228,10 @@ class PlanViewPopUp extends StatelessWidget {
                       child: Column(
                         children: [
                           AutoSizeText(
-                            (plan.getDescription() == null ||
-                                plan.getDescription() == "")
+                            (planPassedIn.getDescription() == null ||
+                                planPassedIn.getDescription() == "")
                                 ? "No description available"
-                                : plan.getDescription(),
+                                : planPassedIn.getDescription(),
                           ),
                         ],
                       ),
@@ -233,7 +244,7 @@ class PlanViewPopUp extends StatelessWidget {
                       right: MediaQuery.of(context).size.width * 0.01),
                   alignment: Alignment.bottomRight,
                   child: Text(
-                    deadlineDateString,
+                    planPassedIn.deadline.substring(0, planPassedIn.deadline.indexOf(" ")),
                     style: TextStyle(fontSize: 20),
                     maxLines: 1,
                   ),
@@ -244,7 +255,7 @@ class PlanViewPopUp extends StatelessWidget {
                       right: MediaQuery.of(context).size.width * 0.01,),
                   alignment: Alignment.bottomRight,
                   child: Text(
-                    deadlineTimeString,
+                    planPassedIn.deadline.substring(planPassedIn.deadline.indexOf(" "), planPassedIn.deadline.lastIndexOf(":")),
                     style: TextStyle(fontSize: 20),
                     maxLines: 1,
                   ),
@@ -258,20 +269,27 @@ class PlanViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomEditButton(
                               navigateFunction: () => PlanEditViewPopUp(
-                                plan,
+                                planPassedIn,
                                 navigateFunction: navigateFunction,
                               ).build(context)),
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomDeleteButton(
-                              deleteFunction: () => deleteTask(plan),
+                              deleteFunction: () {
+                                _planService.deletePlan(planPassedIn.id);
+                              },
                               navigateFunction: navigateFunction),
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomFinishedButton(
-                            finishedFunction: () => finishTask(plan),
+                            finishedFunction: () async {
+                              var planFromSQL = await _planService.readPlanById(planPassedIn.id);
+                              planPassedIn.id = planFromSQL[0]['id'];
+                              planPassedIn.finished = 1;
+                              await _planService.updatePlan(planPassedIn);
+                            },
                             navigateFunction: navigateFunction,
                           ),
                         ),
@@ -290,6 +308,8 @@ class PlanViewPopUp extends StatelessWidget {
  * this class displays an idea information in a pop-up view
  */
 class IdeaViewPopUp extends StatelessWidget {
+
+  var _ideaService = IdeaService();
   Idea idea;
   final VoidCallback navigateFunction;
 
@@ -379,7 +399,9 @@ class IdeaViewPopUp extends StatelessWidget {
                         Container(
                           width: MediaQuery.of(context).size.width * 0.375,
                           child: CustomDeleteButton(
-                              deleteFunction: () => deleteTask(idea),
+                              deleteFunction: () {
+                                _ideaService.deleteIdea(idea.id);
+                              },
                               navigateFunction: navigateFunction),
                         ),
                       ]),
@@ -393,25 +415,14 @@ class IdeaViewPopUp extends StatelessWidget {
   }
 }
 
-void deleteTask(var task) {
-  if (task is Goal) {
-    User.allGoals.remove(task);
-  } else if (task is Plan) {
-    User.allPlans.remove(task);
-  } else if (task is Idea) {
-    User.allIdeas.remove(task);
-  } else {
-    print("nothing has been removed");
-  }
-}
 
 void finishTask(var task) {
   if (task is Goal) {
-    task.setFinished(true);
+   // task.setFinished(true);
     User.finishedGoals.add(task);
     User.remainingGoals.remove(task);
   } else if (task is Plan) {
-    task.setFinished(true);
+    //task.setFinished(true);
     User.finishedPlans.add(task);
     User.remainingPlans.remove(task);
   } else {
