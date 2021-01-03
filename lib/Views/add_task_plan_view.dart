@@ -425,7 +425,7 @@ Future<void> _addPlanSQL(BuildContext context, String title, String subtitle,
   _plan.description = description;
   _plan.deadline = deadline.toString();
   _plan.finished = 0;
-  //_goal.color = color.toHex();
+  _plan.color = colorsForPlanWidgets[2].value;
   _plan.dateAdded = DateTime.now().toString();
 
   var _planService = PlanService();

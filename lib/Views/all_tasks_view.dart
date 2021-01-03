@@ -768,7 +768,7 @@ void _fillPlanWidgetsArray() {
         currentPlan.getDescription(),
         currentPlan.deadline,
         currentPlan.deadline,
-        currentPlan.getColor(),
+        Color(currentPlan.color),
         currentPlan));
   }
   _planWidgetsArray = new List.from(_planWidgetsArray.reversed);
@@ -784,7 +784,7 @@ void _fillIdeaWidgetsArray() {
         currentIdea.getTitle(),
         currentIdea.getSubtitle(),
         currentIdea.getDescription(),
-        currentIdea.getColor(),
+        Color(currentIdea.color),
         currentIdea));
   }
   _ideaWidgetsArray = new List.from(_ideaWidgetsArray.reversed);

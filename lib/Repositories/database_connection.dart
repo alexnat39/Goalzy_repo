@@ -12,9 +12,9 @@ class DatabaseConnection {
 
     }
   _onCreatingDatabase(Database database, int version) async {
-    await database.execute("CREATE TABLE goals(id INTEGER PRIMARY KEY, title TEXT, subtitle TEXT, description TEXT, deadline TEXT, finished INTEGER, dateAdded TEXT)");
-    await database.execute("CREATE TABLE plans(id INTEGER PRIMARY KEY, title TEXT, subtitle TEXT, description TEXT, deadline TEXT, finished INTEGER, dateAdded TEXT)");
-    await database.execute("CREATE TABLE ideas(id INTEGER PRIMARY KEY, title TEXT, subtitle TEXT, description TEXT, dateAdded TEXT)");
+    await database.execute("CREATE TABLE goals(id INTEGER PRIMARY KEY, title TEXT, subtitle TEXT, description TEXT, deadline TEXT, finished INTEGER, dateAdded TEXT, color INTEGER)");
+    await database.execute("CREATE TABLE plans(id INTEGER PRIMARY KEY, title TEXT, subtitle TEXT, description TEXT, deadline TEXT, finished INTEGER, dateAdded TEXT, color INTEGER)");
+    await database.execute("CREATE TABLE ideas(id INTEGER PRIMARY KEY, title TEXT, subtitle TEXT, description TEXT, dateAdded TEXT, color INTEGER)");
 
   }
 }

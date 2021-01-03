@@ -21,7 +21,7 @@ class Goal {
     mapping['subtitle'] = subtitle;
     mapping['description'] = description;
     mapping['deadline'] = deadline;
-    //mapping['color'] = color;
+    mapping['color'] = color;
     mapping['finished'] = finished;
     mapping['dateAdded'] = dateAdded;
 

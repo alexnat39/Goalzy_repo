@@ -343,7 +343,7 @@ Future<void> _addIdeaSQL (
   _idea.title = title;
   _idea.subtitle = subtitle;
   _idea.description = description;
-  //_goal.color = color.toHex();
+  _idea.color = colorsForIdeaWidgets[2].value;
   _idea.dateAdded = DateTime.now().toString();
 
   var _ideaService = IdeaService();

@@ -264,7 +264,7 @@ class HomePageState extends State<HomePage> {
         currentGoal.finished = goal['finished'];
         currentGoal.deadline = goal['deadline'];
         currentGoal.dateAdded = goal['dateAdded'];
-        //todo add color to this goal
+        currentGoal.color = goal['color'];
         //adding goal to the goal widgets array
         _goalList.insert(0, currentGoal);
       });
@@ -289,9 +289,8 @@ class HomePageState extends State<HomePage> {
         currentPlan.finished = plan['finished'];
         currentPlan.deadline = plan['deadline'];
         currentPlan.dateAdded = plan['dateAdded'];
-        //todo add color to this plan
+        currentPlan.color = plan['color'];
         //adding goal to the goal widgets array
-        //_planList.add(currentPlan);
         _planList.insert(0, currentPlan);
       });
     });
@@ -304,7 +303,6 @@ class HomePageState extends State<HomePage> {
     _ideaService = IdeaService();
     _ideaList = List<Idea>();
     var ideas = await _ideaService.readIdeas();
-
     ideas.forEach((idea) {
       setState(() {
         var currentIdea = new Idea();
@@ -313,7 +311,7 @@ class HomePageState extends State<HomePage> {
         currentIdea.subtitle = idea['subtitle'];
         currentIdea.description = idea['description'];
         currentIdea.dateAdded = idea['dateAdded'];
-        //todo add color to this goal
+        currentIdea.color = idea['color'];
         //adding goal to the goal widgets array
         _ideaList.insert(0, currentIdea);
       });
@@ -339,7 +337,7 @@ void _fillGoalWidgetsArray(BuildContext context, var list, _goalWidgetsArray) {
             currentGoal.getTitle(),
             currentGoal.getSubTitle(),
             deadlineString,
-            Colors.greenAccent,
+            Color(currentGoal.color),
             currentGoal));
       } else {
         continue;
@@ -369,7 +367,7 @@ void _fillPlanWidgetsArray(BuildContext context, var list, var _planWidgetsArray
             currentPlan.getSubTitle(),
             deadlineDateString,
             deadlineTimeString,
-            currentPlan.getColor(),
+            Color(currentPlan.color),
             currentPlan));
       } else {
         continue;
@@ -390,12 +388,11 @@ void _fillIdeaWidgetsArray(BuildContext context, var list, var _ideaWidgetsArray
   } else {
     for (int i = 0; i < list.length; i++) {
       Idea currentIdea = list[i];
-      _ideaWidgetsArray.add(CustomIdeaHomeWidget(currentIdea.getTitle(),
-          currentIdea.getSubtitle(), currentIdea.getColor(
-          ), currentIdea));
+      _ideaWidgetsArray.add(CustomIdeaHomeWidget(
+          currentIdea.getTitle(),
+          currentIdea.getSubtitle(),
+          Color(currentIdea.color),
+          currentIdea));
     }
   }
 }
-
-
-

@@ -1,5 +1,6 @@
 import 'package:goalzy_app/Models/goal_class.dart';
 import 'package:goalzy_app/Repositories/repository.dart';
+import 'package:sqflite/sqflite.dart';
 
 class GoalService {
   Repository _repository;
@@ -28,4 +29,7 @@ class GoalService {
   deleteGoal(goalId) async {
     return await _repository.deleteData('goals', goalId);
   }
+
+
+
 }

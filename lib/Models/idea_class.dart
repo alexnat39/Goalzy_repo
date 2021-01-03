@@ -5,7 +5,7 @@ class Idea {
   String title;
   String subtitle;
   String description;
-  Color color;
+  int color;
   String dateAdded;
 
 
@@ -15,7 +15,7 @@ class Idea {
     mapping['title'] = title;
     mapping['subtitle'] = subtitle;
     mapping['description'] = description;
-   // mapping['color'] = getColor;
+    mapping['color'] = color;
     mapping['dateAdded'] = dateAdded;
 
     return mapping;
@@ -26,7 +26,6 @@ class Idea {
   // Idea(this.title, this.subtitle, this.description, this.color, this.dateAdded);
 
 
-  Color getColor() => color;
 
   String getDescription() {
     return description;

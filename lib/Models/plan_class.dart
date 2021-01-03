@@ -6,7 +6,7 @@ class Plan {
   String subtitle;
   String description;
   String deadline;
-  Color color;
+  int color;
   int finished;
   String dateAdded;
 
@@ -27,7 +27,6 @@ class Plan {
   //Plan(this.title, this.subtitle, this.description, this.deadline, this.color, this.finished, this.dateAdded);
 
 
-  Color getColor() => color;
 
   /**
    * getter functions for Plan
