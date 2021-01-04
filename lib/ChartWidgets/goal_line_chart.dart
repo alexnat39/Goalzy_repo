@@ -51,7 +51,6 @@ class LineChartGoalWidget extends StatelessWidget {
     final _decemberHeight = (User.decemberGoals.length == 0)
         ? 0.0
         : ((User.finishedDecemberGoals.length / User.decemberGoals.length) * 5);
-    print("January goals: ${User.januaryGoals}");
     return LineChart(
       LineChartData(
         minX: 0,

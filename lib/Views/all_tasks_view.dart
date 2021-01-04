@@ -250,6 +250,7 @@ class _AllTasksPageState extends State<AllTasksPage> {
         currentGoal.color = goal['color'];
         //adding goal to the goal widgets array
         if (currentGoal.finished == 0) {
+          activeGoalsCounter++;
           goalList.insert(0, currentGoal);
         }
       });
@@ -276,6 +277,7 @@ class _AllTasksPageState extends State<AllTasksPage> {
         currentPlan.color = plan['color'];
         //adding goal to the goal widgets array
         if (currentPlan.finished == 0) {
+          activePlansCounter++;
           planList.insert(0, currentPlan);
         }
       });
@@ -298,6 +300,7 @@ class _AllTasksPageState extends State<AllTasksPage> {
         currentIdea.dateAdded = idea['dateAdded'];
         currentIdea.color = idea['color'];
         //adding goal to the goal widgets array
+        ideasCounter++;
         ideaList.insert(0, currentIdea);
       });
     });

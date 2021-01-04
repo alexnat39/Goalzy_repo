@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
@@ -76,31 +77,55 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
         color: widget.color,
         onPressed: () {
           GoalViewPopUp(widget.goal, navigateFunction: () => Navigator.push(context,
-                   MaterialPageRoute(builder: (context) => AllTasksPage(0, null, null, null))),).build(context);
+              MaterialPageRoute(builder: (context) => AllTasksPage(0, null, null, null))),).build(context);
         },
         child: Padding(
             padding: EdgeInsets.only(
                 top: MediaQuery.of(context).size.height * 0.005),
-            child: Column(
+            child: Row(
               children: [
                 Row(
                   children: [
-                    Flexible(
-                      child: Row(
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: Column(
+                        mainAxisAlignment: (widget.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                        crossAxisAlignment: (widget.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
                         children: [
-                          Text(
-                            widget.title + ": ",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                          Row(
+                            children: [
+                              Flexible(
+                                child: AutoSizeText(
+                                  widget.title + ": ",
+                                  style: TextStyle(
+                                      fontSize: 15, fontWeight: FontWeight.bold),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                              ),
+                              Flexible(
+                                child: AutoSizeText(
+                                  widget.subtitle,
+                                  style: TextStyle(
+                                      fontSize: 13, fontWeight: FontWeight.normal),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            widget.subtitle,
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.normal),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                          Row(
+                            children: [
+                              Flexible(
+                                child: AutoSizeText(
+                                  widget.description,
+                                  style: TextStyle(
+                                      fontSize: 10, fontWeight: FontWeight.normal),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: (MediaQuery.of(context).size.height > 750) ? 3 : 2,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -109,31 +134,29 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
                 ),
                 Row(
                   children: [
-                    Flexible(
-                      child: Text(
-                        widget.description,
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.normal),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                    Container(
+                      margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.033),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center, //Center Column contents vertically,
+                        crossAxisAlignment: CrossAxisAlignment.center, //Center Column contents horizontally,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                widget.deadlineString,
+                                style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                                maxLines: 1,
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ),
+                    )
+
                   ],
                 ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.01,
-                        bottom: MediaQuery.of(context).size.height * 0.01),
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      widget.deadlineString,
-                      style:
-                      TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-                      maxLines: 1,
-                    ),
-                  ),
-                ),
+
               ],
             )),
       ),
@@ -178,74 +201,95 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
         color: widget.color,
         onPressed: () {
           PlanViewPopUp(widget.plan, navigateFunction: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AllTasksPage(1, null, null, null))),).build(context);        },
+              MaterialPageRoute(builder: (context) => AllTasksPage(1, null, null, null))),).build(context);
+          },
         child: Padding(
             padding: EdgeInsets.only(
                 top: MediaQuery.of(context).size.height * 0.005),
-            child: Column(
-              children: [
+            child: Row(
+            children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: Column(
+                          mainAxisAlignment: (widget.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                          crossAxisAlignment: (widget.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                          children: [
+                              Row(
+                                children: [
+                                  Flexible(
+                                    child: AutoSizeText(
+                                      widget.title + ": ",
+                                      style: TextStyle(
+                                          fontSize: 15, fontWeight: FontWeight.bold),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: AutoSizeText(
+                                      widget.subtitle,
+                                      style: TextStyle(
+                                          fontSize: 13, fontWeight: FontWeight.normal),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                    ),
+                                  ),
+                                ],
+                            ),
+                            Row(
+                              children: [
+                                Flexible(
+                                  child: AutoSizeText(
+                                    widget.description,
+                                    style: TextStyle(
+                                        fontSize: 10, fontWeight: FontWeight.normal),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: (MediaQuery.of(context).size.height > 750) ? 3 : 2,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 Row(
                   children: [
-                    Flexible(
-                      child: Row(
+                    Container(
+                      margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.033),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center, //Center Column contents vertically,
+                        crossAxisAlignment: CrossAxisAlignment.center, //Center Column contents horizontally,
                         children: [
-                          Text(
-                            widget.title + ": ",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
+                          Row(
+                            children: [
+                              Text(
+                                widget.deadlineDateString,
+                                style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                                maxLines: 1,
+                              ),
+                            ],
                           ),
-                          Text(
-                            widget.subtitle,
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.normal),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                          Row(
+                            children: [
+                              Text(
+                                widget.deadlineTimeString,
+                                style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 12 : 10, fontWeight: FontWeight.bold),
+                                maxLines: 1,
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ),
+                    )
+
                   ],
                 ),
-                Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        widget.description,
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.normal),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 4,
-                      ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.01),
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      widget.deadlineDateString,
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-                      maxLines: 1,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.01,
-                        bottom: MediaQuery.of(context).size.height * 0.01),
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      widget.deadlineTimeString,
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-                      maxLines: 1,
-                    ),
-                  ),
-                ),
+
               ],
             )),
       ),
@@ -294,25 +338,31 @@ class _CustomIdeaAllTasksWidgetState extends State<CustomIdeaAllTasksWidget> {
             padding: EdgeInsets.only(
                 top: MediaQuery.of(context).size.height * 0.005),
             child: Column(
+              mainAxisAlignment: (widget.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+              crossAxisAlignment: (widget.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
               children: [
                 Row(
                   children: [
                     Flexible(
                       child: Row(
                         children: [
-                          Text(
-                            widget.title + ": ",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
+                          Flexible(
+                            child: AutoSizeText(
+                              widget.title + ": ",
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
                           ),
-                          Text(
-                            widget.subtitle,
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.normal),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                          Flexible(
+                            child: AutoSizeText(
+                              widget.subtitle,
+                              style: TextStyle(
+                                  fontSize: 13, fontWeight: FontWeight.normal),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
                           ),
                         ],
                       ),
@@ -322,7 +372,7 @@ class _CustomIdeaAllTasksWidgetState extends State<CustomIdeaAllTasksWidget> {
                 Row(
                   children: [
                     Flexible(
-                      child: Text(
+                      child: AutoSizeText(
                         widget.description,
                         style: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.normal),

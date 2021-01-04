@@ -2,24 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3640bc8a-1436-480b-8214-c50edc451081" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/ChartWidgets/three_progress_widgets.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/goal_bar_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_bar_chart.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/goal_line_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_line_chart.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/goal_linear_percent_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_linear_percent_indicator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/goal_percent_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_percent_indicator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/plan_bar_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_bar_chart.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/plan_percent_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_percent_indicator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_drawer.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widget_all_tasks_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widget_all_tasks_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Models/User.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Models/User.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/active_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/active_task_single_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_home_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_home_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Views/all_tasks_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/all_tasks_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/finished_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/finished_task_single_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Views/edit_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/edit_task_single_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Views/home_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/home_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/performance_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/performance_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/fill_arrays_functions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fill_arrays_functions.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sort_functions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sort_functions.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609688905582</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fixed plan performance widgets">
+      <created>1609756517634</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1609756517634</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -134,7 +131,8 @@
     <MESSAGE value="Build the main implementation of the app" />
     <MESSAGE value="added sql database to the app" />
     <MESSAGE value="have performance left to finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="have performance left to finish" />
+    <MESSAGE value="fixed plan performance widgets" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed plan performance widgets" />
   </component>
   <component name="WindowStateProjectService">
     <state x="208" y="23" width="1024" height="823" key="#Project_Structure" timestamp="1607775203407">
@@ -159,42 +157,44 @@
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="583" y="207" key="AndroidProcessChooserDialog/0.23.1440.823@0.23.1440.823" timestamp="1608139059481" />
-    <state x="339" y="36" key="CommitChangelistDialog2" timestamp="1609688905311">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state x="339" y="36" key="CommitChangelistDialog2" timestamp="1609756517136">
+      <screen x="0" y="23" width="1440" height="824" />
     </state>
     <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.823@0.23.1440.823" timestamp="1609688905311" />
+    <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.824@0.23.1440.824" timestamp="1609756517136" />
     <state x="474" y="197" key="FileChooserDialogImpl" timestamp="1608320196191">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="474" y="197" key="FileChooserDialogImpl/0.23.1440.823@0.23.1440.823" timestamp="1608320196191" />
-    <state width="1398" height="2" key="GridCell.Tab.0.bottom" timestamp="1609752383213">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1398" height="2" key="GridCell.Tab.0.bottom" timestamp="1609766918067">
+      <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1609752383213" />
-    <state width="1398" height="263" key="GridCell.Tab.0.bottom/0.23.1440.824@0.23.1440.824" timestamp="1609589530427" />
+    <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1609760706728" />
+    <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.23.1440.824@0.23.1440.824" timestamp="1609766918067" />
     <state width="1398" height="176" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1608815489566" />
-    <state width="1398" height="2" key="GridCell.Tab.0.center" timestamp="1609752383213">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1398" height="2" key="GridCell.Tab.0.center" timestamp="1609766918066">
+      <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state width="1398" height="2" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1609752383213" />
-    <state width="1398" height="263" key="GridCell.Tab.0.center/0.23.1440.824@0.23.1440.824" timestamp="1609589530427" />
+    <state width="1398" height="2" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1609760706727" />
+    <state width="1398" height="2" key="GridCell.Tab.0.center/0.23.1440.824@0.23.1440.824" timestamp="1609766918066" />
     <state width="1398" height="176" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1608815489566" />
-    <state width="1398" height="2" key="GridCell.Tab.0.left" timestamp="1609752383212">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1398" height="2" key="GridCell.Tab.0.left" timestamp="1609766918066">
+      <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state width="1398" height="2" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1609752383212" />
-    <state width="1398" height="263" key="GridCell.Tab.0.left/0.23.1440.824@0.23.1440.824" timestamp="1609589530426" />
+    <state width="1398" height="2" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1609760706727" />
+    <state width="1398" height="2" key="GridCell.Tab.0.left/0.23.1440.824@0.23.1440.824" timestamp="1609766918066" />
     <state width="1398" height="176" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1608815489565" />
-    <state width="1398" height="2" key="GridCell.Tab.0.right" timestamp="1609752383213">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state width="1398" height="2" key="GridCell.Tab.0.right" timestamp="1609766918067">
+      <screen x="0" y="23" width="1440" height="824" />
     </state>
-    <state width="1398" height="2" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1609752383213" />
-    <state width="1398" height="263" key="GridCell.Tab.0.right/0.23.1440.824@0.23.1440.824" timestamp="1609589530427" />
+    <state width="1398" height="2" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1609760706727" />
+    <state width="1398" height="2" key="GridCell.Tab.0.right/0.23.1440.824@0.23.1440.824" timestamp="1609766918067" />
     <state width="1398" height="176" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1608815489566" />
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1609688913512">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1609756527280">
+      <screen x="0" y="23" width="1440" height="824" />
     </state>
     <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.823@0.23.1440.823" timestamp="1609688913512" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1609756527280" />
     <state x="100" y="137" width="1240" height="623" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1609221662380">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
@@ -232,7 +232,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/Views/home_view.dart</url>
-          <line>300</line>
+          <line>299</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

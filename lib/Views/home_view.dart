@@ -24,7 +24,6 @@ import '../Models/idea_class.dart';
 import 'package:intl/intl.dart';
 
 //URGENT
-//todo connect database data with showing progress indicators/graphs
 //todo fix finished task single view
 
 
@@ -325,9 +324,9 @@ class HomePageState extends State<HomePage> {
         currentGoal.dateAdded = goal['dateAdded'];
         currentGoal.color = goal['color'];
         //adding goal to the goal widgets array
-        _goalList.insert(0, currentGoal);
         if (currentGoal.finished == 0) {
           activeGoalsCounter++;
+          _goalList.insert(0, currentGoal);
         }
       });
     });
@@ -351,10 +350,11 @@ class HomePageState extends State<HomePage> {
         currentPlan.dateAdded = plan['dateAdded'];
         currentPlan.color = plan['color'];
         //adding goal to the goal widgets array
-        _planList.insert(0, currentPlan);
+
         addToAppropriateArrayOfPlans(currentPlan);
         if (currentPlan.finished == 0) {
           activePlansCounter++;
+          _planList.insert(0, currentPlan);
         }
       });
     });

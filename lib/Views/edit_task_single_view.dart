@@ -81,7 +81,7 @@ class GoalEditViewPopUp extends StatelessWidget {
               height: MediaQuery
                   .of(context)
                   .size
-                  .height * 0.50,
+                  .height * 0.48,
               width: MediaQuery
                   .of(context)
                   .size
@@ -237,7 +237,6 @@ class GoalEditViewPopUp extends StatelessWidget {
         _goal.description = descriptionController.text;
         _goal.deadline = deadline.toString();
         await _goalService.updateGoal(_goal);
-        //goal.setDeadline(deadline);
         Navigator.pop(context);
         Navigator.pop(context);
         Navigator.pop(context);
@@ -324,7 +323,7 @@ class PlanEditViewPopUp extends StatelessWidget {
               height: MediaQuery
                   .of(context)
                   .size
-                  .height * 0.6,
+                  .height * 0.58,
               width: MediaQuery
                   .of(context)
                   .size
@@ -598,7 +597,7 @@ class IdeaEditViewPopUp extends StatelessWidget {
               height: MediaQuery
                   .of(context)
                   .size
-                  .height * 0.40,
+                  .height * 0.38,
               width: MediaQuery
                   .of(context)
                   .size
@@ -704,15 +703,15 @@ class IdeaEditViewPopUp extends StatelessWidget {
                                   .of(context)
                                   .size
                                   .width * 0.375,
-                              child: CustomConfirmButton(navigateFunction: () =>
-                                  confirmEditTask(ideaPassedIn, context)),
+                              child: CustomCancelButton(),
                             ),
                             Container(
                               width: MediaQuery
                                   .of(context)
                                   .size
                                   .width * 0.375,
-                              child: CustomCancelButton(),
+                              child: CustomConfirmButton(navigateFunction: () =>
+                                  confirmEditTask(ideaPassedIn, context)),
                             ),
                           ]),
                     ),

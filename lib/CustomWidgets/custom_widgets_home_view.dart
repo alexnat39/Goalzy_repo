@@ -133,7 +133,6 @@ class _CustomGoalHomeWidgetState extends State<CustomGoalHomeWidget> {
             side: BorderSide(color: Colors.transparent)),
         color: widget.color,
         onPressed: () {
-
           GoalViewPopUp(widget.goal, navigateFunction: () => Navigator.push(context,
                    MaterialPageRoute(builder: (context) => HomePage())),).build(context);
         },
@@ -259,35 +258,47 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
                   ),
                 ],
               ),
+
               Expanded(
                 child: Container(
                   margin: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.01),
-                  alignment: Alignment.bottomRight,
-                  child: FittedBox(
-                    child: AutoSizeText(
-                      widget.deadlineDateString,
-                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-                      maxLines: 1,
-                    ),
+                      left: MediaQuery.of(context).size.width * 0.01,bottom: MediaQuery.of(context).size.height * 0.01),
+                  alignment: Alignment.bottomLeft,
+                  child: Row(
+                    children: [
+                      FittedBox(
+                        child: Text(
+                          widget.deadlineTimeString,
+                          style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 11 : 10, fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                        ),
+                      ),
+                      Spacer(),
+                      FittedBox(
+                        child: Text(
+                          widget.deadlineDateString,
+                          style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 11 : 10, fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.01,
-                      bottom: MediaQuery.of(context).size.height * 0.01),
-                  alignment: Alignment.bottomRight,
-                  child: FittedBox(
-                    child: AutoSizeText(
-                      widget.deadlineTimeString,
-                      style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
-                      maxLines: 1,
-                    ),
-                  ),
-                ),
-              ),
+              // Expanded(
+              //   child: Container(
+              //     margin: EdgeInsets.only(
+              //         left: MediaQuery.of(context).size.width * 0.01, bottom: MediaQuery.of(context).size.height * 0.01),
+              //     alignment: Alignment.bottomRight,
+              //     child: FittedBox(
+              //       child: Text(
+              //         widget.deadlineDateString,
+              //         style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 10 : 8, fontWeight: FontWeight.bold),
+              //         maxLines: 1,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

@@ -14,6 +14,9 @@ addToAppropriateArrayOfPlans(currentPlan) {
 
   DateTime tempDate = new DateFormat("yyyy-MM-dd hh:mm:ss").parse(currentPlan.deadline);
 
+
+
+
   if (tempDate.year == DateTime.now().year && tempDate.month == DateTime.now().month) {
     switch (tempDate.day) {
       case 1: {
@@ -269,7 +272,8 @@ addToAppropriateArrayOfPlans(currentPlan) {
 
   //adds currentPlan to an appropriate day of the week
   if (tempDate.isAfter(startOfWeek) &&
-      tempDate.isBefore(endOfWeek)) {
+      tempDate.isBefore(endOfWeek) || tempDate.isAtSameMomentAs(startOfWeek)) {
+
     User.thisWeekPlans.add(currentPlan);
     if (currentPlan.finished == 1) {
       User.thisWeekFinishedPlans.add((currentPlan));
@@ -487,8 +491,7 @@ addToAppropriateArrayOfGoals(currentGoal) {
   }
 
   //adds currentGoal to an appropriate month
-  if (tempDate.year == DateTime.now().year) {
-    User.thisYearGoals.add(currentGoal);
+  if (DateFormat('YYYY').format(tempDate) == DateFormat('YYYY').format(DateTime.now())) {
 
     //adds current goal to thisYearFinishedGoals list
     if (currentGoal.finished == 1) {
@@ -496,7 +499,7 @@ addToAppropriateArrayOfGoals(currentGoal) {
     }
 
     switch (DateFormat('MM').format(tempDate)) {
-      case "1":
+      case "01":
         {
           User.januaryGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
@@ -504,7 +507,7 @@ addToAppropriateArrayOfGoals(currentGoal) {
           }
           break;
         }
-      case "2":
+      case "02":
         {
           User.februaryGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
@@ -512,7 +515,7 @@ addToAppropriateArrayOfGoals(currentGoal) {
           }
           break;
         }
-      case "3":
+      case "03":
         {
           User.marchGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
@@ -520,7 +523,7 @@ addToAppropriateArrayOfGoals(currentGoal) {
           }
           break;
         }
-      case "4":
+      case "04":
         {
           User.aprilGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
@@ -528,7 +531,7 @@ addToAppropriateArrayOfGoals(currentGoal) {
           }
           break;
         }
-      case "5":
+      case "05":
         {
           User.mayGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
@@ -536,7 +539,7 @@ addToAppropriateArrayOfGoals(currentGoal) {
           }
           break;
         }
-      case "6":
+      case "06":
         {
           User.juneGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
@@ -544,7 +547,7 @@ addToAppropriateArrayOfGoals(currentGoal) {
           }
           break;
         }
-      case "7":
+      case "07":
         {
           User.julyGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
@@ -552,7 +555,7 @@ addToAppropriateArrayOfGoals(currentGoal) {
           }
           break;
         }
-      case "8":
+      case "08":
         {
           User.augustGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
@@ -560,7 +563,7 @@ addToAppropriateArrayOfGoals(currentGoal) {
           }
           break;
         }
-      case "9":
+      case "09":
         {
           User.septemberGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
