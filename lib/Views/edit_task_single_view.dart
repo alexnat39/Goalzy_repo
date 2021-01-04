@@ -267,7 +267,8 @@ class PlanEditViewPopUp extends StatelessWidget {
 
   var planFromSQL;
 
-  Duration hourDeadline = new Duration(hours: 0, minutes: 0);
+
+  Duration hourDeadline;
 
 
   final _titleFormKey = GlobalKey<FormState>();
@@ -287,6 +288,7 @@ class PlanEditViewPopUp extends StatelessWidget {
     subtitle = planPassedIn.getSubTitle();
     deadline = DateTime.parse(planPassedIn.deadline);
     description = planPassedIn.getDescription();
+    hourDeadline = new Duration(hours: deadline.hour, minutes: deadline.minute);
   }
 
 

@@ -190,19 +190,25 @@ class PlanViewPopUp extends StatelessWidget {
               children: [
                 Row(children: [
                   Container(
+                      width: MediaQuery.of(context).size.width * 0.75,
                       height: MediaQuery.of(context).size.height * 0.05,
                       padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.05),
-                      child: AutoSizeText(
-                        planPassedIn.getTitle(),
-                        style: TextStyle(fontSize: 40, color: Colors.grey[400]),
+                          left: MediaQuery.of(context).size.width * 0.05, right: MediaQuery.of(context).size.width * 0.05),
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: AutoSizeText(
+                          planPassedIn.getTitle(),
+                          style: TextStyle(fontSize: 40, color: Colors.grey[400]),
+                        ),
                       ))
                 ]),
                 Row(children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.04,
+                    width: MediaQuery.of(context).size.width * 0.75,
                     padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.05),
+                        left: MediaQuery.of(context).size.width * 0.05, right: MediaQuery.of(context).size.width * 0.05),
+                    height: MediaQuery.of(context).size.height * 0.04,
+
                     child: AutoSizeText(
                       planPassedIn.getSubTitle(),
                       minFontSize: 15,
@@ -213,10 +219,12 @@ class PlanViewPopUp extends StatelessWidget {
                   )
                 ]),
                 Container(
+                  width: MediaQuery.of(context).size.width * 0.75,
+
                   height: MediaQuery.of(context).size.height * 0.15,
                   padding: EdgeInsets.only(
                       left: MediaQuery.of(context).size.width * 0.05,
-                      right: MediaQuery.of(context).size.width * 0.01,
+                      right: MediaQuery.of(context).size.width * 0.05,
                       top: MediaQuery.of(context).size.width * 0.01,
                       bottom: MediaQuery.of(context).size.width * 0.005),
                   child: SingleChildScrollView(
@@ -353,7 +361,6 @@ class IdeaViewPopUp extends StatelessWidget {
                       idea.getSubtitle(),
                       minFontSize: 15,
                       overflow: TextOverflow.ellipsis,
-
                       // style: TextStyle(fontSize: 25)
                     ),
                   )

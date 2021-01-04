@@ -138,34 +138,51 @@ class _CustomGoalHomeWidgetState extends State<CustomGoalHomeWidget> {
         },
         child: Padding(
             padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.005),
+                top: (widget.title.length <= 13) &&
+                    (widget.subtitle.length <= 13) &&
+                    (MediaQuery.of(context).size.height > 750)
+                    ? MediaQuery.of(context).size.height * 0.017
+                    : ((MediaQuery.of(context).size.height > 750)
+                    ? MediaQuery.of(context).size.height * 0.017
+                    : MediaQuery.of(context).size.height * 0.005)),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Flexible(
-                      child: AutoSizeText(
-                        widget.title,
-                        style: TextStyle(
-                            fontSize: (widget.title.length >= 10) ? 12 : 15, fontWeight: FontWeight.bold),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.23,
+                  child: Column(
+                    mainAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                    crossAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13)  ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                    children: [
+                      Row(
+                        children: [
+                          Flexible(
+                            child: FittedBox(
+                              child: AutoSizeText(
+                                widget.title,
+                                style: TextStyle(
+                                    fontSize: (widget.title.length >= 10) ? 13 : 14, fontWeight: FontWeight.bold),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        widget.subtitle,
-                        style: TextStyle(
-                            fontSize: (widget.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              widget.subtitle,
+                              style: TextStyle(
+                                  fontSize: (widget.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Expanded(
                   child: Container(
@@ -224,39 +241,59 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
             side: BorderSide(color: Colors.transparent)),
         color: widget.color,
         onPressed: () {
-          PlanViewPopUp(widget.plan, navigateFunction: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => HomePage())),).build(context);
+          PlanViewPopUp(
+            widget.plan,
+            navigateFunction: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage())),
+          ).build(context);
         },
         child: Padding(
-          padding:
-          EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.005),
+          padding: EdgeInsets.only(
+              top: (widget.title.length <= 13) &&
+                      (widget.subtitle.length <= 13) &&
+                      (MediaQuery.of(context).size.height > 750)
+                  ? MediaQuery.of(context).size.height * 0.017
+                  : ((MediaQuery.of(context).size.height > 750)
+                      ? MediaQuery.of(context).size.height * 0.017
+                      : MediaQuery.of(context).size.height * 0.005)),
           child: Column(
             children: [
-              Row(
-                children: [
-                  Flexible(
-                    child: AutoSizeText(
-                      widget.title,
-                      style: TextStyle(
-                          fontSize: (widget.title.length >= 10) ? 12 : 15, fontWeight: FontWeight.bold),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+              Container(
+                width: MediaQuery.of(context).size.width * 0.23,
+                child: Column(
+                  mainAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                  crossAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13)  ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                  children: [
+                    Row(
+                      children: [
+                        Flexible(
+                          child: FittedBox(
+                            child: AutoSizeText(
+                              widget.title,
+                              style: TextStyle(
+                                  fontSize: (widget.title.length >= 10) ? 13 : 14, fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Flexible(
-                    child: Text(
-                      widget.subtitle,
-                      style: TextStyle(
-                          fontSize: (widget.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            widget.subtitle,
+                            style: TextStyle(
+                                fontSize: (widget.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
 
               Expanded(
@@ -285,20 +322,6 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
                   ),
                 ),
               ),
-              // Expanded(
-              //   child: Container(
-              //     margin: EdgeInsets.only(
-              //         left: MediaQuery.of(context).size.width * 0.01, bottom: MediaQuery.of(context).size.height * 0.01),
-              //     alignment: Alignment.bottomRight,
-              //     child: FittedBox(
-              //       child: Text(
-              //         widget.deadlineDateString,
-              //         style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 10 : 8, fontWeight: FontWeight.bold),
-              //         maxLines: 1,
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -340,35 +363,52 @@ class _CustomIdeaHomeWidgetState extends State<CustomIdeaHomeWidget> {
           IdeaViewPopUp(widget.idea, navigateFunction: () => Navigator.push(context,
               MaterialPageRoute(builder: (context) => HomePage())),).build(context);        },
         child: Padding(
-          padding:
-          EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.005),
+          padding: EdgeInsets.only(
+              top: (widget.title.length <= 13) &&
+                  (widget.subtitle.length <= 13) &&
+                  (MediaQuery.of(context).size.height > 750)
+                  ? MediaQuery.of(context).size.height * 0.017
+                  : ((MediaQuery.of(context).size.height > 750)
+                  ? MediaQuery.of(context).size.height * 0.017
+                  : MediaQuery.of(context).size.height * 0.005)),
           child: Column(
             children: [
-              Row(
-                children: [
-                  Flexible(
-                    child: AutoSizeText(
-                      widget.title,
-                      style: TextStyle(
-                          fontSize: (widget.title.length >= 10) ? 12 : 15, fontWeight: FontWeight.bold),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+              Container(
+                width: MediaQuery.of(context).size.width * 0.23,
+                child: Column(
+                  mainAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                  crossAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13)  ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                  children: [
+                    Row(
+                      children: [
+                        Flexible(
+                          child: FittedBox(
+                            child: AutoSizeText(
+                              widget.title,
+                              style: TextStyle(
+                                  fontSize: (widget.title.length >= 10) ? 13 : 14, fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Flexible(
-                    child: AutoSizeText(
-                      widget.subtitle,
-                      style: TextStyle(
-                          fontSize: (widget.subtitle.length >= 20) ? 8 : 12, fontWeight: FontWeight.normal),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            widget.subtitle,
+                            style: TextStyle(
+                                fontSize: (widget.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
