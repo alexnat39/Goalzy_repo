@@ -8,20 +8,21 @@ class GoalPercentIndicator extends StatefulWidget  {
   _GoalPercentIndicatorState createState() => _GoalPercentIndicatorState();
 }
 class _GoalPercentIndicatorState extends State<GoalPercentIndicator> {
-  var percentageCompleted = (User.thisMonthGoals.length == 0) ? 0.0 : User.thisMonthFinishedGoals.length / User.thisMonthGoals.length;
-  currentProgressColor() {
-    if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
-      return Colors.red[400];
-    } else if (percentageCompleted * 100 >= 25.0 && percentageCompleted * 100 < 50.0) {
-      return Colors.orange;
-    } else if (percentageCompleted * 100 >= 50.0 && percentageCompleted * 100 < 75.0) {
-      return Colors.yellow[400];
-    } else if (percentageCompleted * 100 >= 75.0 && percentageCompleted * 100 <= 100.0) {
-      return Colors.green[300];
-    }
-  }
+
   @override
   Widget build(BuildContext context) {
+    var percentageCompleted = (User.thisMonthGoals.length == 0) ? 0.0 : User.thisMonthFinishedGoals.length / User.thisMonthGoals.length;
+    currentProgressColor() {
+      if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
+        return Colors.red[400];
+      } else if (percentageCompleted * 100 >= 25.0 && percentageCompleted * 100 < 50.0) {
+        return Colors.orange;
+      } else if (percentageCompleted * 100 >= 50.0 && percentageCompleted * 100 < 75.0) {
+        return Colors.yellow[400];
+      } else if (percentageCompleted * 100 >= 75.0 && percentageCompleted * 100 <= 100.0) {
+        return Colors.green[300];
+      }
+    }
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),

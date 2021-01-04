@@ -125,6 +125,7 @@ class GoalViewPopUp extends StatelessWidget {
                           child: CustomDeleteButton(
                               deleteFunction: () {
                                 _goalService.deleteGoal(goalPassedIn.id);
+                                _goalService.deleteGoal(goalPassedIn.id);
                               },
                               navigateFunction: navigateFunction),
                         ),
@@ -158,16 +159,11 @@ class PlanViewPopUp extends StatelessWidget {
 
   var _planService = PlanService();
   Plan planPassedIn;
-  String deadlineDateString;
-  String deadlineTimeString;
+
 
   final VoidCallback navigateFunction;
 
-  PlanViewPopUp(this.planPassedIn, {this.navigateFunction}) {
-    // deadlineDateString =
-    //     "" + DateFormat('yyyy-MM-dd').format(plan.getDeadline());
-    // deadlineTimeString = "" + DateFormat.Hm().format(plan.getDeadline());
-  }
+  PlanViewPopUp(this.planPassedIn, {this.navigateFunction});
 
   @override
   Widget build(BuildContext context) {

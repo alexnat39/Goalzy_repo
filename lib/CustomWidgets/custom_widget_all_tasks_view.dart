@@ -76,7 +76,7 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
         color: widget.color,
         onPressed: () {
           GoalViewPopUp(widget.goal, navigateFunction: () => Navigator.push(context,
-                   MaterialPageRoute(builder: (context) => AllTasksPage(0))),).build(context);
+                   MaterialPageRoute(builder: (context) => AllTasksPage(0, null, null, null))),).build(context);
         },
         child: Padding(
             padding: EdgeInsets.only(
@@ -178,7 +178,7 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
         color: widget.color,
         onPressed: () {
           PlanViewPopUp(widget.plan, navigateFunction: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AllTasksPage(1))),).build(context);        },
+              MaterialPageRoute(builder: (context) => AllTasksPage(1, null, null, null))),).build(context);        },
         child: Padding(
             padding: EdgeInsets.only(
                 top: MediaQuery.of(context).size.height * 0.005),
@@ -288,7 +288,7 @@ class _CustomIdeaAllTasksWidgetState extends State<CustomIdeaAllTasksWidget> {
         color: widget.color,
         onPressed: () {
           IdeaViewPopUp(widget.idea, navigateFunction: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AllTasksPage(2))),).build(context);
+              MaterialPageRoute(builder: (context) => AllTasksPage(2, null, null, null))),).build(context);
         },
         child: Padding(
             padding: EdgeInsets.only(

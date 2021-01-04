@@ -217,7 +217,7 @@ Widget addSidebarButton(BuildContext context, String title, Color color) {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AllTasksPage(0)));
+                  MaterialPageRoute(builder: (context) => AllTasksPage(0, null, null, null)));
               break;
             }
           case "Plans":
@@ -225,7 +225,7 @@ Widget addSidebarButton(BuildContext context, String title, Color color) {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AllTasksPage(1)));
+                  MaterialPageRoute(builder: (context) => AllTasksPage(1, null, null, null)));
               break;
             }
           case "Ideas":
@@ -233,7 +233,7 @@ Widget addSidebarButton(BuildContext context, String title, Color color) {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AllTasksPage(2)));
+                  MaterialPageRoute(builder: (context) => AllTasksPage(2, null, null, null)));
               break;
             }
         }

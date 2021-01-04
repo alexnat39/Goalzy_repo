@@ -8,43 +8,7 @@ class GoalBarChart extends StatefulWidget {
 }
 
 class _GoalBarChartState extends State<GoalBarChart> {
-  final _januaryHeight = (User.januaryGoals.length == 0)
-      ? 0.0
-      : ((User.finishedJanuaryGoals.length / User.januaryGoals.length) * 20);
-  final _februaryHeight = (User.februaryGoals.length == 0)
-      ? 0.0
-      : ((User.finishedFebruaryGoals.length / User.februaryGoals.length) * 20);
-  final _marchHeight = (User.marchGoals.length == 0)
-      ? 0.0
-      : ((User.finishedMarchGoals.length / User.marchGoals.length) * 20);
-  final _aprilHeight = (User.aprilGoals.length == 0)
-      ? 0.0
-      : ((User.finishedAprilGoals.length / User.aprilGoals.length) * 20);
-  final _mayHeight = (User.mayGoals.length == 0)
-      ? 0.0
-      : ((User.finishedMayGoals.length / User.mayGoals.length) * 20);
-  final _juneHeight = (User.juneGoals.length == 0)
-      ? 0.0
-      : ((User.finishedJuneGoals.length / User.juneGoals.length) * 20);
-  final _julyHeight = (User.julyGoals.length == 0)
-      ? 0.0
-      : ((User.finishedJulyGoals.length / User.julyGoals.length) * 20);
-  final _augustHeight = (User.augustGoals.length == 0)
-      ? 0.0
-      : ((User.finishedAugustGoals.length / User.augustGoals.length) * 20);
-  final _septemberHeight = (User.septemberGoals.length == 0)
-      ? 0.0
-      : ((User.finishedSeptemberGoals.length / User.septemberGoals.length) *
-          20);
-  final _octoberHeight = (User.octoberGoals.length == 0)
-      ? 0.0
-      : ((User.finishedOctoberGoals.length / User.octoberGoals.length) * 20);
-  final _novemberHeight = (User.novemberGoals.length == 0)
-      ? 0.0
-      : ((User.finishedNovemberGoals.length / User.novemberGoals.length) * 20);
-  final _decemberHeight = (User.decemberGoals.length == 0)
-      ? 0.0
-      : ((User.finishedDecemberGoals.length / User.decemberGoals.length) * 20);
+
 
   List<double> monthlyData = new List();
 
@@ -64,6 +28,45 @@ class _GoalBarChartState extends State<GoalBarChart> {
 
   @override
   Widget build(BuildContext context) {
+
+    final _januaryHeight = (User.januaryGoals.length == 0)
+        ? 0.0
+        : ((User.finishedJanuaryGoals.length / User.januaryGoals.length) * 20);
+    final _februaryHeight = (User.februaryGoals.length == 0)
+        ? 0.0
+        : ((User.finishedFebruaryGoals.length / User.februaryGoals.length) * 20);
+    final _marchHeight = (User.marchGoals.length == 0)
+        ? 0.0
+        : ((User.finishedMarchGoals.length / User.marchGoals.length) * 20);
+    final _aprilHeight = (User.aprilGoals.length == 0)
+        ? 0.0
+        : ((User.finishedAprilGoals.length / User.aprilGoals.length) * 20);
+    final _mayHeight = (User.mayGoals.length == 0)
+        ? 0.0
+        : ((User.finishedMayGoals.length / User.mayGoals.length) * 20);
+    final _juneHeight = (User.juneGoals.length == 0)
+        ? 0.0
+        : ((User.finishedJuneGoals.length / User.juneGoals.length) * 20);
+    final _julyHeight = (User.julyGoals.length == 0)
+        ? 0.0
+        : ((User.finishedJulyGoals.length / User.julyGoals.length) * 20);
+    final _augustHeight = (User.augustGoals.length == 0)
+        ? 0.0
+        : ((User.finishedAugustGoals.length / User.augustGoals.length) * 20);
+    final _septemberHeight = (User.septemberGoals.length == 0)
+        ? 0.0
+        : ((User.finishedSeptemberGoals.length / User.septemberGoals.length) *
+        20);
+    final _octoberHeight = (User.octoberGoals.length == 0)
+        ? 0.0
+        : ((User.finishedOctoberGoals.length / User.octoberGoals.length) * 20);
+    final _novemberHeight = (User.novemberGoals.length == 0)
+        ? 0.0
+        : ((User.finishedNovemberGoals.length / User.novemberGoals.length) * 20);
+    final _decemberHeight = (User.decemberGoals.length == 0)
+        ? 0.0
+        : ((User.finishedDecemberGoals.length / User.decemberGoals.length) * 20);
+
     monthlyData = [
       _januaryHeight,
       _februaryHeight,

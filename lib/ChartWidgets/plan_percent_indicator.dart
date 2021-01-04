@@ -12,20 +12,22 @@ class PlanPercentIndicatorHomePage extends StatefulWidget  {
   _PlanPercentIndicatorHomePageState createState() => _PlanPercentIndicatorHomePageState();
 }
 class _PlanPercentIndicatorHomePageState extends State<PlanPercentIndicatorHomePage> {
-  var percentageCompleted = (User.todayPlans.length == 0) ? 0.0 : User.todayFinishedPlans.length / User.todayPlans.length;
-  currentProgressColor() {
-    if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
-      return Colors.red[400];
-    } else if (percentageCompleted * 100 >= 25.0 && percentageCompleted * 100 < 50.0) {
-      return Colors.orange;
-    } else if (percentageCompleted * 100 >= 50.0 && percentageCompleted * 100 < 75.0) {
-      return Colors.yellow[400];
-    } else if (percentageCompleted * 100 >= 75.0 && percentageCompleted * 100 <= 100.0) {
-      return Colors.green[300];
-    }
-  }
+
   @override
   Widget build(BuildContext context) {
+    var percentageCompleted = User.todayFinishedPlans.length / User.todayPlans.length;
+
+    currentProgressColor() {
+      if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
+        return Colors.red[400];
+      } else if (percentageCompleted * 100 >= 25.0 && percentageCompleted * 100 < 50.0) {
+        return Colors.orange;
+      } else if (percentageCompleted * 100 >= 50.0 && percentageCompleted * 100 < 75.0) {
+        return Colors.yellow[400];
+      } else if (percentageCompleted * 100 >= 75.0 && percentageCompleted * 100 <= 100.0) {
+        return Colors.green[300];
+      }
+    }
     return Container(
       height: MediaQuery.of(context).size.height * 0.03,
       decoration: BoxDecoration(
@@ -107,20 +109,21 @@ class PlanPercentIndicatorPerformancePage extends StatefulWidget  {
   _PlanPercentIndicatorPerformancePageState createState() => _PlanPercentIndicatorPerformancePageState();
 }
 class _PlanPercentIndicatorPerformancePageState extends State<PlanPercentIndicatorPerformancePage> {
-  var percentageCompleted = (User.todayPlans.length == 0) ? 0.0 : User.todayFinishedPlans.length / User.todayPlans.length;
-  currentProgressColor() {
-    if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
-      return Colors.red[400];
-    } else if (percentageCompleted * 100 >= 25.0 && percentageCompleted * 100 < 50.0) {
-      return Colors.orange;
-    } else if (percentageCompleted * 100 >= 50.0 && percentageCompleted * 100 < 75.0) {
-      return Colors.yellow[400];
-    } else if (percentageCompleted * 100 >= 75.0 && percentageCompleted * 100 <= 100.0) {
-      return Colors.green[300];
-    }
-  }
+
   @override
   Widget build(BuildContext context) {
+    var percentageCompleted = (User.todayPlans.length == 0) ? 0.0 : User.todayFinishedPlans.length / User.todayPlans.length;
+    currentProgressColor() {
+      if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
+        return Colors.red[400];
+      } else if (percentageCompleted * 100 >= 25.0 && percentageCompleted * 100 < 50.0) {
+        return Colors.orange;
+      } else if (percentageCompleted * 100 >= 50.0 && percentageCompleted * 100 < 75.0) {
+        return Colors.yellow[400];
+      } else if (percentageCompleted * 100 >= 75.0 && percentageCompleted * 100 <= 100.0) {
+        return Colors.green[300];
+      }
+    }
     return Container(
       height: MediaQuery.of(context).size.height * 0.02,
       decoration: BoxDecoration(

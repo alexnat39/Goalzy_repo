@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/Models/User.dart';
@@ -10,33 +12,8 @@ class PlanBarChartHomeWidget extends StatefulWidget {
 }
 
 class PlanBarChartHomeWidgetState extends State<PlanBarChartHomeWidget> {
-  final _mondayHeight = (User.mondayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedMondayPlans.length / User.mondayPlans.length) * 20);
-  final _tuesdayHeight = (User.tuesdayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedTuesdayPlans.length / User.tuesdayPlans.length) * 20);
-  final _wednesdayHeight = (User.wednesdayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedWednesdayPlans.length / User.wednesdayPlans.length) *
-          20);
-  final _thursdayHeight = (User.thursdayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedThursdayPlans.length / User.thursdayPlans.length) * 20);
-  final _fridayHeight = (User.fridayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedFridayPlans.length / User.fridayPlans.length) * 20);
-  final _saturdayHeight = (User.saturdayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedSaturdayPlans.length / User.saturdayPlans.length) * 20);
-  final _sundayHeight = (User.sundayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedSundayPlans.length / User.sundayPlans.length) * 20);
-
-  List<double> weeklyData = new List();
-
   int touchedIndex;
-
+  List<double> weeklyData = new List();
   currentProgressColor(var x) {
     if (x >= 0.0 && x < 5.0) {
       return [Colors.red[400]];
@@ -46,11 +23,40 @@ class PlanBarChartHomeWidgetState extends State<PlanBarChartHomeWidget> {
       return [Colors.yellow[400]];
     } else if (x >= 15.0 && x <= 20.0) {
       return [Colors.green[300]];
+    } else {
+      return Colors.pinkAccent;
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+    final _mondayHeight = (User.mondayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedMondayPlans.length / User.mondayPlans.length) * 20);
+    final _tuesdayHeight = (User.tuesdayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedTuesdayPlans.length / User.tuesdayPlans.length) * 20);
+    final _wednesdayHeight = (User.wednesdayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedWednesdayPlans.length / User.wednesdayPlans.length) *
+        20);
+    final _thursdayHeight = (User.thursdayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedThursdayPlans.length / User.thursdayPlans.length) * 20);
+    final _fridayHeight = (User.fridayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedFridayPlans.length / User.fridayPlans.length) * 20);
+    final _saturdayHeight = (User.saturdayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedSaturdayPlans.length / User.saturdayPlans.length) * 20);
+    final _sundayHeight = (User.sundayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedSundayPlans.length / User.sundayPlans.length) * 20);
+
+
+
+
     weeklyData = [
       _mondayHeight,
       _tuesdayHeight,
@@ -291,28 +297,7 @@ class PlanBarChartPerformanceWidget extends StatefulWidget {
 }
 
 class PlanBarChartPerformanceWidgetState extends State<PlanBarChartPerformanceWidget> {
-  final _mondayHeight = (User.mondayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedMondayPlans.length / User.mondayPlans.length) * 20);
-  final _tuesdayHeight = (User.tuesdayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedTuesdayPlans.length / User.tuesdayPlans.length) * 20);
-  final _wednesdayHeight = (User.wednesdayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedWednesdayPlans.length / User.wednesdayPlans.length) *
-      20);
-  final _thursdayHeight = (User.thursdayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedThursdayPlans.length / User.thursdayPlans.length) * 20);
-  final _fridayHeight = (User.fridayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedFridayPlans.length / User.fridayPlans.length) * 20);
-  final _saturdayHeight = (User.saturdayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedSaturdayPlans.length / User.saturdayPlans.length) * 20);
-  final _sundayHeight = (User.sundayPlans.length == 0)
-      ? 0.0
-      : ((User.finishedSundayPlans.length / User.sundayPlans.length) * 20);
+
 
   List<double> weeklyData = new List();
 
@@ -332,6 +317,28 @@ class PlanBarChartPerformanceWidgetState extends State<PlanBarChartPerformanceWi
 
   @override
   Widget build(BuildContext context) {
+    final _mondayHeight = (User.mondayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedMondayPlans.length / User.mondayPlans.length) * 20);
+    final _tuesdayHeight = (User.tuesdayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedTuesdayPlans.length / User.tuesdayPlans.length) * 20);
+    final _wednesdayHeight = (User.wednesdayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedWednesdayPlans.length / User.wednesdayPlans.length) *
+        20);
+    final _thursdayHeight = (User.thursdayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedThursdayPlans.length / User.thursdayPlans.length) * 20);
+    final _fridayHeight = (User.fridayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedFridayPlans.length / User.fridayPlans.length) * 20);
+    final _saturdayHeight = (User.saturdayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedSaturdayPlans.length / User.saturdayPlans.length) * 20);
+    final _sundayHeight = (User.sundayPlans.length == 0)
+        ? 0.0
+        : ((User.finishedSundayPlans.length / User.sundayPlans.length) * 20);
     weeklyData = [
       _mondayHeight,
       _tuesdayHeight,

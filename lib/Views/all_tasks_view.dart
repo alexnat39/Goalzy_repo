@@ -24,7 +24,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class AllTasksPage extends StatefulWidget {
   int currentIndex;
-  AllTasksPage(this.currentIndex);
+
+  var goalListToDisplay;
+  var planListToDisplay;
+  var ideaListToDisplay;
+
+  AllTasksPage(this.currentIndex, this.goalListToDisplay, this.planListToDisplay, this.ideaListToDisplay);
   _AllTasksPageState createState() => _AllTasksPageState();
 }
 
@@ -44,20 +49,31 @@ class _AllTasksPageState extends State<AllTasksPage> {
   @override
   initState() {
     super.initState();
-    getAllGoals();
-    getAllPlans();
-    getAllIdeas();
+    activeGoalsCounter = 0;
+    activePlansCounter = 0;
+    if (widget.goalListToDisplay == null) {
+      getAllGoals();
+    } else {
+      goalList = widget.goalListToDisplay;
+    } if (widget.planListToDisplay == null) {
+      getAllPlans();
+    } else {
+      planList = widget.planListToDisplay;
+    }
+    if (widget.ideaListToDisplay == null) {
+      getAllIdeas();
+    } else {
+      ideaList = widget.ideaListToDisplay;
+    }
   }
   @override
   Widget build(BuildContext context) {
+
     final List<Tab> _tabs = [
       Tab(text: "Goals"),
       Tab(text: "Plans"),
       Tab(text: "Ideas")
     ];
-    
-    // fillRemainingGoals();
-    // fillRemainingPlans();
 
     //emptying the arrays to avoid duplicated widgets
     _goalWidgetsArray.clear();
@@ -79,7 +95,7 @@ class _AllTasksPageState extends State<AllTasksPage> {
           drawer: Drawer(
             child: CustomDrawer(
               navigateFunction: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AllTasksPage(0))),
+                  MaterialPageRoute(builder: (context) => AllTasksPage(0, null, null, null))),
             ),
           ),
           appBar: AppBar(
@@ -233,7 +249,9 @@ class _AllTasksPageState extends State<AllTasksPage> {
         currentGoal.dateAdded = goal['dateAdded'];
         currentGoal.color = goal['color'];
         //adding goal to the goal widgets array
-        goalList.insert(0, currentGoal);
+        if (currentGoal.finished == 0) {
+          goalList.insert(0, currentGoal);
+        }
       });
     });
   }
@@ -257,7 +275,9 @@ class _AllTasksPageState extends State<AllTasksPage> {
         currentPlan.dateAdded = plan['dateAdded'];
         currentPlan.color = plan['color'];
         //adding goal to the goal widgets array
-        planList.insert(0, currentPlan);
+        if (currentPlan.finished == 0) {
+          planList.insert(0, currentPlan);
+        }
       });
     });
   }
@@ -290,71 +310,71 @@ void choiceAction(BuildContext context, var currentIndex, String value) {
   if (value == "Ascending Date Added") {
     //ascending is swapped with descending because we reverse a widgets array
     if (currentIndex == 0) {
-      User.allGoals = sortGoalsInDescendingDateAddedOrder(User.allGoals);
+      var newGoalList = sortGoalsInDescendingDateAddedOrder(goalList);
       Navigator.of(context).pop();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AllTasksPage(0)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(0, newGoalList, null, null)));
     }
     if (currentIndex == 1) {
-      User.allPlans = sortPlansInDescendingDateAddedOrder(User.allPlans);
+      var newPlanList = sortPlansInDescendingDateAddedOrder(planList);
       Navigator.of(context).pop();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AllTasksPage(1)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(1, null, newPlanList, null)));
     }
     if (currentIndex == 2) {
-      User.allIdeas = sortIdeasInDescendingDateAddedOrder(User.allIdeas);
+      var newIdeaList = sortIdeasInDescendingDateAddedOrder(ideaList);
       Navigator.of(context).pop();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AllTasksPage(2)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(2, null, null, newIdeaList)));
     }
 
   } else if (value == "Descending Date Added") {
     //descending is swapped with ascending because we reverse a widgets array
     if (currentIndex == 0) {
-      User.allGoals = sortGoalsInAscendingDateAddedOrder(User.allGoals);
+      var newGoalList = sortGoalsInAscendingDateAddedOrder(goalList);
       Navigator.of(context).pop();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AllTasksPage(0)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(0, newGoalList, null, null)));
     }
     if (currentIndex == 1) {
-      User.allPlans = sortPlansInAscendingDateAddedOrder(User.allPlans);
+      var newPlanList = sortPlansInAscendingDateAddedOrder(planList);
       Navigator.of(context).pop();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AllTasksPage(1)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(1, null, newPlanList, null)));
     }
     if (currentIndex == 2) {
-      User.allIdeas = sortIdeasInAscendingDateAddedOrder(User.allIdeas);
+      var newIdeaList = sortIdeasInAscendingDateAddedOrder(ideaList);
       Navigator.of(context).pop();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AllTasksPage(2)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(2, null, null, newIdeaList)));
     }
   } else if (value == "Ascending Deadline") {
     //ascending is swapped with descending because we reverse a widgets array
     if (currentIndex == 0) {
-     // User.allGoals = sortGoalsInDescendingDeadlineOrder(User.allGoals);
+      var newGoalList = sortGoalsInDescendingDeadlineOrder(goalList);
       Navigator.of(context).pop();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AllTasksPage(0)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(0, newGoalList, null, null)));
     }
     if (currentIndex == 1) {
-      //User.allPlans = sortPlansInDescendingDeadlineOrder(User.allPlans);
+      var newPlanList = sortPlansInDescendingDeadlineOrder(planList);
       Navigator.of(context).pop();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AllTasksPage(1)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(1, null, newPlanList, null)));
     }
   } else if (value == "Descending Deadline") {
     if (currentIndex == 0) {
       //descending is swapped with ascending because we reverse a widgets array
-      //User.allGoals = sortGoalsInAscendingDeadlineOrder(User.allGoals);
+      var newGoalList = sortGoalsInAscendingDeadlineOrder(goalList);
       Navigator.of(context).pop();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AllTasksPage(0)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(0, newGoalList, null, null)));
     }
     if (currentIndex == 1) {
-      //User.allPlans = sortPlansInAscendingDeadlineOrder(User.allPlans);
+      var newPlanList  = sortPlansInAscendingDeadlineOrder(planList);
       Navigator.of(context).pop();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => AllTasksPage(1)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(1, null, newPlanList, null)));
     }
   }
 }
@@ -378,7 +398,7 @@ class _AllTasksGoalsState extends State<AllTasksGoals> {
             children: [
               CustomAddGoalButton(
                 navigateFunction: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AllTasksPage(0))),
+                    MaterialPageRoute(builder: (context) => AllTasksPage(0, null, null, null))),
               ),
               Text("Add your first goal",
                   style: TextStyle(color: Colors.grey[300], fontSize: 25)),
@@ -393,7 +413,7 @@ class _AllTasksGoalsState extends State<AllTasksGoals> {
               AddTaskGoalView(
                 context,
                 navigateFunction: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AllTasksPage(0))),
+                    MaterialPageRoute(builder: (context) => AllTasksPage(0, null, null, null))),
               );
             },
             label: Text('ADD'),
@@ -528,7 +548,7 @@ class _AllTasksPlansState extends State<AllTasksPlans> {
             children: [
               CustomAddPlanButton(
                 navigateFunction: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AllTasksPage(1))),
+                    MaterialPageRoute(builder: (context) => AllTasksPage(1, null, null, null))),
               ),
               Text("Add your first plan",
                   style: TextStyle(color: Colors.grey[300], fontSize: 25)),
@@ -543,7 +563,7 @@ class _AllTasksPlansState extends State<AllTasksPlans> {
               AddTaskPlanView(
                 context,
                 navigateFunction: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AllTasksPage(1))),
+                    MaterialPageRoute(builder: (context) => AllTasksPage(1, null, null, null))),
               );
             },
             label: Text('ADD'),
@@ -628,6 +648,9 @@ class _AllTasksPlansState extends State<AllTasksPlans> {
                               key: UniqueKey(),
                               onDismissed: (direction) async {
                                 var _currentPlan = planList[index];
+                                print(planList);
+                                print(_currentPlan.title);
+                                print(planList[index].title);
                                 planList.removeAt(index);
                                 if (direction == DismissDirection.startToEnd) {
                                   _planService.deletePlan(_currentPlan.id);
@@ -677,7 +700,7 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
             children: [
               CustomAddIdeaButton(
                 navigateFunction: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AllTasksPage(2))),
+                    MaterialPageRoute(builder: (context) => AllTasksPage(2, null, null, null))),
               ),
               Text("Add your first idea",
                   style: TextStyle(color: Colors.grey[300], fontSize: 25)),
@@ -692,7 +715,7 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
               AddTaskIdeaView(
                 context,
                 navigateFunction: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AllTasksPage(2))),
+                    MaterialPageRoute(builder: (context) => AllTasksPage(2, null, null, null))),
               );
             },
             label: Text('ADD'),

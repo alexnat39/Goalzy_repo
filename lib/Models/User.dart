@@ -3,11 +3,6 @@ import 'goal_class.dart';
 import 'idea_class.dart';
 
 class User {
-  //these arrays store all goals & plans & ideas user has ever created (finished & unfinished)
-  static List<Plan> _allPlans = new List();
-  static List<Goal> _allGoals = new List();
-  static List<Idea> _allIdeas = new List();
-
   //these arrays store all goals & plans user has not yet finished
   static List<Plan> _remainingPlans = new List();
   static List<Goal> _remainingGoals = new List();
@@ -143,9 +138,6 @@ class User {
   /**
    * getter functions
    */
-  static List<Idea> get allIdeas => _allIdeas;
-  static List<Goal> get allGoals => _allGoals;
-  static List<Plan> get allPlans => _allPlans;
 
   static List<Plan> get finishedPlans => _finishedPlans;
 
@@ -229,15 +221,7 @@ class User {
     _remainingPlans = value;
   }
 
-  static set allGoals(List<Goal> value) {
-    _allGoals = value;
-  }
-  static set allPlans(List<Plan> value) {
-    _allPlans = value;
-  }
-  static set allIdeas(List<Idea> value) {
-    _allIdeas = value;
-  }
+
 
   static List<Plan> get day1Plans => _day1Plans;
   static List<Plan> get day2Plans => _day2Plans;

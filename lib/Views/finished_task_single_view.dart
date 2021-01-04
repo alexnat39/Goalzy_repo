@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/CustomWidgets/custom_widget_all_tasks_view.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
+import 'package:goalzy_app/Services/goal_service.dart';
+import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
 import 'package:goalzy_app/Views/edit_task_single_view.dart';
 import 'package:goalzy_app/Views/performance_view.dart';
@@ -19,10 +21,9 @@ class FinishedGoalViewPopUp extends StatelessWidget {
 
   Goal goal;
   String deadlineString;
+  var _goalService = GoalService();
 
-FinishedGoalViewPopUp(this.goal) {
-    //deadlineString = "" + DateFormat('yyyy-MM-dd').format(goal.getDeadline());
-  }
+  FinishedGoalViewPopUp(this.goal);
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +101,7 @@ FinishedGoalViewPopUp(this.goal) {
                       bottom: MediaQuery.of(context).size.height * 0.01),
                   alignment: Alignment.bottomRight,
                   child: Text(
-                    deadlineString,
+                    goal.deadline.substring(0, goal.deadline.indexOf(" ")),
                     style: TextStyle(fontSize: 20),
                     maxLines: 1,
                   ),
@@ -117,9 +118,11 @@ FinishedGoalViewPopUp(this.goal) {
                         Container(
                           width: MediaQuery.of(context).size.width * 0.375,
                           child: CustomRestoreButton(
-                              restoreFunction: () {
-                                //goal.setFinished(false);
-                                User.finishedGoals.remove(goal);
+                              restoreFunction: () async {
+                                var goalFromSQL = await _goalService.readGoalById(goal.id);
+                                goal.id = goalFromSQL[0]['id'];
+                                goal.finished = 0;
+                                await _goalService.updateGoal(goal);
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => PerformancePage(0)));
                               }),
                         ),
@@ -139,14 +142,8 @@ FinishedGoalViewPopUp(this.goal) {
  */
 class FinishedPlanViewPopUp extends StatelessWidget {
   Plan plan;
-  String deadlineDateString;
-  String deadlineTimeString;
-
-  FinishedPlanViewPopUp(this.plan) {
-    // deadlineDateString =
-    //     "" + DateFormat('yyyy-MM-dd').format(plan.deadline);
-    // deadlineTimeString = "" + DateFormat.Hm().format(plan.getDeadline());
-  }
+  var _planService = PlanService();
+  FinishedPlanViewPopUp(this.plan);
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +220,7 @@ class FinishedPlanViewPopUp extends StatelessWidget {
                       right: MediaQuery.of(context).size.width * 0.01),
                   alignment: Alignment.bottomRight,
                   child: Text(
-                    deadlineDateString,
+                    plan.deadline.substring(0, plan.deadline.indexOf(" ")),
                     style: TextStyle(fontSize: 20),
                     maxLines: 1,
                   ),
@@ -234,7 +231,7 @@ class FinishedPlanViewPopUp extends StatelessWidget {
                     right: MediaQuery.of(context).size.width * 0.01,),
                   alignment: Alignment.bottomRight,
                   child: Text(
-                    deadlineTimeString,
+                    plan.deadline.substring(plan.deadline.indexOf(" "), plan.deadline.lastIndexOf(":")),
                     style: TextStyle(fontSize: 20),
                     maxLines: 1,
                   ),
@@ -251,9 +248,11 @@ class FinishedPlanViewPopUp extends StatelessWidget {
                         Container(
                           width: MediaQuery.of(context).size.width * 0.375,
                           child: CustomRestoreButton(
-                              restoreFunction: () {
-                                //plan.setFinished(false);
-                                User.finishedPlans.remove(plan);
+                              restoreFunction: () async {
+                                var planFromSQL = await _planService.readPlanById(plan.id);
+                                plan.id = planFromSQL[0]['id'];
+                                plan.finished = 0;
+                                await _planService.updatePlan(plan);
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => PerformancePage(1)));
                               }),
                         ),
