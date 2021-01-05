@@ -18,10 +18,11 @@ import 'home_view.dart';
  */
 class GoalEditViewPopUp extends StatelessWidget {
 
-  var _goalService = GoalService();
-  var _goalToBeEdited = Goal();
-
   final VoidCallback navigateFunction;
+
+
+  var _goalService = GoalService();
+
 
   Goal goalPassedIn;
   DateTime deadline;
@@ -45,7 +46,7 @@ class GoalEditViewPopUp extends StatelessWidget {
     title = goalPassedIn.title;
     subtitle = goalPassedIn.subtitle;
     deadline = DateTime.parse(goalPassedIn.deadline);
-    description = goalPassedIn.getDescription();
+    description = goalPassedIn.description;
   }
 
 
@@ -81,19 +82,20 @@ class GoalEditViewPopUp extends StatelessWidget {
               height: MediaQuery
                   .of(context)
                   .size
-                  .height * 0.48,
+                  .height * 0.58,
               width: MediaQuery
                   .of(context)
                   .size
                   .width * 0.75,
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.02),
+                top: MediaQuery.of(context).size.height * 0.02,),
               child: ListView(
                 children: [
                   Row(children: [
                     Container(
-                      padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03,
-                left: MediaQuery.of(context).size.width * 0.03),
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.width * 0.03,
+                          left: MediaQuery.of(context).size.width * 0.03),
                       width: MediaQuery
                           .of(context)
                           .size
@@ -125,7 +127,8 @@ class GoalEditViewPopUp extends StatelessWidget {
                   ]),
                   Row(children: [
                     Container(
-                      padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03,
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.width * 0.03,
                           left: MediaQuery.of(context).size.width * 0.03),
                       width: MediaQuery
                           .of(context)
@@ -158,7 +161,8 @@ class GoalEditViewPopUp extends StatelessWidget {
                     )
                   ]),
                   Container(
-                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03,
+                    padding: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.width * 0.03,
                         left: MediaQuery.of(context).size.width * 0.03),
                     height: MediaQuery
                         .of(context)
@@ -176,9 +180,9 @@ class GoalEditViewPopUp extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.03,
+                    padding: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.width * 0.03,
                         left: MediaQuery.of(context).size.width * 0.03),
-                    margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.01,),
                     //for calendar
                     child: CalendarTimeline(
                       initialDate: deadline,
@@ -196,6 +200,7 @@ class GoalEditViewPopUp extends StatelessWidget {
                       locale: 'en_ISO',
                     ),
                   ),
+
                   Container(
                     height: MediaQuery.of(context).size.height * 0.075,
                     child: Row(
@@ -257,18 +262,17 @@ class PlanEditViewPopUp extends StatelessWidget {
 
   
   var _planService = PlanService();
-  var _planToBeEdited = Plan();
-  
+
   Plan planPassedIn;
   DateTime deadline;
   String description;
   String title;
   String subtitle;
+  Duration hourDeadline;
 
   var planFromSQL;
 
 
-  Duration hourDeadline;
 
 
   final _titleFormKey = GlobalKey<FormState>();
@@ -284,14 +288,12 @@ class PlanEditViewPopUp extends StatelessWidget {
   TextEditingController descriptionController = new TextEditingController();
 
   PlanEditViewPopUp(this.planPassedIn, {this.navigateFunction}) {
-    title = planPassedIn.getTitle();
-    subtitle = planPassedIn.getSubTitle();
+    title = planPassedIn.title;
+    subtitle = planPassedIn.subtitle;
     deadline = DateTime.parse(planPassedIn.deadline);
-    description = planPassedIn.getDescription();
+    description = planPassedIn.description;
     hourDeadline = new Duration(hours: deadline.hour, minutes: deadline.minute);
   }
-
-
 
   @override
   Widget build(BuildContext context) {

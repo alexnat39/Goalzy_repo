@@ -55,8 +55,9 @@ class GoalViewPopUp extends StatelessWidget {
                           left: MediaQuery.of(context).size.width * 0.05,
                       ),
                       child: AutoSizeText(
-                        goalPassedIn.getTitle(),
+                        goalPassedIn.title,
                         style: TextStyle(fontSize: 40, color: Colors.grey[400]),
+                        maxLines: 1,
                       ))
                 ]),
                 Row(children: [
@@ -65,28 +66,30 @@ class GoalViewPopUp extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: MediaQuery.of(context).size.width * 0.05),
                     child: AutoSizeText(
-                      goalPassedIn.getSubTitle(),
-                      minFontSize: 15,
-                      overflow: TextOverflow.ellipsis,
-                       style: TextStyle(fontSize: 25, color: Colors.grey[400])
+                      goalPassedIn.subtitle,
+                       maxLines: 1,
+                       style: TextStyle(fontSize: 30, color: Colors.grey[400])
                     ),
                   )
                 ]),
                 Container(
+                  width: MediaQuery.of(context).size.width * 0.75,
                   padding: EdgeInsets.only(
                       left: MediaQuery.of(context).size.width * 0.05,
-                      right: MediaQuery.of(context).size.width * 0.01,
-                      top: MediaQuery.of(context).size.width * 0.01),
+                      right: MediaQuery.of(context).size.width * 0.05,
+                      top: MediaQuery.of(context).size.width * 0.01,
+                  bottom: MediaQuery.of(context).size.width * 0.005),
                   height: MediaQuery.of(context).size.height * 0.18,
                   child: SingleChildScrollView(
                     child: Container(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                            (goalPassedIn.getDescription() == null ||
-                                    goalPassedIn.getDescription() == " ")
+                            (goalPassedIn.description == null ||
+                                    goalPassedIn.description == "")
                                 ? "No description available"
-                                : goalPassedIn.getDescription(), style: TextStyle(color: Colors.grey[400]),
+                                : goalPassedIn.description, style: TextStyle(color: Colors.grey[400]),
                           ),
                         ],
                       ),
@@ -96,7 +99,7 @@ class GoalViewPopUp extends StatelessWidget {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.04,
                   padding: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.width * 0.01,
+                    right: MediaQuery.of(context).size.width * 0.02,
                   ),
                   margin: EdgeInsets.only(
                       bottom: MediaQuery.of(context).size.height * 0.01),
@@ -194,12 +197,10 @@ class PlanViewPopUp extends StatelessWidget {
                       height: MediaQuery.of(context).size.height * 0.05,
                       padding: EdgeInsets.only(
                           left: MediaQuery.of(context).size.width * 0.05, right: MediaQuery.of(context).size.width * 0.05),
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: AutoSizeText(
-                          planPassedIn.getTitle(),
-                          style: TextStyle(fontSize: 40, color: Colors.grey[400]),
-                        ),
+                      child: AutoSizeText(
+                        planPassedIn.title,
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 40, color: Colors.grey[400],),
                       ))
                 ]),
                 Row(children: [
@@ -208,20 +209,16 @@ class PlanViewPopUp extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: MediaQuery.of(context).size.width * 0.05, right: MediaQuery.of(context).size.width * 0.05),
                     height: MediaQuery.of(context).size.height * 0.04,
-
                     child: AutoSizeText(
-                      planPassedIn.getSubTitle(),
-                      minFontSize: 15,
-                      overflow: TextOverflow.ellipsis,
-
-                      // style: TextStyle(fontSize: 25)
+                      planPassedIn.subtitle,
+                      maxLines: 1,
+                        style: TextStyle(fontSize: 30, color: Colors.grey[400]),
                     ),
                   )
                 ]),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.75,
-
-                  height: MediaQuery.of(context).size.height * 0.15,
+                  height: MediaQuery.of(context).size.height * 0.17,
                   padding: EdgeInsets.only(
                       left: MediaQuery.of(context).size.width * 0.05,
                       right: MediaQuery.of(context).size.width * 0.05,
@@ -230,12 +227,13 @@ class PlanViewPopUp extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Container(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                            (planPassedIn.getDescription() == null ||
-                                planPassedIn.getDescription() == "")
+                            (planPassedIn.description == null ||
+                                planPassedIn.description == "")
                                 ? "No description available"
-                                : planPassedIn.getDescription(),
+                                : planPassedIn.description,
                           ),
                         ],
                       ),
@@ -243,26 +241,31 @@ class PlanViewPopUp extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.03,
+                  height: MediaQuery.of(context).size.height * 0.05,
                   padding: EdgeInsets.only(
-                      right: MediaQuery.of(context).size.width * 0.01),
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                    planPassedIn.deadline.substring(0, planPassedIn.deadline.indexOf(" ")),
-                    style: TextStyle(fontSize: 20),
-                    maxLines: 1,
+                    right: MediaQuery.of(context).size.width * 0.02,
+                    left: MediaQuery.of(context).size.width * 0.02,
                   ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.04,
-                  padding: EdgeInsets.only(
-                      right: MediaQuery.of(context).size.width * 0.01,),
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                    planPassedIn.deadline.substring(planPassedIn.deadline.indexOf(" "), planPassedIn.deadline.lastIndexOf(":")),
-                    style: TextStyle(fontSize: 20),
-                    maxLines: 1,
-                  ),
+                  child: Row(children: [
+                    FittedBox(
+                      child: Text(
+                        planPassedIn.deadline.substring(
+                            planPassedIn.deadline.indexOf(" "),
+                            planPassedIn.deadline.lastIndexOf(":")),
+                        style: TextStyle(fontSize: 20),
+                        maxLines: 1,
+                      ),
+                    ),
+                    Spacer(),
+                    FittedBox(
+                      child: Text(
+                        planPassedIn.deadline
+                            .substring(0, planPassedIn.deadline.indexOf(" ")),
+                        style: TextStyle(fontSize: 20),
+                        maxLines: 1,
+                      ),
+                    ),
+                  ]),
                 ),
                 Expanded(
                   child: Row(
@@ -344,42 +347,46 @@ class IdeaViewPopUp extends StatelessWidget {
               children: [
                 Row(children: [
                   Container(
+                      width: MediaQuery.of(context).size.width * 0.75,
                       height: MediaQuery.of(context).size.height * 0.05,
                       padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.05),
+                          left: MediaQuery.of(context).size.width * 0.05, right: MediaQuery.of(context).size.width * 0.05),
                       child: AutoSizeText(
-                        idea.getTitle(),
+                        idea.title,
                         style: TextStyle(fontSize: 40),
+                        maxLines: 1,
                       ))
                 ]),
                 Row(children: [
                   Container(
+                    width: MediaQuery.of(context).size.width * 0.75,
                     height: MediaQuery.of(context).size.height * 0.04,
                     padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.05),
+                         left: MediaQuery.of(context).size.width * 0.05, right: MediaQuery.of(context).size.width * 0.05),
                     child: AutoSizeText(
-                      idea.getSubtitle(),
-                      minFontSize: 15,
-                      overflow: TextOverflow.ellipsis,
-                      // style: TextStyle(fontSize: 25)
+                      idea.subtitle,
+                      maxLines: 1,
+                      style: TextStyle(fontSize: 30, color: Colors.grey[400]),
                     ),
                   )
                 ]),
                 Container(
+                  width: MediaQuery.of(context).size.width * 0.75,
                   height: MediaQuery.of(context).size.height * 0.20,
                   padding: EdgeInsets.only(
                       left: MediaQuery.of(context).size.width * 0.05,
-                      right: MediaQuery.of(context).size.width * 0.01,
+                      right: MediaQuery.of(context).size.width * 0.05,
                       top: MediaQuery.of(context).size.width * 0.01),
                   child: SingleChildScrollView(
                     child: Container(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
                             (idea.getDescription() == null ||
                                 idea.getDescription() == "")
                                 ? "No description available"
-                                : idea.getDescription(),
+                                : idea.description,
                           ),
                         ],
                       ),

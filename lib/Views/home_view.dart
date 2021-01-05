@@ -24,12 +24,14 @@ import '../Models/idea_class.dart';
 import 'package:intl/intl.dart';
 
 //URGENT
-//todo fix finished task single view
+//todo clean up finished & active task single views
+//todo clean up graph widgets (make the tidier and fix number representation
+//todo add constants (colors,heiught, width) and replace them thorughout the entire app
+
 
 
 //NON_URGENT
 //todo add priority to task + goal type (long term/short term)
-//todo make the plan container fit all the needed text
 
 
 

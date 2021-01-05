@@ -262,8 +262,6 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
                       margin: EdgeInsets.only(
                           left: MediaQuery.of(context).size.width * 0.033),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center, //Center Column contents vertically,
-                        crossAxisAlignment: CrossAxisAlignment.center, //Center Column contents horizontally,
                         children: [
                           Row(
                             children: [
