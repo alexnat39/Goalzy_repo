@@ -44,8 +44,10 @@ class FinishedGoalViewPopUp extends StatelessWidget {
                 Row(children: [
                   Container(
                       height: MediaQuery.of(context).size.height * 0.05,
+                      width: MediaQuery.of(context).size.width * 0.75,
                       padding: EdgeInsets.only(
                         left: MediaQuery.of(context).size.width * 0.05,
+                          right: MediaQuery.of(context).size.width * 0.05
                       ),
                       child: AutoSizeText(
                         goalPassedIn.title,
@@ -56,8 +58,11 @@ class FinishedGoalViewPopUp extends StatelessWidget {
                 Row(children: [
                   Container(
                     height: MediaQuery.of(context).size.height * 0.04,
+                    width: MediaQuery.of(context).size.width * 0.75,
                     padding: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.05),
+                        left: MediaQuery.of(context).size.width * 0.05,
+                        right: MediaQuery.of(context).size.width * 0.05
+                    ),
                     child: AutoSizeText(
                         goalPassedIn.subtitle,
                         maxLines: 1,

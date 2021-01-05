@@ -223,9 +223,11 @@ class _PlanPercentageRepresentationPerformancePageState extends State<PlanPercen
       ),
       margin: EdgeInsets.only(top: widget.topMargin, bottom: widget.bottomMargin),
       padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.015, right: MediaQuery.of(context).size.width * 0.015, top: MediaQuery.of(context).size.height * 0.015),
+      //Center Column contents horizontally,
       child: Column(
         children: [
           Column(
+
             children: <Widget>[
               Text(
                 "Weekly Effectiveness",
@@ -238,11 +240,10 @@ class _PlanPercentageRepresentationPerformancePageState extends State<PlanPercen
           ),
           Expanded(
             child: Container(
-              //padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.010),
-
               child: Center(
                 child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center , //Center Column contents vertically,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text("" + percentageCompleted.round().toString() + "%", style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.04, fontWeight: FontWeight.bold, color: currentProgressColor()),),
                   ],

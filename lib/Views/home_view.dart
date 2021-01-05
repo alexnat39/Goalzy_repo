@@ -14,6 +14,7 @@ import 'package:goalzy_app/fill_arrays_functions.dart';
 import '../CustomWidgets/custom_widgets_home_view.dart';
 import '../Models/goal_class.dart';
 import '../Models/idea_class.dart';
+import '../constants.dart';
 
 //URGENT
 //todo add constants (colors,heiught, width) and replace them thorughout the entire app

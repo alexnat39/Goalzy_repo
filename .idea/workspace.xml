@@ -2,20 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3640bc8a-1436-480b-8214-c50edc451081" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/goal_bar_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_bar_chart.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/goal_line_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_line_chart.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/plan_bar_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_bar_chart.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/plan_line_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_line_chart.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/plan_percent_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_percent_indicator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Models/goal_class.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Models/goal_class.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Models/idea_class.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Models/idea_class.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Models/plan_class.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Models/plan_class.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_home_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_home_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Views/active_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/active_task_single_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/all_tasks_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/all_tasks_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/edit_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/edit_task_single_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Views/finished_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/finished_task_single_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Views/home_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/home_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/performance_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/performance_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609852235412</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added constant variables">
+      <created>1609859666471</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1609859666471</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -203,43 +206,43 @@
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="583" y="207" key="AndroidProcessChooserDialog/0.23.1440.823@0.23.1440.823" timestamp="1608139059481" />
-    <state x="339" y="36" key="CommitChangelistDialog2" timestamp="1609852234898">
+    <state x="339" y="36" key="CommitChangelistDialog2" timestamp="1609865250350">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.823@0.23.1440.823" timestamp="1609852234898" />
+    <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.823@0.23.1440.823" timestamp="1609865250350" />
     <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.824@0.23.1440.824" timestamp="1609780567168" />
     <state x="474" y="197" key="FileChooserDialogImpl" timestamp="1608320196191">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="474" y="197" key="FileChooserDialogImpl/0.23.1440.823@0.23.1440.823" timestamp="1608320196191" />
-    <state width="1398" height="135" key="GridCell.Tab.0.bottom" timestamp="1609839733206">
+    <state width="1398" height="137" key="GridCell.Tab.0.bottom" timestamp="1609861127084">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="135" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1609839733206" />
+    <state width="1398" height="137" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1609861127084" />
     <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.23.1440.824@0.23.1440.824" timestamp="1609766918067" />
     <state width="1398" height="176" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1608815489566" />
-    <state width="1398" height="135" key="GridCell.Tab.0.center" timestamp="1609839733206">
+    <state width="1398" height="137" key="GridCell.Tab.0.center" timestamp="1609861127083">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="135" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1609839733206" />
+    <state width="1398" height="137" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1609861127083" />
     <state width="1398" height="2" key="GridCell.Tab.0.center/0.23.1440.824@0.23.1440.824" timestamp="1609766918066" />
     <state width="1398" height="176" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1608815489566" />
-    <state width="1398" height="135" key="GridCell.Tab.0.left" timestamp="1609839733205">
+    <state width="1398" height="137" key="GridCell.Tab.0.left" timestamp="1609861127082">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="135" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1609839733205" />
+    <state width="1398" height="137" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1609861127082" />
     <state width="1398" height="2" key="GridCell.Tab.0.left/0.23.1440.824@0.23.1440.824" timestamp="1609766918066" />
     <state width="1398" height="176" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1608815489565" />
-    <state width="1398" height="135" key="GridCell.Tab.0.right" timestamp="1609839733206">
+    <state width="1398" height="137" key="GridCell.Tab.0.right" timestamp="1609861127083">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="135" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1609839733206" />
+    <state width="1398" height="137" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1609861127083" />
     <state width="1398" height="2" key="GridCell.Tab.0.right/0.23.1440.824@0.23.1440.824" timestamp="1609766918067" />
     <state width="1398" height="176" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1608815489566" />
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1609852240684">
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1609859671962">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.823@0.23.1440.823" timestamp="1609852240684" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.823@0.23.1440.823" timestamp="1609859671962" />
     <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1609780572809" />
     <state x="100" y="137" width="1240" height="623" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1609838003029">
       <screen x="0" y="23" width="1440" height="823" />
@@ -249,10 +252,10 @@
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="318" y="51" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1440.823@0.23.1440.823" timestamp="1609662858713" />
-    <state x="500" y="358" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609782876846">
+    <state x="500" y="358" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609863423069">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state x="500" y="358" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.823@0.23.1440.823" timestamp="1609782876846" />
+    <state x="500" y="358" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.823@0.23.1440.823" timestamp="1609863423069" />
     <state x="260" y="23" width="852" height="823" key="find.popup" timestamp="1608320203851">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
@@ -278,7 +281,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/Views/home_view.dart</url>
-          <line>291</line>
+          <line>292</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

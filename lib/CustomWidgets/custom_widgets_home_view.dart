@@ -134,7 +134,7 @@ class _CustomGoalHomeWidgetState extends State<CustomGoalHomeWidget> {
         color: widget.color,
         onPressed: () {
           GoalViewPopUp(widget.goal, navigateFunction: () => Navigator.push(context,
-                   MaterialPageRoute(builder: (context) => HomePage())),).build(context);
+              MaterialPageRoute(builder: (context) => HomePage())),).build(context);
         },
         child: Padding(
             padding: EdgeInsets.only(
@@ -250,12 +250,12 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
         child: Padding(
           padding: EdgeInsets.only(
               top: (widget.title.length <= 13) &&
-                      (widget.subtitle.length <= 13) &&
-                      (MediaQuery.of(context).size.height > 750)
+                  (widget.subtitle.length <= 13) &&
+                  (MediaQuery.of(context).size.height > 750)
                   ? MediaQuery.of(context).size.height * 0.017
                   : ((MediaQuery.of(context).size.height > 750)
-                      ? MediaQuery.of(context).size.height * 0.017
-                      : MediaQuery.of(context).size.height * 0.005)),
+                  ? MediaQuery.of(context).size.height * 0.017
+                  : MediaQuery.of(context).size.height * 0.005)),
           child: Column(
             children: [
               Container(

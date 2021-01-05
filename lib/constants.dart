@@ -43,7 +43,7 @@ var goalBarChartGradient = LinearGradient(
     end: Alignment.bottomLeft,
     colors: [Color(0xffff6e7f).desaturate(30),Color(0xffbfe9ff).desaturate(30)]);
 
-List colorsForIdeaWidgetsTest = [
+List colorsForGoalWidgetsTest = [
   customGradient1,
   customGradient2,
   customGradient3,
@@ -89,3 +89,9 @@ var customGradient8 = RadialGradient(
   colors: [Color(0xFFecaefd), Color(0xFF935ba3)],
 );
 //background-image: radial-gradient(circle, #2369d1, #0059ab, #004985, #043860, #0f273d);
+
+var customGradient9 = LinearGradient(
+  begin: Alignment.bottomCenter,
+  end: Alignment.topCenter,
+  colors: [Color(0xFF9cb4f2), Color(0xFF8194c7)],
+);
