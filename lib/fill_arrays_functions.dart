@@ -1,7 +1,5 @@
-import 'package:goalzy_app/Models/goal_class.dart';
 import 'package:intl/intl.dart';
 import 'Models/User.dart';
-import 'Models/plan_class.dart';
 
 addToAppropriateArrayOfPlans(currentPlan) {
   final now = DateTime.now();

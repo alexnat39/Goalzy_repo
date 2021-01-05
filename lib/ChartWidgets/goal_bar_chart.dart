@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/Models/User.dart';
-import 'package:tinycolor/tinycolor.dart';
+import 'package:goalzy_app/constants.dart';
 
 class GoalBarChart extends StatefulWidget {
   _GoalBarChartState createState() => _GoalBarChartState();
@@ -85,10 +85,7 @@ class _GoalBarChartState extends State<GoalBarChart> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Color(0xffffafbd).desaturate(15), Color(0xffffc3a0).desaturate(15)]),
+          gradient: goalBarChartGradient,
       ),
       margin: EdgeInsets.only(bottom: 10.0),
       padding: EdgeInsets.only(

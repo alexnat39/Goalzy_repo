@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/Models/User.dart';
+import 'package:goalzy_app/constants.dart';
 import 'package:tinycolor/tinycolor.dart';
 
 
@@ -71,10 +72,7 @@ class PlanBarChartHomeWidgetState extends State<PlanBarChartHomeWidget> {
       height: MediaQuery.of(context).size.height * 0.3,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),
-        gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [Color(0xffff6e7f).desaturate(30),Color(0xffbfe9ff).desaturate(30)]),
+        gradient: planBarChartGradient,
       ),
       margin: EdgeInsets.all(10.0),
       padding: EdgeInsets.only(
@@ -353,7 +351,7 @@ class PlanBarChartPerformanceWidgetState extends State<PlanBarChartPerformanceWi
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),
-        color: const Color(0xff81e5cd),
+        gradient: planBarChartGradient,
       ),
        margin: EdgeInsets.only(right: 10.0),
       padding: EdgeInsets.only(

@@ -82,7 +82,7 @@ class GoalEditViewPopUp extends StatelessWidget {
               height: MediaQuery
                   .of(context)
                   .size
-                  .height * 0.58,
+                  .height * 0.47,
               width: MediaQuery
                   .of(context)
                   .size

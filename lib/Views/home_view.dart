@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:date_util/date_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/ChartWidgets/three_progress_widgets.dart';
@@ -13,19 +10,12 @@ import 'package:goalzy_app/Services/goal_service.dart';
 import 'package:goalzy_app/Services/idea_service.dart';
 import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
-import 'package:goalzy_app/Views/performance_view.dart';
 import 'package:goalzy_app/fill_arrays_functions.dart';
-import '../Models/User.dart';
-import '../sort_functions.dart';
-import 'all_tasks_view.dart';
 import '../CustomWidgets/custom_widgets_home_view.dart';
 import '../Models/goal_class.dart';
 import '../Models/idea_class.dart';
-import 'package:intl/intl.dart';
 
 //URGENT
-//todo clean up finished & active task single views
-//todo clean up graph widgets (make the tidier and fix number representation
 //todo add constants (colors,heiught, width) and replace them thorughout the entire app
 
 

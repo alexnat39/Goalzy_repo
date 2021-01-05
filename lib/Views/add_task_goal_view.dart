@@ -1,13 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
-import 'package:goalzy_app/CustomWidgets/custom_widgets_home_view.dart';
-import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Services/goal_service.dart';
 import 'package:goalzy_app/Views/home_view.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import '../CustomWidgets/custom_widget_all_tasks_view.dart';
 import '../CustomWidgets/custom_widgets_add_task_view.dart';
+import '../constants.dart';
 import 'add_task_idea_view.dart';
 import 'add_task_plan_view.dart';
 import '../Models/goal_class.dart';

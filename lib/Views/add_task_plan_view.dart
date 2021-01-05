@@ -6,12 +6,8 @@ import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
 import 'package:goalzy_app/Views/add_task_idea_view.dart';
 import '../CustomWidgets/custom_widgets_add_task_view.dart';
-import '../Models/User.dart';
-import '../CustomWidgets/custom_widget_all_tasks_view.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
-import '../CustomWidgets/custom_widget_all_tasks_view.dart';
+import '../constants.dart';
 import 'home_view.dart';
 
 class AddTaskPlanView extends StatelessWidget {
@@ -389,24 +385,6 @@ class AddTaskPlanView extends StatelessWidget {
   }
 }
 
-// void _addPlan(BuildContext context, String title, String subtitle,
-//     String description, DateTime deadline) {
-//   title = title.trim();
-//   subtitle = subtitle.trim();
-//   if (description == null) {
-//     description = "";
-//   }
-//   description = description.trim();
-//   Plan plan = new Plan(
-//       title,
-//       subtitle,
-//       description,
-//       deadline,
-//       colorsForPlanWidgets[User.allPlans.length % colorsForPlanWidgets.length],
-//       false,
-//       DateTime.now());
-//   User.allPlans.add(plan);
-// }
 
 Future<void> _addPlanSQL(BuildContext context, String title, String subtitle,
     String description, DateTime deadline) async {

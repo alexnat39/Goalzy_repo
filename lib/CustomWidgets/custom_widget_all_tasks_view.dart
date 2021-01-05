@@ -15,33 +15,7 @@ import '../Views/home_view.dart';
 import '../Models/idea_class.dart';
 
 
-List colorsForGoalWidgets = [
-  Colors.red[300],
-  Colors.teal[300],
-  Colors.yellow[300],
-  Colors.green[300],
-  Colors.blue[300],
-  Colors.pinkAccent[100],
-  Colors.orange[300],
-];
-List colorsForPlanWidgets = [
-  Colors.blue[300],
-  Colors.orange[300],
-  Colors.green[300],
-  Colors.pinkAccent[100],
-  Colors.red[300],
-  Colors.yellow[300],
-  Colors.teal[300],
-];
-List colorsForIdeaWidgets = [
-  Colors.pinkAccent[100],
-  Colors.orange[300],
-  Colors.blue[300],
-  Colors.teal[300],
-  Colors.green[300],
-  Colors.red[300],
-  Colors.yellow[300],
-];
+
 
 
 /**
@@ -262,6 +236,8 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
                       margin: EdgeInsets.only(
                           left: MediaQuery.of(context).size.width * 0.033),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center, //Center Column contents vertically,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Row(
                             children: [

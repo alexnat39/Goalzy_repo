@@ -14,43 +14,57 @@ class LineChartGoalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _januaryHeight = (User.januaryGoals.length == 0)
+    var _januaryHeight = (User.januaryGoals.length == 0)
         ? 0.0
         : ((User.finishedJanuaryGoals.length / User.januaryGoals.length) * 5);
-    final _februaryHeight = (User.februaryGoals.length == 0)
+    var _februaryHeight = (User.februaryGoals.length == 0)
         ? 0.0
         : ((User.finishedFebruaryGoals.length / User.februaryGoals.length) * 5);
-    final _marchHeight = (User.marchGoals.length == 0)
+    var _marchHeight = (User.marchGoals.length == 0)
         ? 0.0
         : ((User.finishedMarchGoals.length / User.marchGoals.length) * 5);
-    final _aprilHeight = (User.aprilGoals.length == 0)
+    var _aprilHeight = (User.aprilGoals.length == 0)
         ? 0.0
         : ((User.finishedAprilGoals.length / User.aprilGoals.length) * 5);
-    final _mayHeight = (User.mayGoals.length == 0)
+    var _mayHeight = (User.mayGoals.length == 0)
         ? 0.0
         : ((User.finishedMayGoals.length / User.mayGoals.length) * 5);
-    final _juneHeight = (User.juneGoals.length == 0)
+    var _juneHeight = (User.juneGoals.length == 0)
         ? 0.0
         : ((User.finishedJuneGoals.length / User.juneGoals.length) * 5);
-    final _julyHeight = (User.julyGoals.length == 0)
+    var _julyHeight = (User.julyGoals.length == 0)
         ? 0.0
         : ((User.finishedJulyGoals.length / User.julyGoals.length) * 5);
-    final _augustHeight = (User.augustGoals.length == 0)
+    var _augustHeight = (User.augustGoals.length == 0)
         ? 0.0
         : ((User.finishedAugustGoals.length / User.augustGoals.length) * 5);
-    final _septemberHeight = (User.septemberGoals.length == 0)
+    var _septemberHeight = (User.septemberGoals.length == 0)
         ? 0.0
         : ((User.finishedSeptemberGoals.length / User.septemberGoals.length) *
         5);
-    final _octoberHeight = (User.octoberGoals.length == 0)
+    var _octoberHeight = (User.octoberGoals.length == 0)
         ? 0.0
         : ((User.finishedOctoberGoals.length / User.octoberGoals.length) * 5);
-    final _novemberHeight = (User.novemberGoals.length == 0)
+    var _novemberHeight = (User.novemberGoals.length == 0)
         ? 0.0
         : ((User.finishedNovemberGoals.length / User.novemberGoals.length) * 5);
-    final _decemberHeight = (User.decemberGoals.length == 0)
+    var _decemberHeight = (User.decemberGoals.length == 0)
         ? 0.0
         : ((User.finishedDecemberGoals.length / User.decemberGoals.length) * 5);
+
+    _januaryHeight = num.parse(_januaryHeight.toStringAsFixed(1));
+    _februaryHeight = num.parse(_februaryHeight.toStringAsFixed(1));
+    _marchHeight = num.parse(_marchHeight.toStringAsFixed(1));
+    _aprilHeight = num.parse(_aprilHeight.toStringAsFixed(1));
+    _mayHeight = num.parse(_mayHeight.toStringAsFixed(1));
+    _juneHeight = num.parse(_juneHeight.toStringAsFixed(1));
+    _julyHeight = num.parse(_julyHeight.toStringAsFixed(1));
+    _augustHeight = num.parse(_augustHeight.toStringAsFixed(1));
+    _septemberHeight = num.parse(_septemberHeight.toStringAsFixed(1));
+    _octoberHeight = num.parse(_octoberHeight.toStringAsFixed(1));
+    _novemberHeight = num.parse(_novemberHeight.toStringAsFixed(1));
+    _decemberHeight = num.parse(_decemberHeight.toStringAsFixed(1));
+
     return LineChart(
       LineChartData(
         minX: 0,

@@ -3,24 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:goalzy_app/CustomWidgets/custom_drawer.dart';
 import 'package:goalzy_app/CustomWidgets/custom_widget_all_tasks_view.dart';
 import 'package:goalzy_app/CustomWidgets/custom_widgets_home_view.dart';
-import 'package:goalzy_app/Models/User.dart';
-import 'package:goalzy_app/Models/User.dart';
-import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Services/goal_service.dart';
 import 'package:goalzy_app/Services/idea_service.dart';
 import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/add_task_idea_view.dart';
 import 'package:goalzy_app/Views/add_task_plan_view.dart';
-import 'package:goalzy_app/fill_arrays_functions.dart';
-import 'package:intl/intl.dart';
-import '../Models/User.dart';
 import '../Models/goal_class.dart';
 import '../sort_functions.dart';
 import 'add_task_goal_view.dart';
 import 'home_view.dart';
 import '../Models/idea_class.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 class AllTasksPage extends StatefulWidget {
   int currentIndex;
