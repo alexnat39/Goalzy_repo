@@ -70,22 +70,7 @@ class AddTaskIdeaView extends StatelessWidget {
                                       color: Colors.grey[300]),
                                 ),
                                 Spacer(),
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.arrow_drop_down,
-                                        ),
-                                      ]),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
+                                CustomAddTaskDropDownButton(),
                               ],
                             ),
                           ),
@@ -153,57 +138,35 @@ class AddTaskIdeaView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
+                                  height: MediaQuery.of(context).size.height * 0.05,
                                   margin: EdgeInsets.only(
                                       right: MediaQuery.of(context).size.width *
                                           0.02),
                                   width:
                                       MediaQuery.of(context).size.width * 0.3,
-                                  child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                    ),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text("Cancel"),
-                                        ]),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
+                                  child: CustomAddTaskCancelButton(),
                                 ),
                                 Container(
-                                  width:
+                                    height: MediaQuery.of(context).size.height * 0.05,
+                                    width:
                                       MediaQuery.of(context).size.width * 0.3,
-                                  child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                    ),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text("Add"),
-                                        ]),
-                                    onPressed: () {
-                                      //adds a goal to the goals list once user clicks on it
-                                      _titleFormKey.currentState.validate();
-                                      _subTitleFormKey.currentState.validate();
-                                      if (_titleIsValid && _subTitleIsValid) {
-                                        title = titleController.text;
-                                        subtitle = subTitleController.text;
-                                        description =
-                                            descriptionController.text;
-                                        _addIdeaSQL(title, subtitle, description,
-                                            context);
+                                  child: CustomAddTaskAddButton(addFunction: () {
+                                    //adds a goal to the goals list once user clicks on it
+                                    _titleFormKey.currentState.validate();
+                                    _subTitleFormKey.currentState.validate();
+                                    if (_titleIsValid && _subTitleIsValid) {
+                                      title = titleController.text;
+                                      subtitle = subTitleController.text;
+                                      description =
+                                          descriptionController.text;
+                                      _addIdeaSQL(title, subtitle, description,
+                                          context);
 
-                                        Navigator.of(context).pop();
-                                        Navigator.of(context).pop();
-                                        navigateFunction();
-                                      }
-                                    },
-                                  ),
+                                      Navigator.of(context).pop();
+                                      Navigator.of(context).pop();
+                                      navigateFunction();
+                                    }
+                                  },)
                                 ),
                               ],
                             ),
@@ -299,11 +262,11 @@ class AddTaskIdeaView extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.09,
+                        height: MediaQuery.of(context).size.height * 0.2,
                         width: MediaQuery.of(context).size.width * 0.9,
                         child: TextField(
                           controller: descriptionController,
-                          maxLines: 2,
+                          maxLines: 10,
                           decoration: InputDecoration(
                             hintText: "Description",
                             enabledBorder: UnderlineInputBorder(

@@ -36,27 +36,27 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Text(
                       "Goalzy",
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 25,
                           fontFamily: 'OpenSans',
                           color: Colors.grey[300]),
                     ),
-                    Spacer(),
-                    ClipOval(
-                      child: Material(
-                        color: Colors.blueGrey[700], // button color
-                        child: InkWell(
-                          splashColor: Colors.grey, // inkwell color
-                          child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.1,
-                              height: MediaQuery.of(context).size.width * 0.1,
-                              child: Icon(Icons.settings_rounded,
-                                  color: Colors.grey[300])),
-                          onTap: () {
-                            //todo launch settings page
-                          },
-                        ),
-                      ),
-                    )
+                    // Spacer(),
+                    // ClipOval(
+                    //   child: Material(
+                    //     color: Colors.blueGrey[700], // button color
+                    //     child: InkWell(
+                    //       splashColor: Colors.grey, // inkwell color
+                    //       child: SizedBox(
+                    //           width: MediaQuery.of(context).size.width * 0.1,
+                    //           height: MediaQuery.of(context).size.width * 0.1,
+                    //           child: Icon(Icons.settings_rounded,
+                    //               color: Colors.grey[300])),
+                    //       onTap: () {
+                    //         //todo launch settings page
+                    //       },
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -77,7 +77,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
               height: MediaQuery.of(context).size.height * 0.1,
               margin: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height * 0.005),
+                  bottom: MediaQuery.of(context).size.height * 0.005, right: MediaQuery.of(context).size.height * 0.005, left: MediaQuery.of(context).size.height * 0.005),
               child: RaisedButton(
                 color: Colors.blueGrey[700],
                 shape: RoundedRectangleBorder(

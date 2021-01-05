@@ -76,22 +76,7 @@ class AddTaskGoalView extends StatelessWidget {
                                       color: Colors.grey[300]),
                                 ),
                                 Spacer(),
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.arrow_drop_down,
-                                        ),
-                                      ]),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
+                                CustomAddTaskDropDownButton(),
                               ],
                             ),
                           ),
@@ -182,56 +167,38 @@ class AddTaskGoalView extends StatelessWidget {
                                           0.02),
                                   width:
                                       MediaQuery.of(context).size.width * 0.3,
-                                  child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                    ),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text("Cancel"),
-                                        ]),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
+                                  height: MediaQuery.of(context).size.height * 0.05,
+
+                                  child: CustomAddTaskCancelButton(),
                                 ),
                                 Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.3,
-                                  child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                    ),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text("Add"),
-                                        ]),
-                                    onPressed: () {
-                                      //adds a goal to the goals list once user clicks on it
-                                      _titleFormKey.currentState.validate();
-                                      _subTitleFormKey.currentState.validate();
-                                      if (_titleIsValid &&
-                                          _subTitleIsValid &&
-                                          deadline != null) {
-                                        title = titleController.text;
-                                        subtitle = subTitleController.text;
-                                        description =
-                                            descriptionController.text;
-                                        // _addGoal(context, title, subtitle,
-                                        //     description, deadline);
-                                        _addGoalSQL(context, title, subtitle, description, deadline);
-                                        Navigator.of(context).pop();
-                                        Navigator.of(context).pop();
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                    height: MediaQuery.of(context).size.height * 0.05,
+                                    child: CustomAddTaskAddButton(
+                                      addFunction: () {
+                                        //adds a goal to the goals list once user clicks on it
+                                        _titleFormKey.currentState.validate();
+                                        _subTitleFormKey.currentState
+                                            .validate();
+                                        if (_titleIsValid &&
+                                            _subTitleIsValid &&
+                                            deadline != null) {
+                                          title = titleController.text;
+                                          subtitle = subTitleController.text;
+                                          description =
+                                              descriptionController.text;
+                                          // _addGoal(context, title, subtitle,
+                                          //     description, deadline);
+                                          _addGoalSQL(context, title, subtitle,
+                                              description, deadline);
+                                          Navigator.of(context).pop();
+                                          Navigator.of(context).pop();
 
-                                        navigateFunction();
-                                      }
-                                    },
-                                  ),
-                                ),
+                                          navigateFunction();
+                                        }
+                                      },
+                                    )),
                               ],
                             ),
                           )

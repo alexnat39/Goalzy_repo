@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3640bc8a-1436-480b-8214-c50edc451081" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/plan_bar_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_bar_chart.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/plan_percent_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_percent_indicator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_home_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_home_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/active_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/active_task_single_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/finished_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/finished_task_single_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/home_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/home_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/goal_bar_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_bar_chart.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_drawer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_add_task_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_add_task_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Views/add_task_goal_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/add_task_goal_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Views/add_task_idea_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/add_task_idea_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Views/add_task_plan_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/add_task_plan_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609859666471</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added constant variables">
+      <created>1609865251034</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1609865251034</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -198,6 +202,10 @@
     <state x="533" y="157" key="#com.intellij.ide.util.MemberChooser/0.23.1440.823@0.23.1440.823" timestamp="1609165379879" />
     <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.23.1440.825@0.23.1440.825" timestamp="1608805504639" />
     <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.23.1440.827@0.23.1440.827" timestamp="1608750831406" />
+    <state x="349" y="367" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1609867496666">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="349" y="367" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1440.823@0.23.1440.823" timestamp="1609867496666" />
     <state x="458" y="188" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609063278390">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
@@ -239,10 +247,10 @@
     <state width="1398" height="137" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1609861127083" />
     <state width="1398" height="2" key="GridCell.Tab.0.right/0.23.1440.824@0.23.1440.824" timestamp="1609766918067" />
     <state width="1398" height="176" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1608815489566" />
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1609859671962">
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1609865257913">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.823@0.23.1440.823" timestamp="1609859671962" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.823@0.23.1440.823" timestamp="1609865257913" />
     <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1609780572809" />
     <state x="100" y="137" width="1240" height="623" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1609838003029">
       <screen x="0" y="23" width="1440" height="823" />
@@ -276,7 +284,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/Views/add_task_plan_view.dart</url>
-          <line>311</line>
+          <line>276</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">

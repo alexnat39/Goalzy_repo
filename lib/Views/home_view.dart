@@ -16,13 +16,10 @@ import '../Models/goal_class.dart';
 import '../Models/idea_class.dart';
 import '../constants.dart';
 
-//URGENT
-//todo add constants (colors,heiught, width) and replace them thorughout the entire app
-
-
 
 //NON_URGENT
 //todo add priority to task + goal type (long term/short term)
+//todo let user choose widget colors
 
 
 

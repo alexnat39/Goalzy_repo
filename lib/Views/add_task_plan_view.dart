@@ -77,22 +77,7 @@ class AddTaskPlanView extends StatelessWidget {
                                       color: Colors.grey[300]),
                                 ),
                                 Spacer(),
-                                RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.arrow_drop_down,
-                                        ),
-                                      ]),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
+                                CustomAddTaskDropDownButton(),
                               ],
                             ),
                           ),
@@ -185,85 +170,65 @@ class AddTaskPlanView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
+                                  height: MediaQuery.of(context).size.height * 0.05,
+
                                   margin: EdgeInsets.only(
                                       right: MediaQuery.of(context).size.width *
                                           0.02),
                                   width:
                                       MediaQuery.of(context).size.width * 0.3,
-                                  child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                    ),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text("Cancel"),
-                                        ]),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
+                                  child: CustomAddTaskCancelButton(),
                                 ),
                                 Container(
-                                  width:
+                                    height: MediaQuery.of(context).size.height * 0.05,
+
+                                    width:
                                       MediaQuery.of(context).size.width * 0.3,
-                                  child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                    ),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text("Add"),
-                                        ]),
-                                    onPressed: () {
-                                      //adds a plan to the plans list once user clicks on it
-                                      _titleFormKey.currentState.validate();
-                                      _subTitleFormKey.currentState.validate();
+                                  child: CustomAddTaskAddButton(addFunction: () {
+                                    //adds a plan to the plans list once user clicks on it
+                                    _titleFormKey.currentState.validate();
+                                    _subTitleFormKey.currentState.validate();
 
-                                      String stringHourDuration =
-                                          "${hourDeadline.inHours}:${hourDeadline.inMinutes.remainder(60)}";
-                                      List<String> stringDurationList =
-                                          stringHourDuration.split(":");
-                                      int hour =
-                                          int.parse(stringDurationList[0]);
-                                      int minute =
-                                          int.parse(stringDurationList[1]);
-                                      DateTime deadline = new DateTime(
-                                          dateDeadline.year,
-                                          dateDeadline.month,
-                                          dateDeadline.day,
-                                          hour,
-                                          minute);
-                                      if (deadline.isBefore(DateTime.now()) ||
-                                          deadline.isAtSameMomentAs(
-                                              DateTime.now())) {
-                                        _deadlineIsValid = false;
-                                      } else {
-                                        _deadlineIsValid = true;
-                                      }
+                                    String stringHourDuration =
+                                        "${hourDeadline.inHours}:${hourDeadline.inMinutes.remainder(60)}";
+                                    List<String> stringDurationList =
+                                    stringHourDuration.split(":");
+                                    int hour =
+                                    int.parse(stringDurationList[0]);
+                                    int minute =
+                                    int.parse(stringDurationList[1]);
+                                    DateTime deadline = new DateTime(
+                                        dateDeadline.year,
+                                        dateDeadline.month,
+                                        dateDeadline.day,
+                                        hour,
+                                        minute);
+                                    if (deadline.isBefore(DateTime.now()) ||
+                                        deadline.isAtSameMomentAs(
+                                            DateTime.now())) {
+                                      _deadlineIsValid = false;
+                                    } else {
+                                      _deadlineIsValid = true;
+                                    }
 
-                                      if (_titleIsValid &&
-                                          _subTitleIsValid &&
-                                          _deadlineIsValid) {
-                                        title = titleController.text;
-                                        subtitle = subTitleController.text;
-                                        description =
-                                            descriptionController.text;
+                                    if (_titleIsValid &&
+                                        _subTitleIsValid &&
+                                        _deadlineIsValid) {
+                                      title = titleController.text;
+                                      subtitle = subTitleController.text;
+                                      description =
+                                          descriptionController.text;
 
-                                        // _addPlan(context, title, subtitle,
-                                        //     description, deadline);
-                                        _addPlanSQL(context, title, subtitle, description, deadline);
+                                      // _addPlan(context, title, subtitle,
+                                      //     description, deadline);
+                                      _addPlanSQL(context, title, subtitle, description, deadline);
 
-                                        Navigator.of(context).pop();
-                                        Navigator.of(context).pop();
+                                      Navigator.of(context).pop();
+                                      Navigator.of(context).pop();
 
-                                        navigateFunction();
-                                      }
-                                    },
-                                  ),
+                                      navigateFunction();
+                                    }
+                                  },)
                                 ),
                               ],
                             ),

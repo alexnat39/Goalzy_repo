@@ -85,7 +85,7 @@ class _GoalBarChartState extends State<GoalBarChart> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),
-        gradient: goalBarChartGradient,
+        gradient: customGradient10,
       ),
       margin: EdgeInsets.only(bottom: 10.0),
       padding: EdgeInsets.only(

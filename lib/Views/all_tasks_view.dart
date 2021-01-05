@@ -497,13 +497,11 @@ class _AllTasksGoalsState extends State<AllTasksGoals> {
                                 goalList.removeAt(index);
                                 if (direction == DismissDirection.startToEnd) {
                                   _goalService.deleteGoal(_currentGoal.id);
-                                  activeGoalsCounter--;
                                   setState(() {
                                     _goalWidgetsArray.removeAt(index);
                                   });
                                 } else if (direction ==
                                     DismissDirection.endToStart) {
-                                  activeGoalsCounter--;
                                   // Remove the item from the database.
                                   var goalFromSQL = await _goalService.readGoalById(_currentGoal.id);
                                   _currentGoal.id = goalFromSQL[0]['id'];
@@ -650,14 +648,12 @@ class _AllTasksPlansState extends State<AllTasksPlans> {
                                 planList.removeAt(index);
                                 if (direction == DismissDirection.startToEnd) {
                                   _planService.deletePlan(_currentPlan.id);
-                                  activePlansCounter--;
                                   setState(() {
                                     _planWidgetsArray.removeAt(index);
                                   });
 
                                 } else if (direction ==
                                     DismissDirection.endToStart) {
-                                  activePlansCounter--;
                                   // Remove the item from the database.
                                   var planFromSQL = await _planService.readPlanById(_currentPlan.id);
                                   _currentPlan.id = planFromSQL[0]['id'];
@@ -798,7 +794,6 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
                                 if (direction == DismissDirection.startToEnd) {
                                   // Remove the item from the database.
                                   _ideaService.deleteIdea(_currentIdea.id);
-                                  ideasCounter--;
                                   setState(() {
                                     _ideaWidgetsArray.removeAt(index);
                                   });
@@ -806,7 +801,6 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
                                     DismissDirection.endToStart) {
                                   // Remove the item from the database.
                                   _ideaService.deleteIdea(_currentIdea.id);
-                                  ideasCounter--;
                                   setState(() {
                                     _ideaWidgetsArray.removeAt(index);
                                   });

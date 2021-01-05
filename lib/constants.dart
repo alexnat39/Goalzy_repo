@@ -93,5 +93,10 @@ var customGradient8 = RadialGradient(
 var customGradient9 = LinearGradient(
   begin: Alignment.bottomCenter,
   end: Alignment.topCenter,
-  colors: [Color(0xFF9cb4f2), Color(0xFF8194c7)],
+  colors: [Color(0xFFB2FFFC), Color(0xFFA6DBD9)],
+);
+var customGradient10 = LinearGradient(
+  begin: Alignment.bottomCenter,
+  end: Alignment.topCenter,
+  colors: [Color(0xFFE8D1FF), Color(0xFFC4AFDA)],
 );
