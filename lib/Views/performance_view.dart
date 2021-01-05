@@ -305,9 +305,9 @@ void _fillFinishedPlanWidgetsArray(list) {
         String deadlineTimeString =
             "" + DateFormat.Hm().format(tempDate);
         _finishedPlanWidgetsArray.add(CustomPlanPerformanceWidget(
-            currentPlan.getTitle(),
-            currentPlan.getSubTitle(),
-            currentPlan.getDescription(),
+            currentPlan.title,
+            currentPlan.subtitle,
+            currentPlan.description,
             deadlineDateString,
             deadlineTimeString,
             Color(currentPlan.color),
@@ -329,10 +329,10 @@ void _fillGoalWidgetsArray(list) {
       DateTime tempDate = new DateFormat("yyyy-MM-dd hh:mm:ss").parse(currentGoal.deadline);
       String deadlineString = "" + DateFormat('yyyy-MM-dd').format(tempDate);
       _finishedGoalWidgetsArray.add(CustomGoalPerformanceWidget(
-          currentGoal.getTitle(),
-          currentGoal.getSubTitle(),
+          currentGoal.title,
+          currentGoal.subtitle,
           deadlineString,
-          currentGoal.getDescription(),
+          currentGoal.description,
           Color(currentGoal.color),
           currentGoal));
     }

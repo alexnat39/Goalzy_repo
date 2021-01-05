@@ -19,11 +19,11 @@ class _PlanPercentIndicatorHomePageState extends State<PlanPercentIndicatorHomeP
 
     currentProgressColor() {
       if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
-        return Colors.red[400];
+        return Colors.red[300];
       } else if (percentageCompleted * 100 >= 25.0 && percentageCompleted * 100 < 50.0) {
-        return Colors.orange;
+        return Colors.orange[300];
       } else if (percentageCompleted * 100 >= 50.0 && percentageCompleted * 100 < 75.0) {
-        return Colors.yellow[400];
+        return Colors.yellow[300];
       } else if (percentageCompleted * 100 >= 75.0 && percentageCompleted * 100 <= 100.0) {
         return Colors.green[300];
       }
@@ -115,11 +115,11 @@ class _PlanPercentIndicatorPerformancePageState extends State<PlanPercentIndicat
     var percentageCompleted = (User.todayPlans.length == 0) ? 0.0 : User.todayFinishedPlans.length / User.todayPlans.length;
     currentProgressColor() {
       if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
-        return Colors.red[400];
+        return Colors.red[300];
       } else if (percentageCompleted * 100 >= 25.0 && percentageCompleted * 100 < 50.0) {
-        return Colors.orange;
+        return Colors.orange[300];
       } else if (percentageCompleted * 100 >= 50.0 && percentageCompleted * 100 < 75.0) {
-        return Colors.yellow[400];
+        return Colors.yellow[300];
       } else if (percentageCompleted * 100 >= 75.0 && percentageCompleted * 100 <= 100.0) {
         return Colors.green[300];
       }
@@ -131,7 +131,7 @@ class _PlanPercentIndicatorPerformancePageState extends State<PlanPercentIndicat
         color:  Colors.pink[100],
       ),
       margin: EdgeInsets.only(top: widget.topMargin, bottom: widget.bottomMargin),
-      padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.015, right: MediaQuery.of(context).size.width * 0.015, top: MediaQuery.of(context).size.height * 0.005),
+      padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.04, right: MediaQuery.of(context).size.width * 0.04, top: MediaQuery.of(context).size.height * 0.015),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,

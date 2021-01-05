@@ -351,7 +351,8 @@ class PlanBarChartPerformanceWidgetState extends State<PlanBarChartPerformanceWi
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),
-        gradient: planBarChartGradient,
+         gradient: planBarChartGradient,
+
       ),
        margin: EdgeInsets.only(right: 10.0),
       padding: EdgeInsets.only(

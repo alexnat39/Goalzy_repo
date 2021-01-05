@@ -832,10 +832,10 @@ void _fillGoalWidgetsArray(list) {
        String deadlineDateString = currentGoal.deadline.substring(
            0, currentGoal.deadline.indexOf(" "));
       _goalWidgetsArray.add(CustomGoalAllTasksWidget(
-          currentGoal.getTitle(),
-          currentGoal.getSubTitle(),
+          currentGoal.title,
+          currentGoal.subtitle,
           deadlineDateString,
-          currentGoal.getDescription(),
+          currentGoal.description,
           Color(currentGoal.color),
           currentGoal));
      }
@@ -855,9 +855,9 @@ void _fillPlanWidgetsArray(list) {
           currentPlan.deadline.indexOf(" ") + 1,
           currentPlan.deadline.lastIndexOf(":"));
       _planWidgetsArray.add(CustomPlanAllTasksWidget(
-          currentPlan.getTitle(),
-          currentPlan.getSubTitle(),
-          currentPlan.getDescription(),
+          currentPlan.title,
+          currentPlan.subtitle,
+          currentPlan.description,
           deadlineDateString,
           deadlineTimeString,
           Color(currentPlan.color),
@@ -873,9 +873,9 @@ void _fillIdeaWidgetsArray(var list) {
   for (int i = 0; i < list.length; i++) {
     Idea currentIdea = list[i];
     _ideaWidgetsArray.add(CustomIdeaAllTasksWidget(
-        currentIdea.getTitle(),
-        currentIdea.getSubtitle(),
-        currentIdea.getDescription(),
+        currentIdea.title,
+        currentIdea.subtitle,
+        currentIdea.description,
         Color(currentIdea.color),
         currentIdea));
   }

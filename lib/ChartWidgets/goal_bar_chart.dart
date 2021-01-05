@@ -16,11 +16,11 @@ class _GoalBarChartState extends State<GoalBarChart> {
 
   currentProgressColor(var x) {
     if (x >= 0.0 && x < 5.0) {
-      return [Colors.red[400]];
+      return [Colors.red[300]];
     } else if (x >= 5.0 && x < 10.0) {
-      return [Colors.orange[400]];
+      return [Colors.orange[300]];
     } else if (x >= 10.0 && x < 15.0) {
-      return [Colors.yellow[400]];
+      return [Colors.yellow[300]];
     } else if (x >= 15.0 && x <= 20.0) {
       return [Colors.green[300]];
     }
@@ -85,7 +85,7 @@ class _GoalBarChartState extends State<GoalBarChart> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),
-          gradient: goalBarChartGradient,
+        gradient: goalBarChartGradient,
       ),
       margin: EdgeInsets.only(bottom: 10.0),
       padding: EdgeInsets.only(

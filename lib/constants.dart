@@ -43,3 +43,49 @@ var goalBarChartGradient = LinearGradient(
     end: Alignment.bottomLeft,
     colors: [Color(0xffff6e7f).desaturate(30),Color(0xffbfe9ff).desaturate(30)]);
 
+List colorsForIdeaWidgetsTest = [
+  customGradient1,
+  customGradient2,
+  customGradient3,
+  customGradient4,
+  customGradient5,
+  customGradient6,
+  customGradient7,
+  customGradient8,
+];
+
+var customGradient1 = RadialGradient(
+  radius: 0.8,
+  colors: [Color(0xFF42e3f5), Color(0xFF20a1b0)],
+);
+var customGradient2 = RadialGradient(
+  radius: 0.8,
+  colors: [Color(0xFFf0bc5c), Color(0xFFc59b4c)],
+);
+var customGradient3 = RadialGradient(
+  radius: 0.8,
+  colors: [Color(0xFFe0e63e), Color(0xFFb2b818)],
+);
+
+var customGradient4 = RadialGradient(
+  radius: 0.8,
+  colors: [Color(0xFF9fedd7), Color(0xFF66988a)],
+);
+
+var customGradient5 = RadialGradient(
+  radius: 0.8,
+  colors: [Color(0xFFa7ea5e), Color(0xFF6a943c)],
+);
+var customGradient6 = RadialGradient(
+  radius: 0.8,
+  colors: [Color(0xFFeab3ca), Color(0xFFbe92a5)],
+);
+var customGradient7 = RadialGradient(
+  radius: 0.8,
+  colors: [Color(0xFF9cb4f2), Color(0xFF8194c7)],
+);
+var customGradient8 = RadialGradient(
+  radius: 1,
+  colors: [Color(0xFFecaefd), Color(0xFF935ba3)],
+);
+//background-image: radial-gradient(circle, #2369d1, #0059ab, #004985, #043860, #0f273d);

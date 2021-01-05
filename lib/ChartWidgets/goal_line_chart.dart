@@ -108,8 +108,6 @@ class LineChartGoalWidget extends StatelessWidget {
               FlSpot(10, _novemberHeight),
               FlSpot(11, _decemberHeight),
             ],
-            curveSmoothness: 0.1,
-            isCurved: true,
             colors: gradientColors,
             barWidth: 5,
             // dotData: FlDotData(show: false),

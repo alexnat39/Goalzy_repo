@@ -566,9 +566,9 @@ class IdeaEditViewPopUp extends StatelessWidget {
   TextEditingController descriptionController = new TextEditingController();
 
   IdeaEditViewPopUp(this.ideaPassedIn, {this.navigateFunction}) {
-    title = ideaPassedIn.getTitle();
-    subtitle = ideaPassedIn.getSubtitle();
-    description = ideaPassedIn.getDescription();
+    title = ideaPassedIn.title;
+    subtitle = ideaPassedIn.subtitle;
+    description = ideaPassedIn.description;
   }
 
 

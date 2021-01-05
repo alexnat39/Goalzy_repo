@@ -383,8 +383,8 @@ class IdeaViewPopUp extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                            (idea.getDescription() == null ||
-                                idea.getDescription() == "")
+                            (idea.description == null ||
+                                idea.description == "")
                                 ? "No description available"
                                 : idea.description,
                           ),
