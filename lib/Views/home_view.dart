@@ -21,6 +21,8 @@ import '../constants.dart';
 //todo add priority to task + goal type (long term/short term)
 //todo let user choose widget colors
 
+//todo fix overflow of keybnoard for task editing
+
 
 
 class HomePage extends StatefulWidget {
@@ -113,170 +115,172 @@ class HomePageState extends State<HomePage> {
                     .of(context)
                     .size
                     .width * 0.03),
-            child: Column(children: [
-              //this is container for containing row of goal title and goal widgets
-              Container(
-                //container for goals text
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          child: Text(
-                            "Goals",
-                            style: TextStyle(fontSize: 25, color: Colors.white),
+            child: SingleChildScrollView(
+              child: Column(children: [
+                //this is container for containing row of goal title and goal widgets
+                Container(
+                  //container for goals text
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            child: Text(
+                              "Goals",
+                              style: TextStyle(fontSize: 25, color: Colors.white),
+                            ),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                            ),
                           ),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                            child: Container(
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.1,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemCount: goalWidgetsArray.length,
-                                  itemBuilder: (BuildContext context,
-                                      int index) {
-                                    return Container(
-                                      child: goalWidgetsArray[index],
-                                    );
-                                  }),
-                            )),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-
-              //this is container for containing row of plan title and plan widgets
-              Container(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          child: Text(
-                            "Plans",
-                            style: TextStyle(fontSize: 25, color: Colors.white),
-                          ),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                            child: SizedBox(
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.1,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemCount: planWidgetsArray.length,
-                                  itemBuilder: (BuildContext context,
-                                      int index) {
-                                    return Container(
-                                      child: planWidgetsArray[index],
-                                    );
-                                  }),
-                            )),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-
-              //this is container for containing row of idea title and idea widgets
-              Container(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          child: Text(
-                            "Ideas",
-                            style: TextStyle(fontSize: 25, color: Colors.white),
-                          ),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                            child: SizedBox(
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.1,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemCount: ideaWidgetsArray.length,
-                                  itemBuilder: (BuildContext context,
-                                      int index) {
-                                    return Container(
-                                      child: ideaWidgetsArray[index],
-                                    );
-                                  }),
-                            )),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Row(children: [
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 0.015),
-                    child: buildThreeProgressWidgets(
-                        context,
-                        MediaQuery
-                            .of(context)
-                            .size
-                            .height * 0.25,
-                        PlanPercentIndicatorHomePage(5.0, 0.0),
-                        PlanBarChartPerformanceWidget()),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                              child: Container(
+                                height: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height * 0.1,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    itemCount: goalWidgetsArray.length,
+                                    itemBuilder: (BuildContext context,
+                                        int index) {
+                                      return Container(
+                                        child: goalWidgetsArray[index],
+                                      );
+                                    }),
+                              )),
+                        ],
+                      )
+                    ],
                   ),
                 ),
-              ]),
-              Row(
-                children: [
+
+                //this is container for containing row of plan title and plan widgets
+                Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            child: Text(
+                              "Plans",
+                              style: TextStyle(fontSize: 25, color: Colors.white),
+                            ),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                              child: SizedBox(
+                                height: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height * 0.1,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    itemCount: planWidgetsArray.length,
+                                    itemBuilder: (BuildContext context,
+                                        int index) {
+                                      return Container(
+                                        child: planWidgetsArray[index],
+                                      );
+                                    }),
+                              )),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+
+                //this is container for containing row of idea title and idea widgets
+                Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            child: Text(
+                              "Ideas",
+                              style: TextStyle(fontSize: 25, color: Colors.white),
+                            ),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                              child: SizedBox(
+                                height: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height * 0.1,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    itemCount: ideaWidgetsArray.length,
+                                    itemBuilder: (BuildContext context,
+                                        int index) {
+                                      return Container(
+                                        child: ideaWidgetsArray[index],
+                                      );
+                                    }),
+                              )),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Row(children: [
                   Expanded(
                     child: Container(
-                        margin: EdgeInsets.only(
-                            top: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.01),
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 0.13,
-                        child: LineChartPlanWidget()),
+                      margin: EdgeInsets.only(
+                          top: MediaQuery
+                              .of(context)
+                              .size
+                              .height * 0.015),
+                      child: buildThreeProgressWidgets(
+                          context,
+                          MediaQuery
+                              .of(context)
+                              .size
+                              .height * 0.25,
+                          PlanPercentIndicatorHomePage(5.0, 0.0),
+                          PlanBarChartPerformanceWidget()),
+                    ),
                   ),
-                ],
-              )
-            ]),
+                ]),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                          margin: EdgeInsets.only(
+                              top: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .height * 0.01),
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * 0.13,
+                          child: LineChartPlanWidget()),
+                    ),
+                  ],
+                )
+              ]),
+            ),
           ),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () {

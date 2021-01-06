@@ -15,7 +15,7 @@ class _PlanPercentIndicatorHomePageState extends State<PlanPercentIndicatorHomeP
 
   @override
   Widget build(BuildContext context) {
-    var percentageCompleted = User.todayFinishedPlans.length / User.todayPlans.length;
+    var percentageCompleted = (User.todayPlans.length == 0) ? 0.0 : User.todayFinishedPlans.length / User.todayPlans.length;
 
     currentProgressColor() {
       if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {

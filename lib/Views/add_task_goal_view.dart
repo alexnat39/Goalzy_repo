@@ -165,10 +165,10 @@ class AddTaskGoalView extends StatelessWidget {
                                   margin: EdgeInsets.only(
                                       right: MediaQuery.of(context).size.width *
                                           0.02),
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.3,
                                   height: MediaQuery.of(context).size.height * 0.05,
 
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.3,
                                   child: CustomAddTaskCancelButton(),
                                 ),
                                 Container(
@@ -216,30 +216,91 @@ class AddTaskGoalView extends StatelessWidget {
     return Container(
         child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Row(
-                  children: <Widget>[
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        child: Form(
-                          key: _titleFormKey,
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value.trim().isEmpty) {
-                                _titleIsValid = false;
-                                return "You can't have an empty title";
-                              } else if (value.trim().length > 15) {
-                                _titleIsValid = false;
-                                return "Maximum length is 15 characters";
-                              } else {
-                                _titleIsValid = true;
-                                return null;
-                              }
-                            },
-                            controller: titleController,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    children: <Widget>[
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: Form(
+                            key: _titleFormKey,
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value.trim().isEmpty) {
+                                  _titleIsValid = false;
+                                  return "You can't have an empty title";
+                                } else if (value.trim().length > 15) {
+                                  _titleIsValid = false;
+                                  return "Maximum length is 15 characters";
+                                } else {
+                                  _titleIsValid = true;
+                                  return null;
+                                }
+                              },
+                              controller: titleController,
+                              decoration: InputDecoration(
+                                hintText: "Title",
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey[400]),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey[400]),
+                                ),
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey[400]),
+                                ),
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: Form(
+                            key: _subTitleFormKey,
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value.trim().isEmpty) {
+                                  _subTitleIsValid = false;
+                                  return "You can't have an empty subtitle";
+                                } else if (value.trim().length > 30) {
+                                  _subTitleIsValid = false;
+                                  return "Maximum length is 30 characters";
+                                } else {
+                                  _subTitleIsValid = true;
+                                  return null;
+                                }
+                              },
+                              controller: subTitleController,
+                              decoration: InputDecoration(
+                                hintText: "Subtitle",
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey[400]),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey[400]),
+                                ),
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey[400]),
+                                ),
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.09,
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          child: TextField(
+                            controller: descriptionController,
+                            maxLines: 2,
                             decoration: InputDecoration(
-                              hintText: "Title",
+                              hintText: "Description",
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey[400]),
                               ),
@@ -250,71 +311,12 @@ class AddTaskGoalView extends StatelessWidget {
                                 borderSide: BorderSide(color: Colors.grey[400]),
                               ),
                             ),
-                          ),
-                        )),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        child: Form(
-                          key: _subTitleFormKey,
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value.trim().isEmpty) {
-                                _subTitleIsValid = false;
-                                return "You can't have an empty subtitle";
-                              } else if (value.trim().length > 30) {
-                                _subTitleIsValid = false;
-                                return "Maximum length is 30 characters";
-                              } else {
-                                _subTitleIsValid = true;
-                                return null;
-                              }
-                            },
-                            controller: subTitleController,
-                            decoration: InputDecoration(
-                              hintText: "Subtitle",
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey[400]),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey[400]),
-                              ),
-                              border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey[400]),
-                              ),
-                            ),
-                          ),
-                        )),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.09,
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        child: TextField(
-                          controller: descriptionController,
-                          maxLines: 2,
-                          decoration: InputDecoration(
-                            hintText: "Description",
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey[400]),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey[400]),
-                            ),
-                            border: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey[400]),
-                            ),
-                          ),
-                        )),
-                  ],
-                ),
-                //SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-              ],
+                          )),
+                    ],
+                  ),
+                  //SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                ],
+              ),
             )));
   }
 }

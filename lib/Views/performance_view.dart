@@ -169,54 +169,56 @@ class _GoalPerformancePageState extends State<GoalPerformancePage> {
             top: MediaQuery.of(context).size.height * 0.02,
             left: MediaQuery.of(context).size.width * 0.03,
             right: MediaQuery.of(context).size.width * 0.03),
-        child: Column(children: [
-          Row(children: [
-            Expanded(
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                child: GoalBarChart(),
-              ),
-            ),
-          ]),
-          Row(
-            children: [
+        child: SingleChildScrollView(
+          child: Column(children: [
+            Row(children: [
               Expanded(
                 child: Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    child: LineChartGoalWidget()),
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Row(children: [
-                Container(
-                  margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.01),
-                  child: Text("This month - " + DateFormat.MMMM().format(DateTime.now()), style: TextStyle(fontSize: 20, color: Colors.grey[500] ),),
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  child: GoalBarChart(),
                 ),
-              ]),
-              Row(children: [
+              ),
+            ]),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      child: LineChartGoalWidget()),
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Row(children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.01),
+                    child: Text("This month - " + DateFormat.MMMM().format(DateTime.now()), style: TextStyle(fontSize: 20, color: Colors.grey[500] ),),
+                  ),
+                ]),
+                Row(children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.94,
+                    // margin: EdgeInsets.only(
+                    //     left: MediaQuery.of(context).size.width * 0.01),
+                    child: GoalLinearPercentIndicator(),
+                  ),
+                ]),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.94,
-                  // margin: EdgeInsets.only(
-                  //     left: MediaQuery.of(context).size.width * 0.01),
-                  child: GoalLinearPercentIndicator(),
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child:buildListOfFinishedGoalWidgets(context),
+                      ),
+                    ],
+                  ),
                 ),
-              ]),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.94,
-                height: MediaQuery.of(context).size.height * 0.25,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child:buildListOfFinishedGoalWidgets(context),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ]),
+              ],
+            ),
+          ]),
+        ),
       ),
     );
   }
@@ -237,42 +239,44 @@ class _PlanPerformancePageState extends State<PlanPerformancePage> {
             top: MediaQuery.of(context).size.height * 0.02,
             left: MediaQuery.of(context).size.width * 0.03,
             right: MediaQuery.of(context).size.width * 0.03),
-        child: Column(children: [
-          Row(children: [
-            buildThreeProgressWidgets(context, MediaQuery.of(context).size.height * 0.3, PlanPercentIndicatorPerformancePage(5.0, 0.0), PlanBarChartPerformanceWidget()),
-          ]),
-          Column(
-            children: [
-              Row(children: [
-                Container(
-                  margin: EdgeInsets.only(top: MediaQuery.of(context).size. height * 0.015, bottom: MediaQuery.of(context).size.height * 0.01),
-                  child: Text("This month - " + DateFormat.MMMM().format(DateTime.now()), style: TextStyle(fontSize: 20, color: Colors.grey[500] ),),
-                ),
-              ]),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        width: MediaQuery.of(context).size.width * 0.94,
-                        child: LineChartPlanWidget()),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.94,
-            height: MediaQuery.of(context).size.height * 0.225,
-            child: Column(
+        child: SingleChildScrollView(
+          child: Column(children: [
+            Row(children: [
+              buildThreeProgressWidgets(context, MediaQuery.of(context).size.height * 0.3, PlanPercentIndicatorPerformancePage(5.0, 0.0), PlanBarChartPerformanceWidget()),
+            ]),
+            Column(
               children: [
-                Expanded(
-                    child:buildListOfFinishedPlanWidgets(context),
+                Row(children: [
+                  Container(
+                    margin: EdgeInsets.only(top: MediaQuery.of(context).size. height * 0.015, bottom: MediaQuery.of(context).size.height * 0.01),
+                    child: Text("This month - " + DateFormat.MMMM().format(DateTime.now()), style: TextStyle(fontSize: 20, color: Colors.grey[500] ),),
+                  ),
+                ]),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                          height: MediaQuery.of(context).size.height * 0.2,
+                          width: MediaQuery.of(context).size.width * 0.94,
+                          child: LineChartPlanWidget()),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
-        ]),
+            Container(
+              width: MediaQuery.of(context).size.width * 0.94,
+              height: MediaQuery.of(context).size.height * 0.225,
+              child: Column(
+                children: [
+                  Expanded(
+                      child:buildListOfFinishedPlanWidgets(context),
+                  ),
+                ],
+              ),
+            ),
+          ]),
+        ),
       ),
     );
   }
