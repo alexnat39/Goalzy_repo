@@ -21,7 +21,6 @@ import '../constants.dart';
 //todo add priority to task + goal type (long term/short term)
 //todo let user choose widget colors
 
-//todo fix overflow of keybnoard for task editing
 
 
 

@@ -22,9 +22,7 @@ class GoalViewPopUp extends StatelessWidget {
   var _goalService = GoalService();
   Goal goalPassedIn;
 
-  GoalViewPopUp(this.goalPassedIn, {this.navigateFunction}) {
-    //deadlineString = "" + DateFormat('yyyy-MM-dd').format(goal.deadline);
-  }
+  GoalViewPopUp(this.goalPassedIn, {this.navigateFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +57,7 @@ class GoalViewPopUp extends StatelessWidget {
 
                       child: AutoSizeText(
                         goalPassedIn.title,
-                        style: TextStyle(fontSize: 40, color: Colors.grey[400]),
+                        style: TextStyle(fontSize: 40, color: Colors.black54),
                         maxLines: 1,
                       ))
                 ]),
@@ -74,7 +72,7 @@ class GoalViewPopUp extends StatelessWidget {
                     child: AutoSizeText(
                       goalPassedIn.subtitle,
                        maxLines: 1,
-                       style: TextStyle(fontSize: 30, color: Colors.grey[400])
+                       style: TextStyle(fontSize: 30, color: Colors.black54)
                     ),
                   )
                 ]),
@@ -95,7 +93,7 @@ class GoalViewPopUp extends StatelessWidget {
                             (goalPassedIn.description == null ||
                                     goalPassedIn.description == "")
                                 ? "No description available"
-                                : goalPassedIn.description, style: TextStyle(color: Colors.grey[400]),
+                                : goalPassedIn.description, style: TextStyle(color: Colors.black54),
                           ),
                         ],
                       ),
@@ -112,7 +110,7 @@ class GoalViewPopUp extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   child: Text(
                     goalPassedIn.deadline.substring(0, goalPassedIn.deadline.indexOf(" ")),
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20, color: Colors.black54),
                     maxLines: 1,
                   ),
                 ),
@@ -206,7 +204,7 @@ class PlanViewPopUp extends StatelessWidget {
                       child: AutoSizeText(
                         planPassedIn.title,
                         maxLines: 1,
-                        style: TextStyle(fontSize: 40, color: Colors.grey[400],),
+                        style: TextStyle(fontSize: 40, color: Colors.black54,),
                       ))
                 ]),
                 Row(children: [
@@ -218,7 +216,7 @@ class PlanViewPopUp extends StatelessWidget {
                     child: AutoSizeText(
                       planPassedIn.subtitle,
                       maxLines: 1,
-                        style: TextStyle(fontSize: 30, color: Colors.grey[400]),
+                        style: TextStyle(fontSize: 30, color: Colors.black54),
                     ),
                   )
                 ]),
@@ -239,7 +237,7 @@ class PlanViewPopUp extends StatelessWidget {
                             (planPassedIn.description == null ||
                                 planPassedIn.description == "")
                                 ? "No description available"
-                                : planPassedIn.description,
+                                : planPassedIn.description, style: TextStyle(color: Colors.black54)
                           ),
                         ],
                       ),
@@ -258,7 +256,7 @@ class PlanViewPopUp extends StatelessWidget {
                         planPassedIn.deadline.substring(
                             planPassedIn.deadline.indexOf(" "),
                             planPassedIn.deadline.lastIndexOf(":")),
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, color: Colors.black54),
                         maxLines: 1,
                       ),
                     ),
@@ -267,7 +265,7 @@ class PlanViewPopUp extends StatelessWidget {
                       child: Text(
                         planPassedIn.deadline
                             .substring(0, planPassedIn.deadline.indexOf(" ")),
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, color: Colors.black54),
                         maxLines: 1,
                       ),
                     ),
@@ -359,7 +357,7 @@ class IdeaViewPopUp extends StatelessWidget {
                           left: MediaQuery.of(context).size.width * 0.05, right: MediaQuery.of(context).size.width * 0.05),
                       child: AutoSizeText(
                         idea.title,
-                        style: TextStyle(fontSize: 40),
+                        style: TextStyle(fontSize: 40, color: Colors.black54),
                         maxLines: 1,
                       ))
                 ]),
@@ -372,7 +370,7 @@ class IdeaViewPopUp extends StatelessWidget {
                     child: AutoSizeText(
                       idea.subtitle,
                       maxLines: 1,
-                      style: TextStyle(fontSize: 30, color: Colors.grey[400]),
+                      style: TextStyle(fontSize: 30, color: Colors.black54),
                     ),
                   )
                 ]),
@@ -392,7 +390,7 @@ class IdeaViewPopUp extends StatelessWidget {
                             (idea.description == null ||
                                 idea.description == "")
                                 ? "No description available"
-                                : idea.description,
+                                : idea.description, style: TextStyle(color: Colors.black54)
                           ),
                         ],
                       ),
