@@ -23,7 +23,7 @@ class CustomAddTaskDropDownButton extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
    return RaisedButton(
-     color: Colors.blueGrey[400],
+     color: Colors.blueGrey[500],
      shape: RoundedRectangleBorder(
        borderRadius: BorderRadius.circular(5.0),
      ),
@@ -50,7 +50,7 @@ class CustomAddTaskAddButton extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      color: Colors.blueGrey[400],
+      color: Colors.blueGrey[500],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0),
       ),
@@ -71,7 +71,7 @@ class CustomAddTaskCancelButton extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      color: Colors.blueGrey[400],
+      color: Colors.blueGrey[500],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0),
       ),
