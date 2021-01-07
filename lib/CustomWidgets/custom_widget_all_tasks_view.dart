@@ -109,8 +109,6 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
                 Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.033),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center, //Center Column contents vertically,
                         crossAxisAlignment: CrossAxisAlignment.center, //Center Column contents horizontally,
@@ -233,8 +231,6 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
                 Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.033),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center, //Center Column contents vertically,
                         crossAxisAlignment: CrossAxisAlignment.center,

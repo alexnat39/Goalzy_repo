@@ -298,15 +298,12 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
 
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * 0.01,bottom: MediaQuery.of(context).size.height * 0.01),
-                  alignment: Alignment.bottomLeft,
                   child: Row(
                     children: [
                       FittedBox(
                         child: Text(
-                          widget.deadlineTimeString,
-                          style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 11 : 10, fontWeight: FontWeight.bold),
+                          widget.deadlineTimeString + " ",
+                          style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 10 : 9, fontWeight: FontWeight.bold),
                           maxLines: 1,
                         ),
                       ),
@@ -314,7 +311,7 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
                       FittedBox(
                         child: Text(
                           widget.deadlineDateString,
-                          style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 11 : 10, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 10 : 9, fontWeight: FontWeight.bold),
                           maxLines: 1,
                         ),
                       ),

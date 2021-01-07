@@ -71,7 +71,7 @@ class _PlanPercentIndicatorHomePageState extends State<PlanPercentIndicatorHomeP
 Widget _buildCircularPercentIndicatorHomePage(BuildContext context, var percentageCompleted, currentProgressColor()) {
   return CircularPercentIndicator(
     backgroundColor: Colors.blueGrey[600],
-    radius: MediaQuery.of(context).size.height * 0.074,
+    radius: MediaQuery.of(context).size.height * 0.07,
     lineWidth: MediaQuery.of(context).size.height * 0.012,
     animation: true,
     percent: percentageCompleted,
@@ -79,7 +79,7 @@ Widget _buildCircularPercentIndicatorHomePage(BuildContext context, var percenta
     // fillColor: color,
     center: Center(
       child: Text(
-        "${User.todayFinishedPlans.length} / ${User.todayPlans.length}",
+        "${User.todayFinishedPlans.length}/${User.todayPlans.length}",
         style: new TextStyle(
             fontSize: 11.0,
             fontWeight: FontWeight.bold,
@@ -173,7 +173,7 @@ Widget _buildCircularPercentIndicatorPerformancePage(BuildContext context, var p
     // fillColor: color,
     center: Center(
       child: AutoSizeText(
-        "${User.todayFinishedPlans.length} / ${User.todayPlans.length}",
+        "${User.todayFinishedPlans.length}/${User.todayPlans.length}",
         style: new TextStyle(
             fontSize: 15.0,
             fontWeight: FontWeight.bold,

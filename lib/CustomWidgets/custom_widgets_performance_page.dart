@@ -96,8 +96,6 @@ class _CustomGoalPerformanceWidgetState extends State<CustomGoalPerformanceWidge
                 Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.033),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center, //Center Column contents vertically,
                         crossAxisAlignment: CrossAxisAlignment.center, //Center Column contents horizontally,
@@ -218,8 +216,6 @@ class _CustomPlanPerformanceWidgetState extends State<CustomPlanPerformanceWidge
                 Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.033),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center, //Center Column contents vertically,
                         crossAxisAlignment: CrossAxisAlignment.center, //Center Column contents horizontally,

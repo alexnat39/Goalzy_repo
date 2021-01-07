@@ -180,7 +180,6 @@ class LineChartPlanWidget extends StatelessWidget {
             touchTooltipData: LineTouchTooltipData(
               tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
               maxContentWidth: 25,
-
             ),
           ),
 

@@ -119,6 +119,12 @@ class LineChartGoalWidget extends StatelessWidget {
             ),
           ),
         ],
+        lineTouchData: LineTouchData(
+          touchTooltipData: LineTouchTooltipData(
+            tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+            maxContentWidth: 25,
+          ),
+        ),
       ),
     );
   }
