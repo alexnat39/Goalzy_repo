@@ -2,39 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3640bc8a-1436-480b-8214-c50edc451081" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/100.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/1024.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/114.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/120.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/152.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/167.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/180.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/29.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/40.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/50.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/57.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/58.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/60.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/72.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/76.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/80.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/87.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/Starter_Screen_img-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/Starter_Screen_img-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/Starter_Screen_img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/kotlin/com/alekseinatalenko/goalzy_app/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/goal_line_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/goal_line_chart.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/plan_line_chart.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_line_chart.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ChartWidgets/plan_percent_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChartWidgets/plan_percent_indicator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widget_all_tasks_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widget_all_tasks_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_home_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_home_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_performance_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_performance_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609927657071</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="fixed overflow of keyboard">
+      <created>1610014001632</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1610014001632</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -282,52 +258,53 @@
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="583" y="207" key="AndroidProcessChooserDialog/0.23.1440.823@0.23.1440.823" timestamp="1608139059481" />
-    <state x="339" y="36" key="CommitChangelistDialog2" timestamp="1609927656800">
+    <state x="339" y="36" key="CommitChangelistDialog2" timestamp="1610014000777">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.823@0.23.1440.823" timestamp="1609927656800" />
+    <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.823@0.23.1440.823" timestamp="1610014000777" />
     <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.824@0.23.1440.824" timestamp="1609780567168" />
     <state x="474" y="197" key="FileChooserDialogImpl" timestamp="1608320196191">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="474" y="197" key="FileChooserDialogImpl/0.23.1440.823@0.23.1440.823" timestamp="1608320196191" />
-    <state width="1398" height="303" key="GridCell.Tab.0.bottom" timestamp="1609959245230">
+    <state width="1398" height="310" key="GridCell.Tab.0.bottom" timestamp="1610021022426">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="303" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1609959245230" />
-    <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.23.1440.824@0.23.1440.824" timestamp="1609766918067" />
-    <state width="1398" height="303" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1609946808987" />
+    <state width="1398" height="310" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1610021022426" />
+    <state width="1398" height="310" key="GridCell.Tab.0.bottom/0.23.1440.824@0.23.1440.824" timestamp="1610017059943" />
+    <state width="1398" height="264" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1610016095396" />
     <state width="1398" height="94" key="GridCell.Tab.0.bottom/0.23.1440.827@0.23.1440.827" timestamp="1609944248289" />
-    <state width="1398" height="303" key="GridCell.Tab.0.center" timestamp="1609959245229">
+    <state width="1398" height="310" key="GridCell.Tab.0.center" timestamp="1610021022425">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="303" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1609959245229" />
-    <state width="1398" height="2" key="GridCell.Tab.0.center/0.23.1440.824@0.23.1440.824" timestamp="1609766918066" />
-    <state width="1398" height="303" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1609946808985" />
+    <state width="1398" height="310" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1610021022425" />
+    <state width="1398" height="310" key="GridCell.Tab.0.center/0.23.1440.824@0.23.1440.824" timestamp="1610017059941" />
+    <state width="1398" height="264" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1610016095395" />
     <state width="1398" height="94" key="GridCell.Tab.0.center/0.23.1440.827@0.23.1440.827" timestamp="1609944248288" />
-    <state width="1398" height="303" key="GridCell.Tab.0.left" timestamp="1609959245229">
+    <state width="1398" height="310" key="GridCell.Tab.0.left" timestamp="1610021022424">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="303" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1609959245229" />
-    <state width="1398" height="2" key="GridCell.Tab.0.left/0.23.1440.824@0.23.1440.824" timestamp="1609766918066" />
-    <state width="1398" height="303" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1609946808984" />
+    <state width="1398" height="310" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1610021022424" />
+    <state width="1398" height="310" key="GridCell.Tab.0.left/0.23.1440.824@0.23.1440.824" timestamp="1610017059940" />
+    <state width="1398" height="264" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1610016095395" />
     <state width="1398" height="94" key="GridCell.Tab.0.left/0.23.1440.827@0.23.1440.827" timestamp="1609944248287" />
-    <state width="1398" height="303" key="GridCell.Tab.0.right" timestamp="1609959245230">
+    <state width="1398" height="310" key="GridCell.Tab.0.right" timestamp="1610021022425">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="303" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1609959245230" />
-    <state width="1398" height="2" key="GridCell.Tab.0.right/0.23.1440.824@0.23.1440.824" timestamp="1609766918067" />
-    <state width="1398" height="303" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1609946808986" />
+    <state width="1398" height="310" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1610021022425" />
+    <state width="1398" height="310" key="GridCell.Tab.0.right/0.23.1440.824@0.23.1440.824" timestamp="1610017059942" />
+    <state width="1398" height="264" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1610016095396" />
     <state width="1398" height="94" key="GridCell.Tab.0.right/0.23.1440.827@0.23.1440.827" timestamp="1609944248289" />
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1609927662996">
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1610014006166">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.823@0.23.1440.823" timestamp="1609927662996" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.823@0.23.1440.823" timestamp="1610014006166" />
     <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1609780572809" />
-    <state x="100" y="137" width="1240" height="623" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1609838003029">
-      <screen x="0" y="23" width="1440" height="823" />
+    <state x="100" y="137" width="1240" height="625" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1610015618492">
+      <screen x="0" y="23" width="1440" height="825" />
     </state>
     <state x="100" y="137" width="1240" height="623" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1440.823@0.23.1440.823" timestamp="1609838003029" />
+    <state x="100" y="137" width="1240" height="625" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1440.825@0.23.1440.825" timestamp="1610015618492" />
     <state x="318" y="51" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1609662858713">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
@@ -344,10 +321,10 @@
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="371" y="57" key="new project wizard/0.23.1440.823@0.23.1440.823" timestamp="1608057368114" />
-    <state x="385" y="172" width="670" height="675" key="search.everywhere.popup" timestamp="1609836152287">
+    <state x="385" y="172" width="670" height="675" key="search.everywhere.popup" timestamp="1610021391403">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state x="385" y="172" width="670" height="675" key="search.everywhere.popup/0.23.1440.823@0.23.1440.823" timestamp="1609836152287" />
+    <state x="385" y="172" width="670" height="675" key="search.everywhere.popup/0.23.1440.823@0.23.1440.823" timestamp="1610021391403" />
     <state x="385" y="172" width="670" height="676" key="search.everywhere.popup/0.23.1440.824@0.23.1440.824" timestamp="1609584892594" />
     <state x="385" y="172" width="670" height="676" key="search.everywhere.popup/0.23.1440.825@0.23.1440.825" timestamp="1608805917330" />
   </component>
