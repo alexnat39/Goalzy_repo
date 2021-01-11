@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "368948251096",
+    "project_id": "goalzy-8c266",
+    "storage_bucket": "goalzy-8c266.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368948251096:android:4e461bb7cce2f27bfacaad",
+        "android_client_info": {
+          "package_name": "com.alekseinatalenko.goalzy_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368948251096-c4f5jor2o6hbbvl773ku9iptuhmudh90.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8KNp9z7eTqU0Tj0CLgV5q_kG6smdihK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368948251096-c4f5jor2o6hbbvl773ku9iptuhmudh90.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "368948251096-tjkbur7eb4bk8lm7caomdfd4lltmp6m3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alekseinatalenko.goalzy",
+                "app_store_id": "1547607814"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

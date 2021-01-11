@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/ChartWidgets/plan_percent_indicator.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
 import 'package:goalzy_app/Views/all_tasks_view.dart';
 import 'package:goalzy_app/Views/home_view.dart';
+import 'package:goalzy_app/Views/login_view.dart';
 import 'package:goalzy_app/Views/performance_view.dart';
 
 /**
@@ -40,7 +43,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           fontFamily: 'OpenSans',
                           color: Colors.grey[300]),
                     ),
-                    // Spacer(),
+                    Spacer(),
                     // ClipOval(
                     //   child: Material(
                     //     color: Colors.blueGrey[700], // button color
@@ -57,6 +60,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     //     ),
                     //   ),
                     // ),
+                    MaterialButton(onPressed: () => signOut(),
+                        child: Row(
+                      children: [
+                        Icon(Icons.exit_to_app_outlined, color: Colors.white70),
+                        Text(" Sign Out", style: TextStyle(color: Colors.white70, fontSize: 14, decoration: TextDecoration.underline)),
+                      ],
+                    )),
                   ],
                 ),
               ),
@@ -181,6 +191,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
         ),
       ),
     );
+  }
+  Future<void> signOut() async {Navigator.pop(context);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => LoginPage()));
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch(e) {
+      print(e);
+    }
   }
 }
 
