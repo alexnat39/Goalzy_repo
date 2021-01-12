@@ -15,7 +15,7 @@ class _PlanPercentIndicatorHomePageState extends State<PlanPercentIndicatorHomeP
 
   @override
   Widget build(BuildContext context) {
-    var percentageCompleted = (User.todayPlans.length == 0) ? 0.0 : User.todayFinishedPlans.length / User.todayPlans.length;
+    var percentageCompleted = (MyUser.todayPlans.length == 0) ? 0.0 : MyUser.todayFinishedPlans.length / MyUser.todayPlans.length;
 
     currentProgressColor() {
       if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
@@ -79,7 +79,7 @@ Widget _buildCircularPercentIndicatorHomePage(BuildContext context, var percenta
     // fillColor: color,
     center: Center(
       child: Text(
-        "${User.todayFinishedPlans.length}/${User.todayPlans.length}",
+        "${MyUser.todayFinishedPlans.length}/${MyUser.todayPlans.length}",
         style: new TextStyle(
             fontSize: 11.0,
             fontWeight: FontWeight.bold,
@@ -112,7 +112,7 @@ class _PlanPercentIndicatorPerformancePageState extends State<PlanPercentIndicat
 
   @override
   Widget build(BuildContext context) {
-    var percentageCompleted = (User.todayPlans.length == 0) ? 0.0 : User.todayFinishedPlans.length / User.todayPlans.length;
+    var percentageCompleted = (MyUser.todayPlans.length == 0) ? 0.0 : MyUser.todayFinishedPlans.length / MyUser.todayPlans.length;
     currentProgressColor() {
       if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
         return Colors.red[300];
@@ -173,7 +173,7 @@ Widget _buildCircularPercentIndicatorPerformancePage(BuildContext context, var p
     // fillColor: color,
     center: Center(
       child: AutoSizeText(
-        "${User.todayFinishedPlans.length}/${User.todayPlans.length}",
+        "${MyUser.todayFinishedPlans.length}/${MyUser.todayPlans.length}",
         style: new TextStyle(
             fontSize: 15.0,
             fontWeight: FontWeight.bold,
@@ -201,9 +201,9 @@ class PlanPercentageRepresentationPerformancePage extends StatefulWidget  {
 class _PlanPercentageRepresentationPerformancePageState extends State<PlanPercentageRepresentationPerformancePage> {
   @override
   Widget build(BuildContext context) {
-    var percentageCompleted = (User.thisWeekPlans.length == 0) ? 0.0 : (User.thisWeekFinishedPlans.length / User.thisWeekPlans.length) * 100;
+    var percentageCompleted = (MyUser.thisWeekPlans.length == 0) ? 0.0 : (MyUser.thisWeekFinishedPlans.length / MyUser.thisWeekPlans.length) * 100;
     currentProgressColor() {
-      if (User.thisWeekPlans.length == 0) {
+      if (MyUser.thisWeekPlans.length == 0) {
         return Colors.grey[600];
       } else if (percentageCompleted >= 0.0 && percentageCompleted < 25.0) {
         return Colors.red[400];

@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Services/goal_service.dart';
 import 'package:goalzy_app/Views/home_view.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../CustomWidgets/custom_widgets_add_task_view.dart';
 import '../constants.dart';
+import '../main.dart';
 import 'add_task_idea_view.dart';
 import 'add_task_plan_view.dart';
 import '../Models/goal_class.dart';
@@ -190,7 +193,7 @@ class AddTaskGoalView extends StatelessWidget {
                                               descriptionController.text;
                                           // _addGoal(context, title, subtitle,
                                           //     description, deadline);
-                                          _addGoalSQL(context, title, subtitle,
+                                          _addGoal(context, title, subtitle,
                                               description, deadline);
                                           Navigator.of(context).pop();
                                           Navigator.of(context).pop();
@@ -322,7 +325,7 @@ class AddTaskGoalView extends StatelessWidget {
 }
 
 
-Future<void> _addGoalSQL(BuildContext context, String title, String subtitle,
+Future<void> _addGoal(BuildContext context, String title, String subtitle,
     String description, DateTime deadline) async {
   var _goalService = GoalService();
   title = title.trim();
@@ -331,7 +334,7 @@ Future<void> _addGoalSQL(BuildContext context, String title, String subtitle,
   if (description == null) {
     description = " ";
   }
-
+  print(MyUser.uid);
   description = description.trim();
 
   var _goal = new Goal();
@@ -344,9 +347,35 @@ Future<void> _addGoalSQL(BuildContext context, String title, String subtitle,
   _goal.dateAdded = DateTime.now().toString();
   activeGoalsCounter++;
 
-  await _goalService.saveGoal(_goal);
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc("${MyUser.uid}")
+      .collection("goals")
+      .add({
+    'title': title,
+    'subtitle': subtitle,
+    'description': description,
+    'deadline': deadline.toString(),
+    'finished': 0,
+    'color': colorsForGoalWidgets[activeGoalsCounter % 7].value,
+    'dateAdded': DateTime.now().toString(),
+  }).then((value) {
+    _goal.id = value.id.toString();
+    MyUser.allGoals.add(_goal);
+  });
 
+  // Future <List<Map<dynamic, dynamic>>> getCollection() async{
+  //
+  //   List<DocumentSnapshot> templist;
+  //   List<Map<dynamic, dynamic>> list = new List();
+  //   CollectionReference collectionRef = FirebaseFirestore.instance.collection("users").doc("${MyUser.uid}").collection('goals');
+  //   QuerySnapshot collectionSnapshot = await collectionRef.get();
+  //   templist = collectionSnapshot.docs; // <--- ERROR
+  //
+  //   list = templist.map((DocumentSnapshot docSnapshot){
+  //     return docSnapshot.data;
+  //   }).cast<Map>().toList();
+  //
+  //   return list;
+  // }
 }
-
-
-

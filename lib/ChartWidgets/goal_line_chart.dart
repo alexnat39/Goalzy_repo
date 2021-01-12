@@ -14,43 +14,43 @@ class LineChartGoalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _januaryHeight = (User.januaryGoals.length == 0)
+    var _januaryHeight = (MyUser.januaryGoals.length == 0)
         ? 0.0
-        : ((User.finishedJanuaryGoals.length / User.januaryGoals.length) * 5);
-    var _februaryHeight = (User.februaryGoals.length == 0)
+        : ((MyUser.finishedJanuaryGoals.length / MyUser.januaryGoals.length) * 5);
+    var _februaryHeight = (MyUser.februaryGoals.length == 0)
         ? 0.0
-        : ((User.finishedFebruaryGoals.length / User.februaryGoals.length) * 5);
-    var _marchHeight = (User.marchGoals.length == 0)
+        : ((MyUser.finishedFebruaryGoals.length / MyUser.februaryGoals.length) * 5);
+    var _marchHeight = (MyUser.marchGoals.length == 0)
         ? 0.0
-        : ((User.finishedMarchGoals.length / User.marchGoals.length) * 5);
-    var _aprilHeight = (User.aprilGoals.length == 0)
+        : ((MyUser.finishedMarchGoals.length / MyUser.marchGoals.length) * 5);
+    var _aprilHeight = (MyUser.aprilGoals.length == 0)
         ? 0.0
-        : ((User.finishedAprilGoals.length / User.aprilGoals.length) * 5);
-    var _mayHeight = (User.mayGoals.length == 0)
+        : ((MyUser.finishedAprilGoals.length / MyUser.aprilGoals.length) * 5);
+    var _mayHeight = (MyUser.mayGoals.length == 0)
         ? 0.0
-        : ((User.finishedMayGoals.length / User.mayGoals.length) * 5);
-    var _juneHeight = (User.juneGoals.length == 0)
+        : ((MyUser.finishedMayGoals.length / MyUser.mayGoals.length) * 5);
+    var _juneHeight = (MyUser.juneGoals.length == 0)
         ? 0.0
-        : ((User.finishedJuneGoals.length / User.juneGoals.length) * 5);
-    var _julyHeight = (User.julyGoals.length == 0)
+        : ((MyUser.finishedJuneGoals.length / MyUser.juneGoals.length) * 5);
+    var _julyHeight = (MyUser.julyGoals.length == 0)
         ? 0.0
-        : ((User.finishedJulyGoals.length / User.julyGoals.length) * 5);
-    var _augustHeight = (User.augustGoals.length == 0)
+        : ((MyUser.finishedJulyGoals.length / MyUser.julyGoals.length) * 5);
+    var _augustHeight = (MyUser.augustGoals.length == 0)
         ? 0.0
-        : ((User.finishedAugustGoals.length / User.augustGoals.length) * 5);
-    var _septemberHeight = (User.septemberGoals.length == 0)
+        : ((MyUser.finishedAugustGoals.length / MyUser.augustGoals.length) * 5);
+    var _septemberHeight = (MyUser.septemberGoals.length == 0)
         ? 0.0
-        : ((User.finishedSeptemberGoals.length / User.septemberGoals.length) *
+        : ((MyUser.finishedSeptemberGoals.length / MyUser.septemberGoals.length) *
         5);
-    var _octoberHeight = (User.octoberGoals.length == 0)
+    var _octoberHeight = (MyUser.octoberGoals.length == 0)
         ? 0.0
-        : ((User.finishedOctoberGoals.length / User.octoberGoals.length) * 5);
-    var _novemberHeight = (User.novemberGoals.length == 0)
+        : ((MyUser.finishedOctoberGoals.length / MyUser.octoberGoals.length) * 5);
+    var _novemberHeight = (MyUser.novemberGoals.length == 0)
         ? 0.0
-        : ((User.finishedNovemberGoals.length / User.novemberGoals.length) * 5);
-    var _decemberHeight = (User.decemberGoals.length == 0)
+        : ((MyUser.finishedNovemberGoals.length / MyUser.novemberGoals.length) * 5);
+    var _decemberHeight = (MyUser.decemberGoals.length == 0)
         ? 0.0
-        : ((User.finishedDecemberGoals.length / User.decemberGoals.length) * 5);
+        : ((MyUser.finishedDecemberGoals.length / MyUser.decemberGoals.length) * 5);
 
     _januaryHeight = num.parse(_januaryHeight.toStringAsFixed(1));
     _februaryHeight = num.parse(_februaryHeight.toStringAsFixed(1));

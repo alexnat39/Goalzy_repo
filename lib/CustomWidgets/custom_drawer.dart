@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/ChartWidgets/plan_percent_indicator.dart';
+import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
 import 'package:goalzy_app/Views/all_tasks_view.dart';
 import 'package:goalzy_app/Views/home_view.dart';
@@ -14,7 +15,6 @@ import 'package:goalzy_app/Views/performance_view.dart';
  */
 class CustomDrawer extends StatefulWidget {
   final VoidCallback navigateFunction;
-
   CustomDrawer({this.navigateFunction});
 
   @override
@@ -192,7 +192,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
       ),
     );
   }
-  Future<void> signOut() async {Navigator.pop(context);
+  Future<void> signOut() async {
+    MyUser.name = "";
+    MyUser.email = "";
+    MyUser.uid = "";
+    MyUser.allGoals.clear();
+    MyUser.allPlans.clear();
+    MyUser.allIdeas.clear();
+
+    Navigator.pop(context);
+    Navigator.pop(context);
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => LoginPage()));
     try {

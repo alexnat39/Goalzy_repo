@@ -29,43 +29,43 @@ class _GoalBarChartState extends State<GoalBarChart> {
   @override
   Widget build(BuildContext context) {
 
-    final _januaryHeight = (User.januaryGoals.length == 0)
+    final _januaryHeight = (MyUser.januaryGoals.length == 0)
         ? 0.0
-        : ((User.finishedJanuaryGoals.length / User.januaryGoals.length) * 20);
-    final _februaryHeight = (User.februaryGoals.length == 0)
+        : ((MyUser.finishedJanuaryGoals.length / MyUser.januaryGoals.length) * 20);
+    final _februaryHeight = (MyUser.februaryGoals.length == 0)
         ? 0.0
-        : ((User.finishedFebruaryGoals.length / User.februaryGoals.length) * 20);
-    final _marchHeight = (User.marchGoals.length == 0)
+        : ((MyUser.finishedFebruaryGoals.length / MyUser.februaryGoals.length) * 20);
+    final _marchHeight = (MyUser.marchGoals.length == 0)
         ? 0.0
-        : ((User.finishedMarchGoals.length / User.marchGoals.length) * 20);
-    final _aprilHeight = (User.aprilGoals.length == 0)
+        : ((MyUser.finishedMarchGoals.length / MyUser.marchGoals.length) * 20);
+    final _aprilHeight = (MyUser.aprilGoals.length == 0)
         ? 0.0
-        : ((User.finishedAprilGoals.length / User.aprilGoals.length) * 20);
-    final _mayHeight = (User.mayGoals.length == 0)
+        : ((MyUser.finishedAprilGoals.length / MyUser.aprilGoals.length) * 20);
+    final _mayHeight = (MyUser.mayGoals.length == 0)
         ? 0.0
-        : ((User.finishedMayGoals.length / User.mayGoals.length) * 20);
-    final _juneHeight = (User.juneGoals.length == 0)
+        : ((MyUser.finishedMayGoals.length / MyUser.mayGoals.length) * 20);
+    final _juneHeight = (MyUser.juneGoals.length == 0)
         ? 0.0
-        : ((User.finishedJuneGoals.length / User.juneGoals.length) * 20);
-    final _julyHeight = (User.julyGoals.length == 0)
+        : ((MyUser.finishedJuneGoals.length / MyUser.juneGoals.length) * 20);
+    final _julyHeight = (MyUser.julyGoals.length == 0)
         ? 0.0
-        : ((User.finishedJulyGoals.length / User.julyGoals.length) * 20);
-    final _augustHeight = (User.augustGoals.length == 0)
+        : ((MyUser.finishedJulyGoals.length / MyUser.julyGoals.length) * 20);
+    final _augustHeight = (MyUser.augustGoals.length == 0)
         ? 0.0
-        : ((User.finishedAugustGoals.length / User.augustGoals.length) * 20);
-    final _septemberHeight = (User.septemberGoals.length == 0)
+        : ((MyUser.finishedAugustGoals.length / MyUser.augustGoals.length) * 20);
+    final _septemberHeight = (MyUser.septemberGoals.length == 0)
         ? 0.0
-        : ((User.finishedSeptemberGoals.length / User.septemberGoals.length) *
+        : ((MyUser.finishedSeptemberGoals.length / MyUser.septemberGoals.length) *
         20);
-    final _octoberHeight = (User.octoberGoals.length == 0)
+    final _octoberHeight = (MyUser.octoberGoals.length == 0)
         ? 0.0
-        : ((User.finishedOctoberGoals.length / User.octoberGoals.length) * 20);
-    final _novemberHeight = (User.novemberGoals.length == 0)
+        : ((MyUser.finishedOctoberGoals.length / MyUser.octoberGoals.length) * 20);
+    final _novemberHeight = (MyUser.novemberGoals.length == 0)
         ? 0.0
-        : ((User.finishedNovemberGoals.length / User.novemberGoals.length) * 20);
-    final _decemberHeight = (User.decemberGoals.length == 0)
+        : ((MyUser.finishedNovemberGoals.length / MyUser.novemberGoals.length) * 20);
+    final _decemberHeight = (MyUser.decemberGoals.length == 0)
         ? 0.0
-        : ((User.finishedDecemberGoals.length / User.decemberGoals.length) * 20);
+        : ((MyUser.finishedDecemberGoals.length / MyUser.decemberGoals.length) * 20);
 
     monthlyData = [
       _januaryHeight,
@@ -232,67 +232,67 @@ class _GoalBarChartState extends State<GoalBarChart> {
             case 0:
               month = 'January';
               completedTasks =
-                  "Achieved: ${User.finishedJanuaryGoals.length} out of ${User.januaryGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedJanuaryGoals.length} out of ${MyUser.januaryGoals.length} goal(s)";
               break;
             case 1:
               month = 'February';
               completedTasks =
-                  "Achieved: ${User.finishedFebruaryGoals.length} out of ${User.februaryGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedFebruaryGoals.length} out of ${MyUser.februaryGoals.length} goal(s)";
 
               break;
             case 2:
               month = 'March';
               completedTasks =
-                  "Achieved: ${User.finishedMarchGoals.length} out of ${User.marchGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedMarchGoals.length} out of ${MyUser.marchGoals.length} goal(s)";
 
               break;
             case 3:
               month = 'April';
               completedTasks =
-                  "Achieved: ${User.finishedAprilGoals.length} out of ${User.aprilGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedAprilGoals.length} out of ${MyUser.aprilGoals.length} goal(s)";
 
               break;
             case 4:
               month = 'May';
               completedTasks =
-                  "Achieved: ${User.finishedMayGoals.length} out of ${User.mayGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedMayGoals.length} out of ${MyUser.mayGoals.length} goal(s)";
 
               break;
             case 5:
               month = 'June';
               completedTasks =
-                  "Achieved: ${User.finishedJuneGoals.length} out of ${User.juneGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedJuneGoals.length} out of ${MyUser.juneGoals.length} goal(s)";
 
               break;
             case 6:
               month = 'July';
               completedTasks =
-                  "Achieved: ${User.finishedJulyGoals.length} out of ${User.julyGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedJulyGoals.length} out of ${MyUser.julyGoals.length} goal(s)";
               break;
             case 7:
               month = 'August';
               completedTasks =
-                  "Achieved: ${User.finishedAugustGoals.length} out of ${User.augustGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedAugustGoals.length} out of ${MyUser.augustGoals.length} goal(s)";
               break;
             case 8:
               month = 'September';
               completedTasks =
-                  "Achieved: ${User.finishedSeptemberGoals.length} out of ${User.septemberGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedSeptemberGoals.length} out of ${MyUser.septemberGoals.length} goal(s)";
               break;
             case 9:
               month = 'October';
               completedTasks =
-                  "Achieved: ${User.finishedOctoberGoals.length} out of ${User.octoberGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedOctoberGoals.length} out of ${MyUser.octoberGoals.length} goal(s)";
               break;
             case 10:
               month = 'November';
               completedTasks =
-                  "Achieved: ${User.finishedNovemberGoals.length} out of ${User.novemberGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedNovemberGoals.length} out of ${MyUser.novemberGoals.length} goal(s)";
               break;
             case 11:
               month = 'December';
               completedTasks =
-                  "Achieved: ${User.finishedDecemberGoals.length} out of ${User.decemberGoals.length} goal(s)";
+                  "Achieved: ${MyUser.finishedDecemberGoals.length} out of ${MyUser.decemberGoals.length} goal(s)";
               break;
           }
           return BarTooltipItem(

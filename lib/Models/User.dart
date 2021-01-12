@@ -2,7 +2,16 @@ import 'package:goalzy_app/Models/plan_class.dart';
 import 'goal_class.dart';
 import 'idea_class.dart';
 
-class User {
+class MyUser {
+
+  static String uid;
+  static String name;
+  static String email;
+  static List<Goal> allGoals;
+  static List<Plan> allPlans;
+  static List<Idea> allIdeas;
+
+
   //these arrays store all goals & plans user has not yet finished
   static List<Plan> _remainingPlans = new List();
   static List<Goal> _remainingGoals = new List();

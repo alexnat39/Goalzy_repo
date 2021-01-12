@@ -32,28 +32,28 @@ class PlanBarChartHomeWidgetState extends State<PlanBarChartHomeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final _mondayHeight = (User.mondayPlans.length == 0)
+    final _mondayHeight = (MyUser.mondayPlans.length == 0)
         ? 0.0
-        : ((User.finishedMondayPlans.length / User.mondayPlans.length) * 20);
-    final _tuesdayHeight = (User.tuesdayPlans.length == 0)
+        : ((MyUser.finishedMondayPlans.length / MyUser.mondayPlans.length) * 20);
+    final _tuesdayHeight = (MyUser.tuesdayPlans.length == 0)
         ? 0.0
-        : ((User.finishedTuesdayPlans.length / User.tuesdayPlans.length) * 20);
-    final _wednesdayHeight = (User.wednesdayPlans.length == 0)
+        : ((MyUser.finishedTuesdayPlans.length / MyUser.tuesdayPlans.length) * 20);
+    final _wednesdayHeight = (MyUser.wednesdayPlans.length == 0)
         ? 0.0
-        : ((User.finishedWednesdayPlans.length / User.wednesdayPlans.length) *
+        : ((MyUser.finishedWednesdayPlans.length / MyUser.wednesdayPlans.length) *
         20);
-    final _thursdayHeight = (User.thursdayPlans.length == 0)
+    final _thursdayHeight = (MyUser.thursdayPlans.length == 0)
         ? 0.0
-        : ((User.finishedThursdayPlans.length / User.thursdayPlans.length) * 20);
-    final _fridayHeight = (User.fridayPlans.length == 0)
+        : ((MyUser.finishedThursdayPlans.length / MyUser.thursdayPlans.length) * 20);
+    final _fridayHeight = (MyUser.fridayPlans.length == 0)
         ? 0.0
-        : ((User.finishedFridayPlans.length / User.fridayPlans.length) * 20);
-    final _saturdayHeight = (User.saturdayPlans.length == 0)
+        : ((MyUser.finishedFridayPlans.length / MyUser.fridayPlans.length) * 20);
+    final _saturdayHeight = (MyUser.saturdayPlans.length == 0)
         ? 0.0
-        : ((User.finishedSaturdayPlans.length / User.saturdayPlans.length) * 20);
-    final _sundayHeight = (User.sundayPlans.length == 0)
+        : ((MyUser.finishedSaturdayPlans.length / MyUser.saturdayPlans.length) * 20);
+    final _sundayHeight = (MyUser.sundayPlans.length == 0)
         ? 0.0
-        : ((User.finishedSundayPlans.length / User.sundayPlans.length) * 20);
+        : ((MyUser.finishedSundayPlans.length / MyUser.sundayPlans.length) * 20);
 
 
 
@@ -213,42 +213,42 @@ class PlanBarChartHomeWidgetState extends State<PlanBarChartHomeWidget> {
             case 0:
               weekDay = 'Monday';
               completedTasks =
-                  "Completed: ${User.finishedMondayPlans.length} out of ${User.mondayPlans.length} plan(s)";
+                  "Completed: ${MyUser.finishedMondayPlans.length} out of ${MyUser.mondayPlans.length} plan(s)";
               break;
             case 1:
               weekDay = 'Tuesday';
               completedTasks =
-                  "Completed: ${User.finishedTuesdayPlans.length} out of ${User.tuesdayPlans.length} plan(s)";
+                  "Completed: ${MyUser.finishedTuesdayPlans.length} out of ${MyUser.tuesdayPlans.length} plan(s)";
 
               break;
             case 2:
               weekDay = 'Wednesday';
               completedTasks =
-                  "Completed: ${User.finishedWednesdayPlans.length} out of ${User.wednesdayPlans.length} plan(s)";
+                  "Completed: ${MyUser.finishedWednesdayPlans.length} out of ${MyUser.wednesdayPlans.length} plan(s)";
 
               break;
             case 3:
               weekDay = 'Thursday';
               completedTasks =
-                  "Completed: ${User.finishedThursdayPlans.length} out of ${User.thursdayPlans.length} plan(s)";
+                  "Completed: ${MyUser.finishedThursdayPlans.length} out of ${MyUser.thursdayPlans.length} plan(s)";
 
               break;
             case 4:
               weekDay = 'Friday';
               completedTasks =
-                  "Completed: ${User.finishedFridayPlans.length} out of ${User.fridayPlans.length} plan(s)";
+                  "Completed: ${MyUser.finishedFridayPlans.length} out of ${MyUser.fridayPlans.length} plan(s)";
 
               break;
             case 5:
               weekDay = 'Saturday';
               completedTasks =
-                  "Completed: ${User.finishedSaturdayPlans.length} out of ${User.saturdayPlans.length} plan(s)";
+                  "Completed: ${MyUser.finishedSaturdayPlans.length} out of ${MyUser.saturdayPlans.length} plan(s)";
 
               break;
             case 6:
               weekDay = 'Sunday';
               completedTasks =
-                  "Completed: ${User.finishedSundayPlans.length} out of ${User.sundayPlans.length} plan(s)";
+                  "Completed: ${MyUser.finishedSundayPlans.length} out of ${MyUser.sundayPlans.length} plan(s)";
 
               break;
           }
@@ -315,28 +315,28 @@ class PlanBarChartPerformanceWidgetState extends State<PlanBarChartPerformanceWi
 
   @override
   Widget build(BuildContext context) {
-    final _mondayHeight = (User.mondayPlans.length == 0)
+    final _mondayHeight = (MyUser.mondayPlans.length == 0)
         ? 0.0
-        : ((User.finishedMondayPlans.length / User.mondayPlans.length) * 20);
-    final _tuesdayHeight = (User.tuesdayPlans.length == 0)
+        : ((MyUser.finishedMondayPlans.length / MyUser.mondayPlans.length) * 20);
+    final _tuesdayHeight = (MyUser.tuesdayPlans.length == 0)
         ? 0.0
-        : ((User.finishedTuesdayPlans.length / User.tuesdayPlans.length) * 20);
-    final _wednesdayHeight = (User.wednesdayPlans.length == 0)
+        : ((MyUser.finishedTuesdayPlans.length / MyUser.tuesdayPlans.length) * 20);
+    final _wednesdayHeight = (MyUser.wednesdayPlans.length == 0)
         ? 0.0
-        : ((User.finishedWednesdayPlans.length / User.wednesdayPlans.length) *
+        : ((MyUser.finishedWednesdayPlans.length / MyUser.wednesdayPlans.length) *
         20);
-    final _thursdayHeight = (User.thursdayPlans.length == 0)
+    final _thursdayHeight = (MyUser.thursdayPlans.length == 0)
         ? 0.0
-        : ((User.finishedThursdayPlans.length / User.thursdayPlans.length) * 20);
-    final _fridayHeight = (User.fridayPlans.length == 0)
+        : ((MyUser.finishedThursdayPlans.length / MyUser.thursdayPlans.length) * 20);
+    final _fridayHeight = (MyUser.fridayPlans.length == 0)
         ? 0.0
-        : ((User.finishedFridayPlans.length / User.fridayPlans.length) * 20);
-    final _saturdayHeight = (User.saturdayPlans.length == 0)
+        : ((MyUser.finishedFridayPlans.length / MyUser.fridayPlans.length) * 20);
+    final _saturdayHeight = (MyUser.saturdayPlans.length == 0)
         ? 0.0
-        : ((User.finishedSaturdayPlans.length / User.saturdayPlans.length) * 20);
-    final _sundayHeight = (User.sundayPlans.length == 0)
+        : ((MyUser.finishedSaturdayPlans.length / MyUser.saturdayPlans.length) * 20);
+    final _sundayHeight = (MyUser.sundayPlans.length == 0)
         ? 0.0
-        : ((User.finishedSundayPlans.length / User.sundayPlans.length) * 20);
+        : ((MyUser.finishedSundayPlans.length / MyUser.sundayPlans.length) * 20);
     weeklyData = [
       _mondayHeight,
       _tuesdayHeight,
@@ -489,42 +489,42 @@ class PlanBarChartPerformanceWidgetState extends State<PlanBarChartPerformanceWi
             case 0:
               weekDay = 'Monday';
               completedTasks =
-              "Completed: ${User.finishedMondayPlans.length} out of ${User.mondayPlans.length} plan(s)";
+              "Completed: ${MyUser.finishedMondayPlans.length} out of ${MyUser.mondayPlans.length} plan(s)";
               break;
             case 1:
               weekDay = 'Tuesday';
               completedTasks =
-              "Completed: ${User.finishedTuesdayPlans.length} out of ${User.tuesdayPlans.length} plan(s)";
+              "Completed: ${MyUser.finishedTuesdayPlans.length} out of ${MyUser.tuesdayPlans.length} plan(s)";
 
               break;
             case 2:
               weekDay = 'Wednesday';
               completedTasks =
-              "Completed: ${User.finishedWednesdayPlans.length} out of ${User.wednesdayPlans.length} plan(s)";
+              "Completed: ${MyUser.finishedWednesdayPlans.length} out of ${MyUser.wednesdayPlans.length} plan(s)";
 
               break;
             case 3:
               weekDay = 'Thursday';
               completedTasks =
-              "Completed: ${User.finishedThursdayPlans.length} out of ${User.thursdayPlans.length} plan(s)";
+              "Completed: ${MyUser.finishedThursdayPlans.length} out of ${MyUser.thursdayPlans.length} plan(s)";
 
               break;
             case 4:
               weekDay = 'Friday';
               completedTasks =
-              "Completed: ${User.finishedFridayPlans.length} out of ${User.fridayPlans.length} plan(s)";
+              "Completed: ${MyUser.finishedFridayPlans.length} out of ${MyUser.fridayPlans.length} plan(s)";
 
               break;
             case 5:
               weekDay = 'Saturday';
               completedTasks =
-              "Completed: ${User.finishedSaturdayPlans.length} out of ${User.saturdayPlans.length} plan(s)";
+              "Completed: ${MyUser.finishedSaturdayPlans.length} out of ${MyUser.saturdayPlans.length} plan(s)";
 
               break;
             case 6:
               weekDay = 'Sunday';
               completedTasks =
-              "Completed: ${User.finishedSundayPlans.length} out of ${User.sundayPlans.length} plan(s)";
+              "Completed: ${MyUser.finishedSundayPlans.length} out of ${MyUser.sundayPlans.length} plan(s)";
 
               break;
           }

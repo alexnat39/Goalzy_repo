@@ -24,5 +24,12 @@ class Plan {
     return mapping;
   }
 
+  String deadlineToDateDeadline() {
+    return deadline.substring(0, deadline.indexOf(" "));
+  }
 
+  String deadlineToTimeDeadline() {
+    return deadline.substring(
+        deadline.indexOf(" ") + 1, deadline.lastIndexOf(":"));
+  }
 }

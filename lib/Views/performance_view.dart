@@ -15,6 +15,7 @@ import 'package:goalzy_app/Services/goal_service.dart';
 import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:intl/intl.dart';
 import '../fill_arrays_functions.dart';
+import '../main.dart';
 import 'home_view.dart';
 
 

@@ -1,8 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:goalzy_app/Models/User.dart';
+import 'package:goalzy_app/Models/goal_class.dart';
+import 'package:goalzy_app/Models/idea_class.dart';
+import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Views/home_view.dart';
 import 'package:goalzy_app/Views/register_view.dart';
+
+import '../main.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -242,26 +249,80 @@ class _LoginPageState extends State<LoginPage> {
 
   void loginUser(email, password) async {
     try {
-      User user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
+      String uid = "";
+      String name = "";
+      activeGoalsCounter = 0;
+
+      FirebaseAuth auth = FirebaseAuth.instance;
+      User user = (await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
-      )).user;
+      ))
+          .user;
+      uid = user.uid.toString();
       if (user != null) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => HomePage()));
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc("${user.uid}")
+            .get()
+            .then((value) {
+          name = value['name'];
+        });
+
+        MyUser.uid = uid;
+        MyUser.name = name;
+        MyUser.email = email;
+        MyUser.allGoals = new List<Goal>();
+        MyUser.allPlans = new List<Plan>();
+        MyUser.allIdeas = new List<Idea>();
+
+        //filling in goals array
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc("${user.uid}")
+            .collection('goals')
+            .get()
+            .then((QuerySnapshot querySnapshot) => {
+                  querySnapshot.docs.forEach((doc) {
+                    var currentGoal = new Goal();
+                    currentGoal.id = doc.id.toString();
+                    currentGoal.title = doc['title'];
+                    currentGoal.subtitle = doc['subtitle'];
+                    currentGoal.description = doc['description'];
+                    currentGoal.finished = doc['finished'];
+                    currentGoal.deadline = doc['deadline'];
+                    currentGoal.dateAdded = doc['dateAdded'];
+                    currentGoal.color = doc['color'];
+                    if (currentGoal.finished == 0) {
+                      activeGoalsCounter++;
+                    }
+                    MyUser.allGoals.add(currentGoal);
+                  })
+                });
+        print(activeGoalsCounter);
+
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
       }
     } catch (e) {
-      String _errorMessage = "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
-      if (_errorMessage == "The password is invalid or the user does not have a password.") {
+      String _errorMessage =
+          "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
+      if (_errorMessage ==
+          "The password is invalid or the user does not have a password.") {
         _errorMessage = "The password is invalid.";
-      } else if (_errorMessage == "There is no user record corresponding to this identifier. The user may have been deleted.") {
+      } else if (_errorMessage ==
+          "There is no user record corresponding to this identifier. The user may have been deleted.") {
         _errorMessage = "User not found.";
       }
       Flushbar(
         backgroundColor: Colors.blueGrey[400],
         title: "Error",
         message: "$_errorMessage",
-        icon: Icon(Icons.error_outline, size: 28, color: Colors.red[300],),
+        icon: Icon(
+          Icons.error_outline,
+          size: 28,
+          color: Colors.red[300],
+        ),
         duration: Duration(seconds: 2),
       )..show(context);
       _emailController.text = "";

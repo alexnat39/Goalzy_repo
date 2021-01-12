@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:goalzy_app/Database/database_service.dart';
+import 'package:goalzy_app/Models/User.dart';
+import 'package:goalzy_app/Models/goal_class.dart';
+import 'package:goalzy_app/Models/idea_class.dart';
+import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Views/home_view.dart';
 import 'package:goalzy_app/Views/login_view.dart';
-
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -23,7 +28,6 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _repasswordController = TextEditingController();
-
 
   bool _nameIsValid = false;
   bool _emailIsValid = false;
@@ -266,8 +270,8 @@ class _RegisterPageState extends State<RegisterPage> {
             Text(
               "Already have an account?",
               style: Theme.of(context).textTheme.subtitle1.copyWith(
-                    color: Colors.white,
-                  ),
+                color: Colors.white,
+              ),
             ),
             MaterialButton(
               onPressed: () {
@@ -289,9 +293,8 @@ class _RegisterPageState extends State<RegisterPage> {
     );
 
     return Scaffold(
-        key: _scaffoldKey,
-
-    backgroundColor: Colors.blueGrey[700],
+      key: _scaffoldKey,
+      backgroundColor: Colors.blueGrey[700],
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());
@@ -319,27 +322,48 @@ class _RegisterPageState extends State<RegisterPage> {
   //regsters the user inside the firebase database
   void registerUser(name, email, password) async {
     try {
-      User user = (await FirebaseAuth.instance
-              .createUserWithEmailAndPassword(email: email, password: password)).user;
-      if (user != null) {
-        await FirebaseAuth.instance.currentUser.updateProfile(displayName: name);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => HomePage()));
-      }
+      FirebaseAuth auth = FirebaseAuth.instance;
+      await auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => FirebaseFirestore.instance
+          .collection('users')
+          .doc(value.user.uid)
+          .set({
+        'uid': value.user.uid,
+        'email': email,
+        'name': name,
+      }));
+      String uid = auth.currentUser.uid.toString();
+      MyUser.uid = uid;
+      MyUser.name = name;
+      MyUser.email = email;
+      MyUser.allGoals = List<Goal>();
+      MyUser.allPlans = List<Plan>();
+      MyUser.allIdeas = List<Idea>();
+
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
     } catch (e) {
-      String _errorMessage = "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
+      print(e);
+      String _errorMessage =
+      "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
       Flushbar(
         backgroundColor: Colors.blueGrey[400],
         title: "Error",
         message: "$_errorMessage",
-        icon: Icon(Icons.error_outline, size: 28, color: Colors.red[300],),
+        icon: Icon(
+          Icons.error_outline,
+          size: 28,
+          color: Colors.red[300],
+        ),
         duration: Duration(seconds: 2),
       )..show(context);
+
       _usernameController.text = "";
       _emailController.text = "";
       _passwordController.text = "";
       _repasswordController.text = "";
-     // print(e);
+      // print(e);
     }
   }
 }

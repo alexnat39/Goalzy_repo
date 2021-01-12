@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Views/home_view.dart';
 import 'package:goalzy_app/Views/active_task_single_view.dart';
@@ -109,13 +110,9 @@ class _CustomAddIdeaButtonState extends State<CustomAddIdeaButton> {
  * class for custom goal widget (used in home_view page)
  */
 class CustomGoalHomeWidget extends StatefulWidget {
-  String title;
-  String subtitle;
-  String deadlineString = "";
-  Color color;
   Goal goal;
 
-  CustomGoalHomeWidget(this.title, this.subtitle, this.deadlineString, this.color, this.goal);
+  CustomGoalHomeWidget(this.goal);
   @override
   _CustomGoalHomeWidgetState createState() => _CustomGoalHomeWidgetState();
 }
@@ -131,15 +128,15 @@ class _CustomGoalHomeWidgetState extends State<CustomGoalHomeWidget> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18.0),
             side: BorderSide(color: Colors.transparent)),
-        color: widget.color,
+        color: Color(widget.goal.color),
         onPressed: () {
           GoalViewPopUp(widget.goal, navigateFunction: () => Navigator.push(context,
               MaterialPageRoute(builder: (context) => HomePage())),).build(context);
         },
         child: Padding(
             padding: EdgeInsets.only(
-                top: (widget.title.length <= 13) &&
-                    (widget.subtitle.length <= 13) &&
+                top: (widget.goal.title.length <= 13) &&
+                    (widget.goal.subtitle.length <= 13) &&
                     (MediaQuery.of(context).size.height > 750)
                     ? MediaQuery.of(context).size.height * 0.017
                     : ((MediaQuery.of(context).size.height > 750)
@@ -150,17 +147,17 @@ class _CustomGoalHomeWidgetState extends State<CustomGoalHomeWidget> {
                 Container(
                   width: MediaQuery.of(context).size.width * 0.23,
                   child: Column(
-                    mainAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
-                    crossAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13)  ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                    mainAxisAlignment: (widget.goal.title.length <= 13) && (widget.goal.subtitle.length <= 13) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                    crossAxisAlignment: (widget.goal.title.length <= 13) && (widget.goal.subtitle.length <= 13)  ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
                     children: [
                       Row(
                         children: [
                           Flexible(
                             child: FittedBox(
                               child: AutoSizeText(
-                                widget.title,
+                                widget.goal.title,
                                 style: TextStyle(
-                                    fontSize: (widget.title.length >= 10) ? 13 : 14, fontWeight: FontWeight.bold),
+                                    fontSize: (widget.goal.title.length >= 10) ? 13 : 14, fontWeight: FontWeight.bold),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
                               ),
@@ -172,9 +169,9 @@ class _CustomGoalHomeWidgetState extends State<CustomGoalHomeWidget> {
                         children: [
                           Flexible(
                             child: Text(
-                              widget.subtitle,
+                              widget.goal.subtitle,
                               style: TextStyle(
-                                  fontSize: (widget.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
+                                  fontSize: (widget.goal.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
                               overflow: TextOverflow.ellipsis,
                               maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
                             ),
@@ -193,7 +190,7 @@ class _CustomGoalHomeWidgetState extends State<CustomGoalHomeWidget> {
                     child: FittedBox(
                       fit: BoxFit.fitWidth,
                       child: AutoSizeText(
-                        widget.deadlineString,
+                        widget.goal.deadlineToDateDeadline(),
                         style:
                         TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                         maxLines: 1,
@@ -213,16 +210,9 @@ class _CustomGoalHomeWidgetState extends State<CustomGoalHomeWidget> {
  * class for custom plan widget (used in home_view page)
  */
 class CustomPlanHomeWidget extends StatefulWidget {
-
-  String title;
-  String subtitle;
-  String deadlineDateString = "";
-  String deadlineTimeString = "";
-  Color color;
   Plan plan;
 
-  CustomPlanHomeWidget(this.title, this.subtitle, this.deadlineDateString,
-      this.deadlineTimeString, this.color, this.plan);
+  CustomPlanHomeWidget(this.plan);
 
   @override
   _CustomPlanHomeWidgetState createState() => _CustomPlanHomeWidgetState();
@@ -239,7 +229,7 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18.0),
             side: BorderSide(color: Colors.transparent)),
-        color: widget.color,
+        color: Color(widget.plan.color),
         onPressed: () {
           PlanViewPopUp(
             widget.plan,
@@ -249,8 +239,8 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
         },
         child: Padding(
           padding: EdgeInsets.only(
-              top: (widget.title.length <= 13) &&
-                  (widget.subtitle.length <= 13) &&
+              top: (widget.plan.title.length <= 13) &&
+                  (widget.plan.subtitle.length <= 13) &&
                   (MediaQuery.of(context).size.height > 750)
                   ? MediaQuery.of(context).size.height * 0.017
                   : ((MediaQuery.of(context).size.height > 750)
@@ -261,17 +251,17 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
               Container(
                 width: MediaQuery.of(context).size.width * 0.23,
                 child: Column(
-                  mainAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
-                  crossAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13)  ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                  mainAxisAlignment: (widget.plan.title.length <= 13) && (widget.plan.subtitle.length <= 13) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                  crossAxisAlignment: (widget.plan.title.length <= 13) && (widget.plan.subtitle.length <= 13)  ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
                   children: [
                     Row(
                       children: [
                         Flexible(
                           child: FittedBox(
                             child: AutoSizeText(
-                              widget.title,
+                              widget.plan.title,
                               style: TextStyle(
-                                  fontSize: (widget.title.length >= 10) ? 13 : 14, fontWeight: FontWeight.bold),
+                                  fontSize: (widget.plan.title.length >= 10) ? 13 : 14, fontWeight: FontWeight.bold),
                               overflow: TextOverflow.ellipsis,
                               maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
                             ),
@@ -283,9 +273,9 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
                       children: [
                         Flexible(
                           child: Text(
-                            widget.subtitle,
+                            widget.plan.subtitle,
                             style: TextStyle(
-                                fontSize: (widget.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
+                                fontSize: (widget.plan.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
                             overflow: TextOverflow.ellipsis,
                             maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
                           ),
@@ -302,7 +292,7 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
                     children: [
                       FittedBox(
                         child: Text(
-                          widget.deadlineTimeString + " ",
+                          widget.plan.deadlineToTimeDeadline() + " ",
                           style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 10 : 9, fontWeight: FontWeight.bold),
                           maxLines: 1,
                         ),
@@ -310,7 +300,7 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
                       Spacer(),
                       FittedBox(
                         child: Text(
-                          widget.deadlineDateString,
+                          widget.plan.deadlineToDateDeadline(),
                           style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 10 : 9, fontWeight: FontWeight.bold),
                           maxLines: 1,
                         ),
@@ -332,12 +322,9 @@ class _CustomPlanHomeWidgetState extends State<CustomPlanHomeWidget> {
  */
 class CustomIdeaHomeWidget extends StatefulWidget {
 
-  String title;
-  String subtitle;
-  Color color;
   Idea idea;
 
-  CustomIdeaHomeWidget(this.title, this.subtitle, this.color, this.idea);
+  CustomIdeaHomeWidget(this.idea);
 
   @override
   _CustomIdeaHomeWidgetState createState() => _CustomIdeaHomeWidgetState();
@@ -355,14 +342,14 @@ class _CustomIdeaHomeWidgetState extends State<CustomIdeaHomeWidget> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18.0),
             side: BorderSide(color: Colors.transparent)),
-        color: widget.color,
+        color: Color(widget.idea.color),
         onPressed: () {
           IdeaViewPopUp(widget.idea, navigateFunction: () => Navigator.push(context,
               MaterialPageRoute(builder: (context) => HomePage())),).build(context);        },
         child: Padding(
           padding: EdgeInsets.only(
-              top: (widget.title.length <= 13) &&
-                  (widget.subtitle.length <= 13) &&
+              top: (widget.idea.title.length <= 13) &&
+                  (widget.idea.subtitle.length <= 13) &&
                   (MediaQuery.of(context).size.height > 750)
                   ? MediaQuery.of(context).size.height * 0.017
                   : ((MediaQuery.of(context).size.height > 750)
@@ -373,17 +360,17 @@ class _CustomIdeaHomeWidgetState extends State<CustomIdeaHomeWidget> {
               Container(
                 width: MediaQuery.of(context).size.width * 0.23,
                 child: Column(
-                  mainAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
-                  crossAxisAlignment: (widget.title.length <= 13) && (widget.subtitle.length <= 13)  ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                  mainAxisAlignment: (widget.idea.title.length <= 13) && (widget.idea.subtitle.length <= 13) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                  crossAxisAlignment: (widget.idea.title.length <= 13) && (widget.idea.subtitle.length <= 13)  ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
                   children: [
                     Row(
                       children: [
                         Flexible(
                           child: FittedBox(
                             child: AutoSizeText(
-                              widget.title,
+                              widget.idea.title,
                               style: TextStyle(
-                                  fontSize: (widget.title.length >= 10) ? 13 : 14, fontWeight: FontWeight.bold),
+                                  fontSize: (widget.idea.title.length >= 10) ? 13 : 14, fontWeight: FontWeight.bold),
                               overflow: TextOverflow.ellipsis,
                               maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
                             ),
@@ -395,9 +382,9 @@ class _CustomIdeaHomeWidgetState extends State<CustomIdeaHomeWidget> {
                       children: [
                         Flexible(
                           child: Text(
-                            widget.subtitle,
+                            widget.idea.subtitle,
                             style: TextStyle(
-                                fontSize: (widget.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
+                                fontSize: (widget.idea.subtitle.length >= 13) ? 10 : 12, fontWeight: FontWeight.normal),
                             overflow: TextOverflow.ellipsis,
                             maxLines: (MediaQuery.of(context).size.height > 750) ? 2 : 1,
                           ),

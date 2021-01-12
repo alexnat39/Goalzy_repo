@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Views/all_tasks_view.dart';
 import 'package:goalzy_app/Views/active_task_single_view.dart';
@@ -149,6 +150,7 @@ class CustomPlanAllTasksWidget extends StatefulWidget{
   String description;
   String deadlineDateString = "";
   String deadlineTimeString = "";
+
 
   Plan plan;
 

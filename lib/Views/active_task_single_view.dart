@@ -433,12 +433,12 @@ class IdeaViewPopUp extends StatelessWidget {
 void finishTask(var task) {
   if (task is Goal) {
    // task.setFinished(true);
-    User.finishedGoals.add(task);
-    User.remainingGoals.remove(task);
+    MyUser.finishedGoals.add(task);
+    MyUser.remainingGoals.remove(task);
   } else if (task is Plan) {
     //task.setFinished(true);
-    User.finishedPlans.add(task);
-    User.remainingPlans.remove(task);
+    MyUser.finishedPlans.add(task);
+    MyUser.remainingPlans.remove(task);
   } else {
     print("nothing has been removed");
   }

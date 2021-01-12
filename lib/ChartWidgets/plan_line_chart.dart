@@ -6,99 +6,99 @@ import 'line_chart_titles.dart';
 import 'package:date_util/date_util.dart';
 
 class LineChartPlanWidget extends StatelessWidget {
-  var _day1Height = (User.day1Plans.length == 0)
+  var _day1Height = (MyUser.day1Plans.length == 0)
       ? 0.0
-      : ((User.day1PlansFinished.length / User.day1Plans.length) * 5);
-  var _day2Height = (User.day2Plans.length == 0)
+      : ((MyUser.day1PlansFinished.length / MyUser.day1Plans.length) * 5);
+  var _day2Height = (MyUser.day2Plans.length == 0)
       ? 0.0
-      : ((User.day2PlansFinished.length / User.day2Plans.length) * 5);
-  var _day3Height = (User.day3Plans.length == 0)
+      : ((MyUser.day2PlansFinished.length / MyUser.day2Plans.length) * 5);
+  var _day3Height = (MyUser.day3Plans.length == 0)
       ? 0.0
-      : ((User.day3PlansFinished.length / User.day3Plans.length) * 5);
-  var _day4Height = (User.day4Plans.length == 0)
+      : ((MyUser.day3PlansFinished.length / MyUser.day3Plans.length) * 5);
+  var _day4Height = (MyUser.day4Plans.length == 0)
       ? 0.0
-      : ((User.day4PlansFinished.length / User.day4Plans.length) * 5);
-  var _day5Height = (User.day5Plans.length == 0)
+      : ((MyUser.day4PlansFinished.length / MyUser.day4Plans.length) * 5);
+  var _day5Height = (MyUser.day5Plans.length == 0)
       ? 0.0
-      : ((User.day5PlansFinished.length / User.day5Plans.length) * 5);
-  var _day6Height = (User.day6Plans.length == 0)
+      : ((MyUser.day5PlansFinished.length / MyUser.day5Plans.length) * 5);
+  var _day6Height = (MyUser.day6Plans.length == 0)
       ? 0.0
-      : ((User.day6PlansFinished.length / User.day6Plans.length) * 5);
-  var _day7Height = (User.day7Plans.length == 0)
+      : ((MyUser.day6PlansFinished.length / MyUser.day6Plans.length) * 5);
+  var _day7Height = (MyUser.day7Plans.length == 0)
       ? 0.0
-      : ((User.day7PlansFinished.length / User.day7Plans.length) * 5);
-  var _day8Height = (User.day8Plans.length == 0)
+      : ((MyUser.day7PlansFinished.length / MyUser.day7Plans.length) * 5);
+  var _day8Height = (MyUser.day8Plans.length == 0)
       ? 0.0
-      : ((User.day8PlansFinished.length / User.day8Plans.length) * 5);
-  var _day9Height = (User.day9Plans.length == 0)
+      : ((MyUser.day8PlansFinished.length / MyUser.day8Plans.length) * 5);
+  var _day9Height = (MyUser.day9Plans.length == 0)
       ? 0.0
-      : ((User.day9PlansFinished.length / User.day9Plans.length) * 5);
-  var _day10Height = (User.day10Plans.length == 0)
+      : ((MyUser.day9PlansFinished.length / MyUser.day9Plans.length) * 5);
+  var _day10Height = (MyUser.day10Plans.length == 0)
       ? 0.0
-      : ((User.day10PlansFinished.length / User.day10Plans.length) * 5);
-  var _day11Height = (User.day11Plans.length == 0)
+      : ((MyUser.day10PlansFinished.length / MyUser.day10Plans.length) * 5);
+  var _day11Height = (MyUser.day11Plans.length == 0)
       ? 0.0
-      : ((User.day11PlansFinished.length / User.day11Plans.length) * 5);
-  var _day12Height = (User.day12Plans.length == 0)
+      : ((MyUser.day11PlansFinished.length / MyUser.day11Plans.length) * 5);
+  var _day12Height = (MyUser.day12Plans.length == 0)
       ? 0.0
-      : ((User.day12PlansFinished.length / User.day12Plans.length) * 5);
-  var _day13Height = (User.day13Plans.length == 0)
+      : ((MyUser.day12PlansFinished.length / MyUser.day12Plans.length) * 5);
+  var _day13Height = (MyUser.day13Plans.length == 0)
       ? 0.0
-      : ((User.day13PlansFinished.length / User.day13Plans.length) * 5);
-  var _day14Height = (User.day14Plans.length == 0)
+      : ((MyUser.day13PlansFinished.length / MyUser.day13Plans.length) * 5);
+  var _day14Height = (MyUser.day14Plans.length == 0)
       ? 0.0
-      : ((User.day14PlansFinished.length / User.day14Plans.length) * 5);
-  var _day15Height = (User.day15Plans.length == 0)
+      : ((MyUser.day14PlansFinished.length / MyUser.day14Plans.length) * 5);
+  var _day15Height = (MyUser.day15Plans.length == 0)
       ? 0.0
-      : ((User.day15PlansFinished.length / User.day15Plans.length) * 5);
-  var _day16Height = (User.day16Plans.length == 0)
+      : ((MyUser.day15PlansFinished.length / MyUser.day15Plans.length) * 5);
+  var _day16Height = (MyUser.day16Plans.length == 0)
       ? 0.0
-      : ((User.day16PlansFinished.length / User.day16Plans.length) * 5);
-  var _day17Height = (User.day17Plans.length == 0)
+      : ((MyUser.day16PlansFinished.length / MyUser.day16Plans.length) * 5);
+  var _day17Height = (MyUser.day17Plans.length == 0)
       ? 0.0
-      : ((User.day17PlansFinished.length / User.day17Plans.length) * 5);
-  var _day18Height = (User.day18Plans.length == 0)
+      : ((MyUser.day17PlansFinished.length / MyUser.day17Plans.length) * 5);
+  var _day18Height = (MyUser.day18Plans.length == 0)
       ? 0.0
-      : ((User.day18PlansFinished.length / User.day18Plans.length) * 5);
-  var _day19Height = (User.day19Plans.length == 0)
+      : ((MyUser.day18PlansFinished.length / MyUser.day18Plans.length) * 5);
+  var _day19Height = (MyUser.day19Plans.length == 0)
       ? 0.0
-      : ((User.day19PlansFinished.length / User.day19Plans.length) * 5);
-  var _day20Height = (User.day20Plans.length == 0)
+      : ((MyUser.day19PlansFinished.length / MyUser.day19Plans.length) * 5);
+  var _day20Height = (MyUser.day20Plans.length == 0)
       ? 0.0
-      : ((User.day20PlansFinished.length / User.day20Plans.length) * 5);
-  var _day21Height = (User.day21Plans.length == 0)
+      : ((MyUser.day20PlansFinished.length / MyUser.day20Plans.length) * 5);
+  var _day21Height = (MyUser.day21Plans.length == 0)
       ? 0.0
-      : ((User.day21PlansFinished.length / User.day21Plans.length) * 5);
-  var _day22Height = (User.day22Plans.length == 0)
+      : ((MyUser.day21PlansFinished.length / MyUser.day21Plans.length) * 5);
+  var _day22Height = (MyUser.day22Plans.length == 0)
       ? 0.0
-      : ((User.day22PlansFinished.length / User.day22Plans.length) * 5);
-  var _day23Height = (User.day23Plans.length == 0)
+      : ((MyUser.day22PlansFinished.length / MyUser.day22Plans.length) * 5);
+  var _day23Height = (MyUser.day23Plans.length == 0)
       ? 0.0
-      : ((User.day23PlansFinished.length / User.day23Plans.length) * 5);
-  var _day24Height = (User.day24Plans.length == 0)
+      : ((MyUser.day23PlansFinished.length / MyUser.day23Plans.length) * 5);
+  var _day24Height = (MyUser.day24Plans.length == 0)
       ? 0.0
-      : ((User.day24PlansFinished.length / User.day24Plans.length) * 5);
-  var _day25Height = (User.day25Plans.length == 0)
+      : ((MyUser.day24PlansFinished.length / MyUser.day24Plans.length) * 5);
+  var _day25Height = (MyUser.day25Plans.length == 0)
       ? 0.0
-      : ((User.day25PlansFinished.length / User.day25Plans.length) * 5);
-  var _day26Height = (User.day26Plans.length == 0)
+      : ((MyUser.day25PlansFinished.length / MyUser.day25Plans.length) * 5);
+  var _day26Height = (MyUser.day26Plans.length == 0)
       ? 0.0
-      : ((User.day26PlansFinished.length / User.day26Plans.length) * 5);
-  var _day27Height = (User.day27Plans.length == 0)
+      : ((MyUser.day26PlansFinished.length / MyUser.day26Plans.length) * 5);
+  var _day27Height = (MyUser.day27Plans.length == 0)
       ? 0.0
-      : ((User.day27PlansFinished.length / User.day27Plans.length) * 5);
-  var _day28Height = (User.day28Plans.length == 0)
+      : ((MyUser.day27PlansFinished.length / MyUser.day27Plans.length) * 5);
+  var _day28Height = (MyUser.day28Plans.length == 0)
       ? 0.0
-      : ((User.day28PlansFinished.length / User.day28Plans.length) * 5);
-  var _day29Height = (User.day29Plans.length == 0)
+      : ((MyUser.day28PlansFinished.length / MyUser.day28Plans.length) * 5);
+  var _day29Height = (MyUser.day29Plans.length == 0)
       ? 0.0
-      : ((User.day29PlansFinished.length / User.day29Plans.length) * 5);
-  var _day30Height = (User.day30Plans.length == 0)
+      : ((MyUser.day29PlansFinished.length / MyUser.day29Plans.length) * 5);
+  var _day30Height = (MyUser.day30Plans.length == 0)
       ? 0.0
-      : ((User.day30PlansFinished.length / User.day30Plans.length) * 5);
-  var _day31Height = (User.day31Plans.length == 0)
+      : ((MyUser.day30PlansFinished.length / MyUser.day30Plans.length) * 5);
+  var _day31Height = (MyUser.day31Plans.length == 0)
       ? 0.0
-      : ((User.day31PlansFinished.length / User.day31Plans.length) * 5);
+      : ((MyUser.day31PlansFinished.length / MyUser.day31Plans.length) * 5);
 
 
 

@@ -8,7 +8,7 @@ class GoalLinearPercentIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var percentageCompleted = (User.thisMonthGoals.length == 0) ? 0.0 : User.thisMonthFinishedGoals.length / User.thisMonthGoals.length;
+    var percentageCompleted = (MyUser.thisMonthGoals.length == 0) ? 0.0 : MyUser.thisMonthFinishedGoals.length / MyUser.thisMonthGoals.length;
     currentProgressColor() {
       if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
         return Colors.red[400];
@@ -25,8 +25,8 @@ class GoalLinearPercentIndicator extends StatelessWidget {
       animation: true,
       lineHeight: MediaQuery.of(context).size.height * 0.03,
       animationDuration: 500,
-      percent: (User.thisMonthGoals.length == 0) ? 0.0 : User.thisMonthFinishedGoals.length/User.thisMonthGoals.length,
-      center: Text("${User.thisMonthFinishedGoals.length}/${User.thisMonthGoals.length}"),
+      percent: (MyUser.thisMonthGoals.length == 0) ? 0.0 : MyUser.thisMonthFinishedGoals.length/MyUser.thisMonthGoals.length,
+      center: Text("${MyUser.thisMonthFinishedGoals.length}/${MyUser.thisMonthGoals.length}"),
       linearStrokeCap: LinearStrokeCap.roundAll,
       progressColor: currentProgressColor(),
     );

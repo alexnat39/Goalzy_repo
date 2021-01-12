@@ -8,6 +8,7 @@ import 'package:goalzy_app/Views/add_task_idea_view.dart';
 import '../CustomWidgets/custom_widgets_add_task_view.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../constants.dart';
+import '../main.dart';
 import 'home_view.dart';
 
 class AddTaskPlanView extends StatelessWidget {

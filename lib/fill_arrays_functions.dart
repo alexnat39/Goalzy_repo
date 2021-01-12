@@ -18,243 +18,243 @@ addToAppropriateArrayOfPlans(currentPlan) {
   if (tempDate.year == DateTime.now().year && tempDate.month == DateTime.now().month) {
     switch (tempDate.day) {
       case 1: {
-        User.day1Plans.add(currentPlan);
+        MyUser.day1Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day1PlansFinished.add(currentPlan);
+          MyUser.day1PlansFinished.add(currentPlan);
         }
         break;
       }
       case 2: {
-        User.day2Plans.add(currentPlan);
+        MyUser.day2Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day2PlansFinished.add(currentPlan);
+          MyUser.day2PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 3: {
-        User.day3Plans.add(currentPlan);
+        MyUser.day3Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day3PlansFinished.add(currentPlan);
+          MyUser.day3PlansFinished.add(currentPlan);
         }
         break;
       }
       case 4:
         {
-          User.day4Plans.add(currentPlan);
+          MyUser.day4Plans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.day4PlansFinished.add(currentPlan);
+            MyUser.day4PlansFinished.add(currentPlan);
           }
           break;
         }
       case 5: {
-        User.day5Plans.add(currentPlan);
+        MyUser.day5Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day5PlansFinished.add(currentPlan);
+          MyUser.day5PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 6: {
-        User.day6Plans.add(currentPlan);
+        MyUser.day6Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day6PlansFinished.add(currentPlan);
+          MyUser.day6PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 7: {
-        User.day7Plans.add(currentPlan);
+        MyUser.day7Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day7PlansFinished.add(currentPlan);
+          MyUser.day7PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 8: {
-        User.day8Plans.add(currentPlan);
+        MyUser.day8Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day8PlansFinished.add(currentPlan);
+          MyUser.day8PlansFinished.add(currentPlan);
         }
         break;
       }
       case 9: {
-        User.day9Plans.add(currentPlan);
+        MyUser.day9Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day9PlansFinished.add(currentPlan);
+          MyUser.day9PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 10: {
-        User.day10Plans.add(currentPlan);
+        MyUser.day10Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day10PlansFinished.add(currentPlan);
+          MyUser.day10PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 11:
-        User.day11Plans.add(currentPlan);
+        MyUser.day11Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day11PlansFinished.add(currentPlan);
+          MyUser.day11PlansFinished.add(currentPlan);
         }
         {
           break;
         }
       case 12: {
-        User.day12Plans.add(currentPlan);
+        MyUser.day12Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day12PlansFinished.add(currentPlan);
+          MyUser.day12PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 13: {
-        User.day13Plans.add(currentPlan);
+        MyUser.day13Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day13PlansFinished.add(currentPlan);
+          MyUser.day13PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 14: {
-        User.day14Plans.add(currentPlan);
+        MyUser.day14Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day14PlansFinished.add(currentPlan);
+          MyUser.day14PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 15: {
-        User.day15Plans.add(currentPlan);
+        MyUser.day15Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day15PlansFinished.add(currentPlan);
+          MyUser.day15PlansFinished.add(currentPlan);
         }
         break;
       }
       case 16: {
-        User.day16Plans.add(currentPlan);
+        MyUser.day16Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day16PlansFinished.add(currentPlan);
+          MyUser.day16PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 17: {
-        User.day17Plans.add(currentPlan);
+        MyUser.day17Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day17PlansFinished.add(currentPlan);
+          MyUser.day17PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 18:
         {
-          User.day18Plans.add(currentPlan);
+          MyUser.day18Plans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.day18PlansFinished.add(currentPlan);
+            MyUser.day18PlansFinished.add(currentPlan);
           }
           break;
         }
       case 19: {
-        User.day19Plans.add(currentPlan);
+        MyUser.day19Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day19PlansFinished.add(currentPlan);
+          MyUser.day19PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 20: {
-        User.day20Plans.add(currentPlan);
+        MyUser.day20Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day20PlansFinished.add(currentPlan);
+          MyUser.day20PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 21: {
-        User.day21Plans.add(currentPlan);
+        MyUser.day21Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day21PlansFinished.add(currentPlan);
+          MyUser.day21PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 22: {
-        User.day22Plans.add(currentPlan);
+        MyUser.day22Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day22PlansFinished.add(currentPlan);
+          MyUser.day22PlansFinished.add(currentPlan);
         }
         break;
       }
       case 23: {
-        User.day23Plans.add(currentPlan);
+        MyUser.day23Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day23PlansFinished.add(currentPlan);
+          MyUser.day23PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 24: {
-        User.day24Plans.add(currentPlan);
+        MyUser.day24Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day24PlansFinished.add(currentPlan);
+          MyUser.day24PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 25:
         {
-          User.day25Plans.add(currentPlan);
+          MyUser.day25Plans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.day25PlansFinished.add(currentPlan);
+            MyUser.day25PlansFinished.add(currentPlan);
           }
           break;
         }
       case 26: {
-        User.day26Plans.add(currentPlan);
+        MyUser.day26Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day26PlansFinished.add(currentPlan);
+          MyUser.day26PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 27: {
-        User.day27Plans.add(currentPlan);
+        MyUser.day27Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day27PlansFinished.add(currentPlan);
+          MyUser.day27PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 28: {
-        User.day28Plans.add(currentPlan);
+        MyUser.day28Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day28PlansFinished.add(currentPlan);
+          MyUser.day28PlansFinished.add(currentPlan);
         }
         break;
 
       }
       case 29:
         {
-          User.day29Plans.add(currentPlan);
+          MyUser.day29Plans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.day29PlansFinished.add(currentPlan);
+            MyUser.day29PlansFinished.add(currentPlan);
           }
           break;
         }
       case 30: {
-        User.day30Plans.add(currentPlan);
+        MyUser.day30Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day30PlansFinished.add(currentPlan);
+          MyUser.day30PlansFinished.add(currentPlan);
         }
         break;
       }
       case 31: {
-        User.day31Plans.add(currentPlan);
+        MyUser.day31Plans.add(currentPlan);
         if (currentPlan.finished == 1) {
-          User.day31PlansFinished.add(currentPlan);
+          MyUser.day31PlansFinished.add(currentPlan);
         }
         break;
       }
@@ -262,9 +262,9 @@ addToAppropriateArrayOfPlans(currentPlan) {
   }
   //adds currentPlan to todayPlans and todayFinishedPlans
   if (DateFormat('YYYYMMDD').format(tempDate) == DateFormat('YYYYMMDD').format(DateTime.now())) {
-    User.todayPlans.add(currentPlan);
+    MyUser.todayPlans.add(currentPlan);
     if (currentPlan.finished == 1) {
-      User.todayFinishedPlans.add(currentPlan);
+      MyUser.todayFinishedPlans.add(currentPlan);
     }
   }
 
@@ -272,64 +272,64 @@ addToAppropriateArrayOfPlans(currentPlan) {
   if (tempDate.isAfter(startOfWeek) &&
       tempDate.isBefore(endOfWeek) || tempDate.isAtSameMomentAs(startOfWeek)) {
 
-    User.thisWeekPlans.add(currentPlan);
+    MyUser.thisWeekPlans.add(currentPlan);
     if (currentPlan.finished == 1) {
-      User.thisWeekFinishedPlans.add((currentPlan));
+      MyUser.thisWeekFinishedPlans.add((currentPlan));
     }
     switch (DateFormat('EEEE').format(tempDate)) {
       case "Monday":
         {
-          User.mondayPlans.add(currentPlan);
+          MyUser.mondayPlans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.finishedMondayPlans.add(currentPlan);
+            MyUser.finishedMondayPlans.add(currentPlan);
           }
           break;
         }
       case "Tuesday":
         {
-          User.tuesdayPlans.add(currentPlan);
+          MyUser.tuesdayPlans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.finishedTuesdayPlans.add(currentPlan);
+            MyUser.finishedTuesdayPlans.add(currentPlan);
           }
           break;
         }
       case "Wednesday":
         {
-          User.wednesdayPlans.add(currentPlan);
+          MyUser.wednesdayPlans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.finishedWednesdayPlans.add(currentPlan);
+            MyUser.finishedWednesdayPlans.add(currentPlan);
           }
           break;
         }
       case "Thursday":
         {
-          User.thursdayPlans.add(currentPlan);
+          MyUser.thursdayPlans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.finishedThursdayPlans.add(currentPlan);
+            MyUser.finishedThursdayPlans.add(currentPlan);
           }
           break;
         }
       case "Friday":
         {
-          User.fridayPlans.add(currentPlan);
+          MyUser.fridayPlans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.finishedFridayPlans.add(currentPlan);
+            MyUser.finishedFridayPlans.add(currentPlan);
           }
           break;
         }
       case "Saturday":
         {
-          User.saturdayPlans.add(currentPlan);
+          MyUser.saturdayPlans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.finishedSaturdayPlans.add(currentPlan);
+            MyUser.finishedSaturdayPlans.add(currentPlan);
           }
           break;
         }
       case "Sunday":
         {
-          User.sundayPlans.add(currentPlan);
+          MyUser.sundayPlans.add(currentPlan);
           if (currentPlan.finished == 1) {
-            User.finishedSundayPlans.add(currentPlan);
+            MyUser.finishedSundayPlans.add(currentPlan);
           }
           break;
         }
@@ -338,92 +338,92 @@ addToAppropriateArrayOfPlans(currentPlan) {
 }
 
 clearUserPlanArrays() {
-  User.thisWeekPlans.clear();
-  User.thisWeekFinishedPlans.clear();
+  MyUser.thisWeekPlans.clear();
+  MyUser.thisWeekFinishedPlans.clear();
 
-  User.mondayPlans.clear();
-  User.tuesdayPlans.clear();
-  User.wednesdayPlans.clear();
-  User.thursdayPlans.clear();
-  User.fridayPlans.clear();
-  User.saturdayPlans.clear();
-  User.sundayPlans.clear();
-  User.thisWeekPlans.clear();
+  MyUser.mondayPlans.clear();
+  MyUser.tuesdayPlans.clear();
+  MyUser.wednesdayPlans.clear();
+  MyUser.thursdayPlans.clear();
+  MyUser.fridayPlans.clear();
+  MyUser.saturdayPlans.clear();
+  MyUser.sundayPlans.clear();
+  MyUser.thisWeekPlans.clear();
 
-  User.finishedMondayPlans.clear();
-  User.finishedTuesdayPlans.clear();
-  User.finishedWednesdayPlans.clear();
-  User.finishedThursdayPlans.clear();
-  User.finishedFridayPlans.clear();
-  User.finishedSaturdayPlans.clear();
-  User.finishedSundayPlans.clear();
+  MyUser.finishedMondayPlans.clear();
+  MyUser.finishedTuesdayPlans.clear();
+  MyUser.finishedWednesdayPlans.clear();
+  MyUser.finishedThursdayPlans.clear();
+  MyUser.finishedFridayPlans.clear();
+  MyUser.finishedSaturdayPlans.clear();
+  MyUser.finishedSundayPlans.clear();
 
-  User.todayPlans.clear();
-  User.todayFinishedPlans.clear();
+  MyUser.todayPlans.clear();
+  MyUser.todayFinishedPlans.clear();
 
-  User.day1Plans.clear();
-  User.day2Plans.clear();
-  User.day3Plans.clear();
-  User.day4Plans.clear();
-  User.day5Plans.clear();
-  User.day6Plans.clear();
-  User.day7Plans.clear();
-  User.day8Plans.clear();
-  User.day9Plans.clear();
-  User.day10Plans.clear();
-  User.day11Plans.clear();
-  User.day12Plans.clear();
-  User.day13Plans.clear();
-  User.day14Plans.clear();
-  User.day15Plans.clear();
-  User.day16Plans.clear();
-  User.day17Plans.clear();
-  User.day18Plans.clear();
-  User.day19Plans.clear();
-  User.day20Plans.clear();
-  User.day21Plans.clear();
-  User.day22Plans.clear();
-  User.day23Plans.clear();
-  User.day24Plans.clear();
-  User.day25Plans.clear();
-  User.day26Plans.clear();
-  User.day27Plans.clear();
-  User.day28Plans.clear();
-  User.day29Plans.clear();
-  User.day30Plans.clear();
-  User.day31Plans.clear();
+  MyUser.day1Plans.clear();
+  MyUser.day2Plans.clear();
+  MyUser.day3Plans.clear();
+  MyUser.day4Plans.clear();
+  MyUser.day5Plans.clear();
+  MyUser.day6Plans.clear();
+  MyUser.day7Plans.clear();
+  MyUser.day8Plans.clear();
+  MyUser.day9Plans.clear();
+  MyUser.day10Plans.clear();
+  MyUser.day11Plans.clear();
+  MyUser.day12Plans.clear();
+  MyUser.day13Plans.clear();
+  MyUser.day14Plans.clear();
+  MyUser.day15Plans.clear();
+  MyUser.day16Plans.clear();
+  MyUser.day17Plans.clear();
+  MyUser.day18Plans.clear();
+  MyUser.day19Plans.clear();
+  MyUser.day20Plans.clear();
+  MyUser.day21Plans.clear();
+  MyUser.day22Plans.clear();
+  MyUser.day23Plans.clear();
+  MyUser.day24Plans.clear();
+  MyUser.day25Plans.clear();
+  MyUser.day26Plans.clear();
+  MyUser.day27Plans.clear();
+  MyUser.day28Plans.clear();
+  MyUser.day29Plans.clear();
+  MyUser.day30Plans.clear();
+  MyUser.day31Plans.clear();
 
-  User.day1PlansFinished.clear();
-  User.day2PlansFinished.clear();
-  User.day3PlansFinished.clear();
-  User.day4PlansFinished.clear();
-  User.day5PlansFinished.clear();
-  User.day6PlansFinished.clear();
-  User.day7PlansFinished.clear();
-  User.day8PlansFinished.clear();
-  User.day9PlansFinished.clear();
-  User.day10PlansFinished.clear();
-  User.day11PlansFinished.clear();
-  User.day12PlansFinished.clear();
-  User.day13PlansFinished.clear();
-  User.day14PlansFinished.clear();
-  User.day15PlansFinished.clear();
-  User.day16PlansFinished.clear();
-  User.day17PlansFinished.clear();
-  User.day18PlansFinished.clear();
-  User.day19PlansFinished.clear();
-  User.day20PlansFinished.clear();
-  User.day21PlansFinished.clear();
-  User.day22PlansFinished.clear();
-  User.day23PlansFinished.clear();
-  User.day24PlansFinished.clear();
-  User.day25PlansFinished.clear();
-  User.day26PlansFinished.clear();
-  User.day27PlansFinished.clear();
-  User.day28PlansFinished.clear();
-  User.day29PlansFinished.clear();
-  User.day30PlansFinished.clear();
-  User.day31PlansFinished.clear();
+  MyUser.day1PlansFinished.clear();
+  MyUser.day2PlansFinished.clear();
+  MyUser.day3PlansFinished.clear();
+  MyUser.day4PlansFinished.clear();
+  MyUser.day5PlansFinished.clear();
+  MyUser.day6PlansFinished.clear();
+  MyUser.day7PlansFinished.clear();
+  MyUser.day8PlansFinished.clear();
+  MyUser.day9PlansFinished.clear();
+  MyUser.day10PlansFinished.clear();
+  MyUser.day11PlansFinished.clear();
+  MyUser.day12PlansFinished.clear();
+  MyUser.day13PlansFinished.clear();
+  MyUser.day14PlansFinished.clear();
+  MyUser.day15PlansFinished.clear();
+  MyUser.day16PlansFinished.clear();
+  MyUser.day17PlansFinished.clear();
+  MyUser.day18PlansFinished.clear();
+  MyUser.day19PlansFinished.clear();
+  MyUser.day20PlansFinished.clear();
+  MyUser.day21PlansFinished.clear();
+  MyUser.day22PlansFinished.clear();
+  MyUser.day23PlansFinished.clear();
+  MyUser.day24PlansFinished.clear();
+  MyUser.day25PlansFinished.clear();
+  MyUser.day26PlansFinished.clear();
+  MyUser.day27PlansFinished.clear();
+  MyUser.day28PlansFinished.clear();
+  MyUser.day29PlansFinished.clear();
+  MyUser.day30PlansFinished.clear();
+  MyUser.day31PlansFinished.clear();
 }
 
 
@@ -442,38 +442,38 @@ clearUserPlanArrays() {
  * this function is used for creating a GoalBarChart and GoalPercentIndicator
  */
 clearUserGoalArrays() {
-  User.januaryGoals.clear();
-  User.februaryGoals.clear();
-  User.marchGoals.clear();
-  User.aprilGoals.clear();
-  User.mayGoals.clear();
-  User.juneGoals.clear();
-  User.julyGoals.clear();
-  User.augustGoals.clear();
-  User.septemberGoals.clear();
-  User.octoberGoals.clear();
-  User.novemberGoals.clear();
-  User.decemberGoals.clear();
+  MyUser.januaryGoals.clear();
+  MyUser.februaryGoals.clear();
+  MyUser.marchGoals.clear();
+  MyUser.aprilGoals.clear();
+  MyUser.mayGoals.clear();
+  MyUser.juneGoals.clear();
+  MyUser.julyGoals.clear();
+  MyUser.augustGoals.clear();
+  MyUser.septemberGoals.clear();
+  MyUser.octoberGoals.clear();
+  MyUser.novemberGoals.clear();
+  MyUser.decemberGoals.clear();
 
-  User.finishedJanuaryGoals.clear();
-  User.finishedFebruaryGoals.clear();
-  User.finishedMarchGoals.clear();
-  User.finishedAprilGoals.clear();
-  User.finishedMayGoals.clear();
-  User.finishedJuneGoals.clear();
-  User.finishedJulyGoals.clear();
-  User.finishedAugustGoals.clear();
-  User.finishedSeptemberGoals.clear();
-  User.finishedOctoberGoals.clear();
-  User.finishedNovemberGoals.clear();
-  User.finishedDecemberGoals.clear();
+  MyUser.finishedJanuaryGoals.clear();
+  MyUser.finishedFebruaryGoals.clear();
+  MyUser.finishedMarchGoals.clear();
+  MyUser.finishedAprilGoals.clear();
+  MyUser.finishedMayGoals.clear();
+  MyUser.finishedJuneGoals.clear();
+  MyUser.finishedJulyGoals.clear();
+  MyUser.finishedAugustGoals.clear();
+  MyUser.finishedSeptemberGoals.clear();
+  MyUser.finishedOctoberGoals.clear();
+  MyUser.finishedNovemberGoals.clear();
+  MyUser.finishedDecemberGoals.clear();
 
 
-  User.thisMonthFinishedGoals.clear();
-  User.thisMonthGoals.clear();
+  MyUser.thisMonthFinishedGoals.clear();
+  MyUser.thisMonthGoals.clear();
 
-  User.thisYearGoals.clear();
-  User.thisYearFinishedGoals.clear();
+  MyUser.thisYearGoals.clear();
+  MyUser.thisYearFinishedGoals.clear();
 
 }
 
@@ -482,9 +482,9 @@ addToAppropriateArrayOfGoals(currentGoal) {
 
   //adds currentGoal to thisMonthGoals and thisMonthFinishedGoals
   if (DateFormat('YYYYMM').format(tempDate) == DateFormat('YYYYMM').format(DateTime.now())) {
-    User.thisMonthGoals.add(currentGoal);
+    MyUser.thisMonthGoals.add(currentGoal);
     if (currentGoal.finished == 1) {
-      User.thisMonthFinishedGoals.add(currentGoal);
+      MyUser.thisMonthFinishedGoals.add(currentGoal);
     }
   }
 
@@ -493,103 +493,103 @@ addToAppropriateArrayOfGoals(currentGoal) {
 
     //adds current goal to thisYearFinishedGoals list
     if (currentGoal.finished == 1) {
-      User.thisYearFinishedGoals.add(currentGoal);
+      MyUser.thisYearFinishedGoals.add(currentGoal);
     }
 
     switch (DateFormat('MM').format(tempDate)) {
       case "01":
         {
-          User.januaryGoals.add(currentGoal);
+          MyUser.januaryGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedJanuaryGoals.add(currentGoal);
+            MyUser.finishedJanuaryGoals.add(currentGoal);
           }
           break;
         }
       case "02":
         {
-          User.februaryGoals.add(currentGoal);
+          MyUser.februaryGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedFebruaryGoals.add(currentGoal);
+            MyUser.finishedFebruaryGoals.add(currentGoal);
           }
           break;
         }
       case "03":
         {
-          User.marchGoals.add(currentGoal);
+          MyUser.marchGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedMarchGoals.add(currentGoal);
+            MyUser.finishedMarchGoals.add(currentGoal);
           }
           break;
         }
       case "04":
         {
-          User.aprilGoals.add(currentGoal);
+          MyUser.aprilGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedAprilGoals.add(currentGoal);
+            MyUser.finishedAprilGoals.add(currentGoal);
           }
           break;
         }
       case "05":
         {
-          User.mayGoals.add(currentGoal);
+          MyUser.mayGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedMayGoals.add(currentGoal);
+            MyUser.finishedMayGoals.add(currentGoal);
           }
           break;
         }
       case "06":
         {
-          User.juneGoals.add(currentGoal);
+          MyUser.juneGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedJuneGoals.add(currentGoal);
+            MyUser.finishedJuneGoals.add(currentGoal);
           }
           break;
         }
       case "07":
         {
-          User.julyGoals.add(currentGoal);
+          MyUser.julyGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedJulyGoals.add(currentGoal);
+            MyUser.finishedJulyGoals.add(currentGoal);
           }
           break;
         }
       case "08":
         {
-          User.augustGoals.add(currentGoal);
+          MyUser.augustGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedAugustGoals.add(currentGoal);
+            MyUser.finishedAugustGoals.add(currentGoal);
           }
           break;
         }
       case "09":
         {
-          User.septemberGoals.add(currentGoal);
+          MyUser.septemberGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedSeptemberGoals.add(currentGoal);
+            MyUser.finishedSeptemberGoals.add(currentGoal);
           }
           break;
         }
       case "10":
         {
-          User.octoberGoals.add(currentGoal);
+          MyUser.octoberGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedOctoberGoals.add(currentGoal);
+            MyUser.finishedOctoberGoals.add(currentGoal);
           }
           break;
         }
       case "11":
         {
-          User.novemberGoals.add(currentGoal);
+          MyUser.novemberGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedNovemberGoals.add(currentGoal);
+            MyUser.finishedNovemberGoals.add(currentGoal);
           }
           break;
         }
       case "12":
         {
-          User.decemberGoals.add(currentGoal);
+          MyUser.decemberGoals.add(currentGoal);
           if (currentGoal.finished == 1) {
-            User.finishedDecemberGoals.add(currentGoal);
+            MyUser.finishedDecemberGoals.add(currentGoal);
           }
           break;
         }

@@ -11,7 +11,7 @@ class _GoalPercentIndicatorState extends State<GoalPercentIndicator> {
 
   @override
   Widget build(BuildContext context) {
-    var percentageCompleted = (User.thisMonthGoals.length == 0) ? 0.0 : User.thisMonthFinishedGoals.length / User.thisMonthGoals.length;
+    var percentageCompleted = (MyUser.thisMonthGoals.length == 0) ? 0.0 : MyUser.thisMonthFinishedGoals.length / MyUser.thisMonthGoals.length;
     currentProgressColor() {
       if (percentageCompleted * 100 >= 0.0 && percentageCompleted * 100 < 25.0) {
         return Colors.red[400];
@@ -74,7 +74,7 @@ Widget _buildCircularPercentIndicator(BuildContext context, var percentageComple
     // fillColor: color,
     center: Center(
       child: AutoSizeText(
-        "${User.thisMonthFinishedGoals.length} / ${User.thisMonthGoals.length}",
+        "${MyUser.thisMonthFinishedGoals.length} / ${MyUser.thisMonthGoals.length}",
         style: new TextStyle(
             fontSize: 15.0,
             fontWeight: FontWeight.bold,

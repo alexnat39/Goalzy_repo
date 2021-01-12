@@ -2,9 +2,8 @@ import 'dart:ui';
 
 import 'package:intl/intl.dart';
 
-
 class Goal {
-  int id;
+  String id;
   String title;
   String subtitle;
   String description;
@@ -14,7 +13,6 @@ class Goal {
   String dateAdded;
 
   goalMap() {
-
     var mapping = Map<String, dynamic>();
     mapping['id'] = id;
     mapping['title'] = title;
@@ -30,6 +28,10 @@ class Goal {
 
   @override
   String toString() {
-    return 'Goal{_title: $title, _subtitle: $subtitle, description $description, _deadline $deadline, _dateAdded $dateAdded, isFinished $finished}';
+    return 'Goal{_id: $id, _title: $title, _subtitle: $subtitle, description $description, _deadline $deadline, _dateAdded $dateAdded, isFinished $finished}';
+  }
+
+  String deadlineToDateDeadline() {
+    return deadline.substring(0, deadline.indexOf(" "));
   }
 }

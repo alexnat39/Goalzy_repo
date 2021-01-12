@@ -4,6 +4,7 @@ import 'package:goalzy_app/Services/idea_service.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../CustomWidgets/custom_widgets_add_task_view.dart';
 import '../constants.dart';
+import '../main.dart';
 import 'add_task_goal_view.dart';
 import 'add_task_plan_view.dart';
 import 'home_view.dart';
