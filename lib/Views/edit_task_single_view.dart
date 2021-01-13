@@ -3,6 +3,8 @@ import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/CustomWidgets/custom_widgets_single_task_view.dart';
+import 'package:goalzy_app/Database/database_service.dart';
+import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Services/goal_service.dart';
 import 'package:goalzy_app/Services/idea_service.dart';
@@ -21,17 +23,14 @@ class GoalEditViewPopUp extends StatelessWidget {
   final VoidCallback navigateFunction;
 
 
-  var _goalService = GoalService();
-
-
+  var _databaseService = DatabaseService();
+  
   Goal goalPassedIn;
   DateTime deadline;
   String description;
   String title;
   String subtitle;
-
-  var goalFromSQL;
-
+  
   final _titleFormKey = GlobalKey<FormState>();
   final _subTitleFormKey = GlobalKey<FormState>();
 
@@ -216,7 +215,7 @@ class GoalEditViewPopUp extends StatelessWidget {
                                 .size
                                 .width * 0.375,
                             child: CustomConfirmButton(navigateFunction: () =>
-                                confirmEditTask(goalPassedIn, context)),
+                                editGoalFirestore(context)),
                           ),
                         ]),
                   ),
@@ -228,27 +227,40 @@ class GoalEditViewPopUp extends StatelessWidget {
       },
     );
   }
-  void confirmEditTask(Goal _goal, BuildContext context) async {
-    goalFromSQL = await _goalService.readGoalById(goalPassedIn.id);
-
+  void editGoalFirestore(BuildContext context) async {
     _titleFormKey.currentState.validate();
       _subTitleFormKey.currentState.validate();
       if (_titleIsValid &&
           _subTitleIsValid &&
           deadline != null) {
-        _goal.id = goalFromSQL[0]['id'];
+
+        var _goal = new Goal();
+        _goal.id = goalPassedIn.id;
+        _goal.dateAdded = goalPassedIn.dateAdded;
+        _goal.color = goalPassedIn.color;
+        _goal.finished = goalPassedIn.finished;
         _goal.title = titleController.text;
         _goal.subtitle = subTitleController.text;
         _goal.description = descriptionController.text;
         _goal.deadline = deadline.toString();
-        await _goalService.updateGoal(_goal);
+        
+        editGoalLocally(_goal);
+        
         Navigator.pop(context);
         Navigator.pop(context);
         Navigator.pop(context);
         //this function replaces navigation to needed page
         navigateFunction();
 
+        _databaseService.updateGoalInFirestore(_goal);
+
+
     }
+  }
+  void editGoalLocally(Goal goal) {
+      var index = MyUser.allGoals.indexOf(goalPassedIn);
+      MyUser.allGoals[index] = goal;
+    
   }
 }
 
@@ -261,7 +273,7 @@ class PlanEditViewPopUp extends StatelessWidget {
   final VoidCallback navigateFunction;
 
   
-  var _planService = PlanService();
+  var _databaseService = DatabaseService();
 
   Plan planPassedIn;
   DateTime deadline;
@@ -269,11 +281,7 @@ class PlanEditViewPopUp extends StatelessWidget {
   String title;
   String subtitle;
   Duration hourDeadline;
-
-  var planFromSQL;
-
-
-
+  
 
   final _titleFormKey = GlobalKey<FormState>();
   final _subTitleFormKey = GlobalKey<FormState>();
@@ -475,7 +483,7 @@ class PlanEditViewPopUp extends StatelessWidget {
                                 .size
                                 .width * 0.375,
                             child: CustomConfirmButton(navigateFunction: () =>
-                                confirmEditTask(planPassedIn, context)),
+                                editPlanFirestore(context)),
                           ),
                         ]),
                   ),
@@ -487,9 +495,8 @@ class PlanEditViewPopUp extends StatelessWidget {
       },
     );
   }
-  void confirmEditTask(Plan _plan, BuildContext context) async {
+  void editPlanFirestore(BuildContext context) async {
 
-    planFromSQL = await _planService.readPlanById(planPassedIn.id);
 
     _titleFormKey.currentState.validate();
     _subTitleFormKey.currentState.validate();
@@ -521,18 +528,32 @@ class PlanEditViewPopUp extends StatelessWidget {
     if (_titleIsValid &&
         _subTitleIsValid &&
         _deadlineIsValid) {
-      _plan.id = planFromSQL[0]['id'];
+
+      var _plan = new Plan();
+      _plan.id = planPassedIn.id;
+      _plan.dateAdded = planPassedIn.dateAdded;
+      _plan.color = planPassedIn.color;
+      _plan.finished = planPassedIn.finished;
       _plan.title = titleController.text;
       _plan.subtitle = subTitleController.text;
       _plan.description = descriptionController.text;
       _plan.deadline = newDeadline.toString();
-      await _planService.updatePlan(_plan);
+      editPlanLocally(_plan);
       Navigator.pop(context);
       Navigator.pop(context);
       Navigator.pop(context);
       //this function replaces navigation to needed page
       navigateFunction();
+      
+      _databaseService.updatePlanInFirestore(_plan);
+      
+      
     }
+  }
+  
+  void editPlanLocally(Plan plan) {
+      var index = MyUser.allPlans.indexOf(planPassedIn);
+      MyUser.allPlans[index] = plan;
   }
 }
 
@@ -544,9 +565,7 @@ class PlanEditViewPopUp extends StatelessWidget {
 class IdeaEditViewPopUp extends StatelessWidget {
 
 
-  var _ideaService = IdeaService();
-  var _ideaToBeEdited = Idea();
-  var ideaFromSQL;
+  var _databaseService = DatabaseService();
 
   final VoidCallback navigateFunction;
 
@@ -715,7 +734,7 @@ class IdeaEditViewPopUp extends StatelessWidget {
                                   .size
                                   .width * 0.375,
                               child: CustomConfirmButton(navigateFunction: () =>
-                                  confirmEditTask(ideaPassedIn, context)),
+                                  editIdeaFirestore(context)),
                             ),
                           ]),
                     ),
@@ -728,23 +747,33 @@ class IdeaEditViewPopUp extends StatelessWidget {
       },
     );
   }
-  void confirmEditTask(Idea _idea, BuildContext context) async {
-    ideaFromSQL = await _ideaService.readIdeaById(ideaPassedIn.id);
+  void editIdeaFirestore(BuildContext context) async {
     _titleFormKey.currentState.validate();
     _subTitleFormKey.currentState.validate();
     if (_titleIsValid &&
         _subTitleIsValid) {
-      _idea.id = ideaFromSQL[0]['id'];
+      var _idea = new Idea();
+      _idea.id = ideaPassedIn.id;
+      _idea.color = ideaPassedIn.color;
+      _idea.dateAdded = ideaPassedIn.dateAdded;
       _idea.title = titleController.text;
       _idea.subtitle = subTitleController.text;
       _idea.description = descriptionController.text;
-      await _ideaService.updateIdea(_idea);
+      
+      editIdeaLocally(_idea);
+      
       Navigator.pop(context);
       Navigator.pop(context);
       Navigator.pop(context);
-
+      //this function replaces navigation to needed page
       navigateFunction();
+      
+      _databaseService.updateIdeaInFirestore(_idea);
     }
+  }
+  void editIdeaLocally(Idea idea) {
+      var index = MyUser.allIdeas.indexOf(ideaPassedIn);
+      MyUser.allIdeas[index] = idea;
   }
 }
 

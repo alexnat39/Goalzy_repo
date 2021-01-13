@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Services/idea_service.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../CustomWidgets/custom_widgets_add_task_view.dart';
@@ -151,7 +153,7 @@ class AddTaskIdeaView extends StatelessWidget {
                                     height: MediaQuery.of(context).size.height * 0.05,
                                     width:
                                       MediaQuery.of(context).size.width * 0.3,
-                                  child: CustomAddTaskAddButton(addFunction: () {
+                                  child: CustomAddTaskAddButton(addFunction: () async {
                                     //adds a goal to the goals list once user clicks on it
                                     _titleFormKey.currentState.validate();
                                     _subTitleFormKey.currentState.validate();
@@ -160,7 +162,7 @@ class AddTaskIdeaView extends StatelessWidget {
                                       subtitle = subTitleController.text;
                                       description =
                                           descriptionController.text;
-                                      _addIdeaSQL(title, subtitle, description,
+                                      await _addIdea(title, subtitle, description,
                                           context);
 
                                       Navigator.of(context).pop();
@@ -289,7 +291,7 @@ class AddTaskIdeaView extends StatelessWidget {
   }
 }
 
-Future<void> _addIdeaSQL (
+Future<void> _addIdea (
     String title, String subtitle, String description, BuildContext context) async {
   title = title.trim();
   subtitle = subtitle.trim();
@@ -306,6 +308,19 @@ Future<void> _addIdeaSQL (
   _idea.dateAdded = DateTime.now().toString();
   ideasCounter++;
 
-  var _ideaService = IdeaService();
-  var result = await _ideaService.saveIdea(_idea);
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc("${MyUser.uid}")
+      .collection("ideas")
+      .add({
+    'title': title,
+    'subtitle': subtitle,
+    'description': description,
+    'color': colorsForIdeaWidgets[ideasCounter % 7].value,
+    'dateAdded': DateTime.now().toString(),
+  }).then((value) {
+    _idea.id = value.id.toString();
+  });
+  MyUser.allIdeas.add(_idea);
+
 }

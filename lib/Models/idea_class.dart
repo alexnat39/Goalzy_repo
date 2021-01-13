@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class Idea {
-  int id;
+  String id;
   String title;
   String subtitle;
   String description;
@@ -21,3 +21,4 @@ class Idea {
     return mapping;
   }
 }
+

@@ -36,15 +36,7 @@ class HomePageState extends State<HomePage> {
   List<Widget> ideaWidgetsArray = new List();
 
 
-  @override
-  initState() {
-    super.initState();
 
-    //clearUserPlanArrays();
-    // getAllGoals();
-    // getAllPlans();
-    // getAllIdeas();
-  }
 
 
   @override

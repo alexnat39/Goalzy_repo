@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class Plan {
-  int id;
+  String id;
   String title;
   String subtitle;
   String description;

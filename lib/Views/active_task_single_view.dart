@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/CustomWidgets/custom_widget_all_tasks_view.dart';
+import 'package:goalzy_app/Database/database_service.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Services/goal_service.dart';
 import 'package:goalzy_app/Services/idea_service.dart';
@@ -19,7 +20,10 @@ import '../Models/idea_class.dart';
  */
 class GoalViewPopUp extends StatelessWidget {
   final VoidCallback navigateFunction;
-  var _goalService = GoalService();
+
+
+  var _databaseService = DatabaseService();
+  
   Goal goalPassedIn;
 
   GoalViewPopUp(this.goalPassedIn, {this.navigateFunction});
@@ -131,8 +135,8 @@ class GoalViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomDeleteButton(
                               deleteFunction: () {
-                                _goalService.deleteGoal(goalPassedIn.id);
-                                _goalService.deleteGoal(goalPassedIn.id);
+                                _databaseService.deleteGoalFromFirestore(goalPassedIn.id);
+                                MyUser.allGoals.remove(goalPassedIn);
                               },
                               navigateFunction: navigateFunction),
                         ),
@@ -140,10 +144,9 @@ class GoalViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomFinishedButton(
                             finishedFunction: () async {
-                              var goalFromSQL = await _goalService.readGoalById(goalPassedIn.id);
-                              goalPassedIn.id = goalFromSQL[0]['id'];
-                              goalPassedIn.finished = 1;
-                              await _goalService.updateGoal(goalPassedIn);
+                              var index = MyUser.allGoals.indexOf(goalPassedIn);
+                              MyUser.allGoals[index].finished = 1;
+                              _databaseService.finishGoalInFirestore(goalPassedIn);
                             },
                             navigateFunction: navigateFunction,
                           ),
@@ -164,9 +167,9 @@ class GoalViewPopUp extends StatelessWidget {
  */
 class PlanViewPopUp extends StatelessWidget {
 
-  var _planService = PlanService();
   Plan planPassedIn;
 
+  var _databaseService = DatabaseService();
 
   final VoidCallback navigateFunction;
 
@@ -288,7 +291,8 @@ class PlanViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomDeleteButton(
                               deleteFunction: () {
-                                _planService.deletePlan(planPassedIn.id);
+                                _databaseService.deletePlanFromFirestore(planPassedIn.id);
+                                MyUser.allPlans.remove(planPassedIn);
                               },
                               navigateFunction: navigateFunction),
                         ),
@@ -296,10 +300,9 @@ class PlanViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomFinishedButton(
                             finishedFunction: () async {
-                              var planFromSQL = await _planService.readPlanById(planPassedIn.id);
-                              planPassedIn.id = planFromSQL[0]['id'];
-                              planPassedIn.finished = 1;
-                              await _planService.updatePlan(planPassedIn);
+                              var index = MyUser.allPlans.indexOf(planPassedIn);
+                              MyUser.allPlans[index].finished = 1;
+                              _databaseService.finishPlanInFirestore(planPassedIn);
                             },
                             navigateFunction: navigateFunction,
                           ),
@@ -320,11 +323,12 @@ class PlanViewPopUp extends StatelessWidget {
  */
 class IdeaViewPopUp extends StatelessWidget {
 
-  var _ideaService = IdeaService();
-  Idea idea;
+  var _databaseService = DatabaseService();
+
+  Idea ideaPassedIn;
   final VoidCallback navigateFunction;
 
-  IdeaViewPopUp(this.idea, {this.navigateFunction});
+  IdeaViewPopUp(this.ideaPassedIn, {this.navigateFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -356,7 +360,7 @@ class IdeaViewPopUp extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: MediaQuery.of(context).size.width * 0.05, right: MediaQuery.of(context).size.width * 0.05),
                       child: AutoSizeText(
-                        idea.title,
+                        ideaPassedIn.title,
                         style: TextStyle(fontSize: 40, color: Colors.black54),
                         maxLines: 1,
                       ))
@@ -368,7 +372,7 @@ class IdeaViewPopUp extends StatelessWidget {
                     padding: EdgeInsets.only(
                          left: MediaQuery.of(context).size.width * 0.05, right: MediaQuery.of(context).size.width * 0.05),
                     child: AutoSizeText(
-                      idea.subtitle,
+                      ideaPassedIn.subtitle,
                       maxLines: 1,
                       style: TextStyle(fontSize: 30, color: Colors.black54),
                     ),
@@ -387,10 +391,10 @@ class IdeaViewPopUp extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                            (idea.description == null ||
-                                idea.description == "")
+                            (ideaPassedIn.description == null ||
+                                ideaPassedIn.description == "")
                                 ? "No description available"
-                                : idea.description, style: TextStyle(color: Colors.black54)
+                                : ideaPassedIn.description, style: TextStyle(color: Colors.black54)
                           ),
                         ],
                       ),
@@ -406,7 +410,7 @@ class IdeaViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.375,
                           child: CustomEditButton(
                               navigateFunction: () => IdeaEditViewPopUp(
-                                idea,
+                                ideaPassedIn,
                                 navigateFunction: navigateFunction,
                               ).build(context)),
                         ),
@@ -414,7 +418,8 @@ class IdeaViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.375,
                           child: CustomDeleteButton(
                               deleteFunction: () {
-                                _ideaService.deleteIdea(idea.id);
+                                _databaseService.deleteIdeaFromFirestore(ideaPassedIn.id);
+                                MyUser.allIdeas.remove(ideaPassedIn);
                               },
                               navigateFunction: navigateFunction),
                         ),
@@ -429,17 +434,3 @@ class IdeaViewPopUp extends StatelessWidget {
   }
 }
 
-
-void finishTask(var task) {
-  if (task is Goal) {
-   // task.setFinished(true);
-    MyUser.finishedGoals.add(task);
-    MyUser.remainingGoals.remove(task);
-  } else if (task is Plan) {
-    //task.setFinished(true);
-    MyUser.finishedPlans.add(task);
-    MyUser.remainingPlans.remove(task);
-  } else {
-    print("nothing has been removed");
-  }
-}

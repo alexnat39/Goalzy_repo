@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
@@ -185,7 +187,7 @@ class AddTaskPlanView extends StatelessWidget {
 
                                     width:
                                       MediaQuery.of(context).size.width * 0.3,
-                                  child: CustomAddTaskAddButton(addFunction: () {
+                                  child: CustomAddTaskAddButton(addFunction: () async {
                                     //adds a plan to the plans list once user clicks on it
                                     _titleFormKey.currentState.validate();
                                     _subTitleFormKey.currentState.validate();
@@ -222,7 +224,7 @@ class AddTaskPlanView extends StatelessWidget {
 
                                       // _addPlan(context, title, subtitle,
                                       //     description, deadline);
-                                      _addPlanSQL(context, title, subtitle, description, deadline);
+                                      await _addPlan(context, title, subtitle, description, deadline);
 
                                       Navigator.of(context).pop();
                                       Navigator.of(context).pop();
@@ -352,7 +354,7 @@ class AddTaskPlanView extends StatelessWidget {
 }
 
 
-Future<void> _addPlanSQL(BuildContext context, String title, String subtitle,
+Future<void> _addPlan(BuildContext context, String title, String subtitle,
     String description, DateTime deadline) async {
   title = title.trim();
   subtitle = subtitle.trim();
@@ -373,7 +375,23 @@ Future<void> _addPlanSQL(BuildContext context, String title, String subtitle,
   _plan.dateAdded = DateTime.now().toString();
   activePlansCounter++;
 
+  await FirebaseFirestore.instance
+      .collection('users')
+      .doc("${MyUser.uid}")
+      .collection("plans")
+      .add({
+    'title': title,
+    'subtitle': subtitle,
+    'description': description,
+    'deadline': deadline.toString(),
+    'finished': 0,
+    'color': colorsForPlanWidgets[activePlansCounter % 7].value,
+    'dateAdded': DateTime.now().toString(),
+  }).then((value) {
+    _plan.id = value.id.toString();
+  });
 
-  var _planService = PlanService();
-  await _planService.savePlan(_plan);
+  MyUser.allPlans.add(_plan);
+
 }
+

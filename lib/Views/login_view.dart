@@ -299,7 +299,50 @@ class _LoginPageState extends State<LoginPage> {
                     MyUser.allGoals.add(currentGoal);
                   })
                 });
-        print(activeGoalsCounter);
+
+        //filling in plans array
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc("${user.uid}")
+            .collection('plans')
+            .get()
+            .then((QuerySnapshot querySnapshot) => {
+          querySnapshot.docs.forEach((doc) {
+            var currentPlan = new Plan();
+            currentPlan.id = doc.id.toString();
+            currentPlan.title = doc['title'];
+            currentPlan.subtitle = doc['subtitle'];
+            currentPlan.description = doc['description'];
+            currentPlan.finished = doc['finished'];
+            currentPlan.deadline = doc['deadline'];
+            currentPlan.dateAdded = doc['dateAdded'];
+            currentPlan.color = doc['color'];
+            if (currentPlan.finished == 0) {
+              activePlansCounter++;
+            }
+            MyUser.allPlans.add(currentPlan);
+          })
+        });
+
+        //filling in ideas array
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc("${user.uid}")
+            .collection('ideas')
+            .get()
+            .then((QuerySnapshot querySnapshot) => {
+          querySnapshot.docs.forEach((doc) {
+            var currentIdea = new Idea();
+            currentIdea.id = doc.id.toString();
+            currentIdea.title = doc['title'];
+            currentIdea.subtitle = doc['subtitle'];
+            currentIdea.description = doc['description'];
+            currentIdea.dateAdded = doc['dateAdded'];
+            currentIdea.color = doc['color'];
+              ideasCounter++;
+            MyUser.allIdeas.add(currentIdea);
+          })
+        });
 
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => HomePage()));
