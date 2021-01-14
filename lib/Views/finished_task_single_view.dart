@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:goalzy_app/Database/database_service.dart';
+import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Services/goal_service.dart';
 import 'package:goalzy_app/Services/plan_service.dart';
@@ -15,8 +17,7 @@ class FinishedGoalViewPopUp extends StatelessWidget {
 
   Goal goalPassedIn;
   String deadlineString;
-  var _goalService = GoalService();
-
+var _databaseService = DatabaseService();
   FinishedGoalViewPopUp(this.goalPassedIn);
 
   @override
@@ -120,11 +121,9 @@ class FinishedGoalViewPopUp extends StatelessWidget {
                         Container(
                           width: MediaQuery.of(context).size.width * 0.375,
                           child: CustomRestoreButton(restoreFunction: () async {
-                            var planFromSQL = await _goalService.readGoalById(goalPassedIn.id);
-                            goalPassedIn.id = planFromSQL[0]['id'];
-                            goalPassedIn.finished = 0;
-                            await _goalService.updateGoal(goalPassedIn);
+                            MyUser.allGoalsMap["${goalPassedIn.id}"].finished = 0;
                             Navigator.push(context, MaterialPageRoute(builder: (context) => PerformancePage(0)));
+                            _databaseService.restoreGoalInFirestore(goalPassedIn.id);
                           })
                         ),
                       ]),
@@ -143,7 +142,8 @@ class FinishedGoalViewPopUp extends StatelessWidget {
  */
 class FinishedPlanViewPopUp extends StatelessWidget {
   Plan planPassedIn;
-  var _planService = PlanService();
+  var _databaseService = DatabaseService();
+
   FinishedPlanViewPopUp(this.planPassedIn);
 
   @override
@@ -258,11 +258,9 @@ class FinishedPlanViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.375,
                           child: CustomRestoreButton(
                               restoreFunction: () async {
-                                var planFromSQL = await _planService.readPlanById(planPassedIn.id);
-                                planPassedIn.id = planFromSQL[0]['id'];
-                                planPassedIn.finished = 0;
-                                await _planService.updatePlan(planPassedIn);
+                                MyUser.allPlansMap["${planPassedIn.id}"].finished = 0;
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => PerformancePage(1)));
+                                _databaseService.restorePlanInFirestore(planPassedIn.id);
                               }),
                         ),
                       ]),

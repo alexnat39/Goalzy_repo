@@ -1,12 +1,53 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flushbar/flushbar.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/goal_class.dart';
 import 'package:goalzy_app/Models/idea_class.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
+import 'package:goalzy_app/Views/home_view.dart';
+import 'package:goalzy_app/Views/login_view.dart';
+import 'package:goalzy_app/fill_arrays_functions.dart';
+
+import '../main.dart';
 
 class DatabaseService {
+
   CollectionReference users = FirebaseFirestore.instance.collection("users");
+
+  /**
+   * function signs the user out of the app
+   */
+  Future<void> signOut(BuildContext context) async {
+
+    MyUser.name = "";
+    MyUser.email = "";
+    MyUser.uid = "";
+
+    MyUser.allGoalsMap.clear();
+    MyUser.allPlansMap.clear();
+    MyUser.allIdeasMap.clear();
+
+    clearUserPlanArrays();
+    clearUserGoalArrays();
+
+    Navigator.pop(context);
+    Navigator.pop(context);
+
+    activeGoalsCounter = 0;
+    activePlansCounter = 0;
+    ideasCounter = 0;
+
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => LoginPage()));
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch(e) {
+      print(e);
+    }
+  }
 
   /**
    * delete funcitons for tasks from firestore
@@ -67,37 +108,134 @@ class DatabaseService {
   /**
     * functions for finishing tasks in firestore
     */
-  void finishGoalInFirestore(Goal goal) {
+  void finishGoalInFirestore(id) {
     users
         .doc("${MyUser.uid}")
         .collection('goals')
-        .doc("${goal.id}")
+        .doc("${id}")
         .update({"finished": 1});
   }
 
-  void finishPlanInFirestore(Plan plan) {
+  void finishPlanInFirestore(id) {
     users
         .doc("${MyUser.uid}")
         .collection('plans')
-        .doc("${plan.id}")
+        .doc("${id}")
         .update({"finished": 1});
   }
   /**
    * functions for restore finishing tasks in firestore
    */
-  void restoreGoalInFirestore(Goal goal) {
+  void restoreGoalInFirestore(id) {
     users
         .doc("${MyUser.uid}")
         .collection('goals')
-        .doc("${goal.id}")
+        .doc("${id}")
         .update({"finished": 0});
   }
 
-  void restorePlanInFirestore(Plan plan) {
+  void restorePlanInFirestore(id) {
     users
         .doc("${MyUser.uid}")
         .collection('plans')
-        .doc("${plan.id}")
+        .doc("${id}")
         .update({"finished": 0});
   }
+  
+
+  getUserDataFromFirestore(context, user) async {
+    String uid = "";
+    String name = "";
+    String email = "";
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc("${user.uid}")
+        .get()
+        .then((value) {
+      name = value['name'];
+      uid = value['uid'];
+      email = value['email'];
+    });
+
+    MyUser.uid = uid;
+    MyUser.name = name;
+    MyUser.email = email;
+
+    await fillUserDataFromFirestore(user);
+
+  }
+
+
+  fillUserDataFromFirestore(user) async {
+    //filling in goals array
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc("${user.uid}")
+        .collection('goals')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+      querySnapshot.docs.forEach((doc) {
+        var currentGoal = new Goal();
+        currentGoal.id = doc.id.toString();
+        currentGoal.title = doc['title'];
+        currentGoal.subtitle = doc['subtitle'];
+        currentGoal.description = doc['description'];
+        currentGoal.finished = doc['finished'];
+        currentGoal.deadline = doc['deadline'];
+        currentGoal.dateAdded = doc['dateAdded'];
+        currentGoal.color = doc['color'];
+        if (currentGoal.finished == 0) {
+          activeGoalsCounter++;
+        }
+        MyUser.allGoalsMap[doc.id.toString()] = currentGoal;
+      })
+    });
+
+    //filling in plans array
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc("${user.uid}")
+        .collection('plans')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+      querySnapshot.docs.forEach((doc) {
+        var currentPlan = new Plan();
+        currentPlan.id = doc.id.toString();
+        currentPlan.title = doc['title'];
+        currentPlan.subtitle = doc['subtitle'];
+        currentPlan.description = doc['description'];
+        currentPlan.finished = doc['finished'];
+        currentPlan.deadline = doc['deadline'];
+        currentPlan.dateAdded = doc['dateAdded'];
+        currentPlan.color = doc['color'];
+        if (currentPlan.finished == 0) {
+          activePlansCounter++;
+        }
+        MyUser.allPlansMap[doc.id.toString()] = currentPlan;
+      })
+    });
+
+    //filling in ideas array
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc("${user.uid}")
+        .collection('ideas')
+        .get()
+        .then((QuerySnapshot querySnapshot) =>
+    {
+      querySnapshot.docs.forEach((doc) {
+        var currentIdea = new Idea();
+        currentIdea.id = doc.id.toString();
+        currentIdea.title = doc['title'];
+        currentIdea.subtitle = doc['subtitle'];
+        currentIdea.description = doc['description'];
+        currentIdea.dateAdded = doc['dateAdded'];
+        currentIdea.color = doc['color'];
+        ideasCounter++;
+        MyUser.allIdeasMap[doc.id.toString()] = currentIdea;
+      })
+    });
+  }
+
+
 }

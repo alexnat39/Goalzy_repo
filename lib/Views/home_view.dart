@@ -18,57 +18,47 @@ import '../Models/idea_class.dart';
 import '../constants.dart';
 import '../main.dart';
 
-
 //NON_URGENT
 //todo add priority to task + goal type (long term/short term)
 //todo let user choose widget colors
 
-
 class HomePage extends StatefulWidget {
   HomePageState createState() => HomePageState();
+
   HomePage();
 }
 
-
 class HomePageState extends State<HomePage> {
-  List<Widget> goalWidgetsArray = new List();
-  List<Widget> planWidgetsArray = new List();
-  List<Widget> ideaWidgetsArray = new List();
-
-
-
-
+  List<Widget> _goalWidgetsArray = new List();
+  List<Widget> _planWidgetsArray = new List();
+  List<Widget> _ideaWidgetsArray = new List();
 
   @override
   Widget build(BuildContext context) {
-     List<Goal> _goalList = MyUser.allGoals;
-     List<Plan> _planList = MyUser.allPlans;
-     List<Idea> _ideaList = MyUser.allIdeas;
 
+    activeGoalsCounter = 0;
+    activePlansCounter = 0;
+    ideasCounter = 0;
+
+    clearUserPlanArrays();
 
     //emptying array before filling them (to avoid duplicated widgets)
-    goalWidgetsArray.clear();
-    planWidgetsArray.clear();
-    ideaWidgetsArray.clear();
+    _goalWidgetsArray.clear();
+    _planWidgetsArray.clear();
+    _ideaWidgetsArray.clear();
 
     //filling in widgets arrays
-    _fillGoalWidgetsArray(context, _goalList, goalWidgetsArray);
-    _fillPlanWidgetsArray(context, _planList, planWidgetsArray);
-    _fillIdeaWidgetsArray(context, _ideaList, ideaWidgetsArray);
+    _fillGoalWidgetsArray(context);
+    _fillPlanWidgetsArray(context);
+    _fillIdeaWidgetsArray(context);
 
     return WillPopScope(
-      onWillPop: () async =>
-      !Navigator
-          .of(context)
-          .userGestureInProgress,
+      onWillPop: () async => !Navigator.of(context).userGestureInProgress,
       child: Scaffold(
         drawer: Drawer(
           child: CustomDrawer(
-            navigateFunction: () =>
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HomePage())),
+            navigateFunction: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage())),
           ),
         ),
         backgroundColor: Colors.blueGrey[700],
@@ -88,18 +78,9 @@ class HomePageState extends State<HomePage> {
         ),
         body: Container(
           margin: EdgeInsets.only(
-              top: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 0.02,
-              left: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.03,
-              right: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.03),
+              top: MediaQuery.of(context).size.height * 0.02,
+              left: MediaQuery.of(context).size.width * 0.03,
+              right: MediaQuery.of(context).size.width * 0.03),
           child: SingleChildScrollView(
             child: Column(children: [
               //this is container for containing row of goal title and goal widgets
@@ -124,21 +105,17 @@ class HomePageState extends State<HomePage> {
                       children: <Widget>[
                         Expanded(
                             child: Container(
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.1,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemCount: goalWidgetsArray.length,
-                                  itemBuilder: (BuildContext context,
-                                      int index) {
-                                    return Container(
-                                      child: goalWidgetsArray[index],
-                                    );
-                                  }),
-                            )),
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemCount: _goalWidgetsArray.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Container(
+                                  child: _goalWidgetsArray[index],
+                                );
+                              }),
+                        )),
                       ],
                     )
                   ],
@@ -166,21 +143,17 @@ class HomePageState extends State<HomePage> {
                       children: <Widget>[
                         Expanded(
                             child: SizedBox(
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.1,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemCount: planWidgetsArray.length,
-                                  itemBuilder: (BuildContext context,
-                                      int index) {
-                                    return Container(
-                                      child: planWidgetsArray[index],
-                                    );
-                                  }),
-                            )),
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemCount: _planWidgetsArray.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Container(
+                                  child: _planWidgetsArray[index],
+                                );
+                              }),
+                        )),
                       ],
                     )
                   ],
@@ -208,21 +181,17 @@ class HomePageState extends State<HomePage> {
                       children: <Widget>[
                         Expanded(
                             child: SizedBox(
-                              height: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 0.1,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemCount: ideaWidgetsArray.length,
-                                  itemBuilder: (BuildContext context,
-                                      int index) {
-                                    return Container(
-                                      child: ideaWidgetsArray[index],
-                                    );
-                                  }),
-                            )),
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemCount: _ideaWidgetsArray.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Container(
+                                  child: _ideaWidgetsArray[index],
+                                );
+                              }),
+                        )),
                       ],
                     ),
                   ],
@@ -232,16 +201,10 @@ class HomePageState extends State<HomePage> {
                 Expanded(
                   child: Container(
                     margin: EdgeInsets.only(
-                        top: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 0.015),
+                        top: MediaQuery.of(context).size.height * 0.015),
                     child: buildThreeProgressWidgets(
                         context,
-                        MediaQuery
-                            .of(context)
-                            .size
-                            .height * 0.25,
+                        MediaQuery.of(context).size.height * 0.25,
                         PlanPercentIndicatorHomePage(5.0, 0.0),
                         PlanBarChartPerformanceWidget()),
                   ),
@@ -252,14 +215,8 @@ class HomePageState extends State<HomePage> {
                   Expanded(
                     child: Container(
                         margin: EdgeInsets.only(
-                            top: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.01),
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 0.13,
+                            top: MediaQuery.of(context).size.height * 0.01),
+                        height: MediaQuery.of(context).size.height * 0.13,
                         child: LineChartPlanWidget()),
                   ),
                 ],
@@ -271,11 +228,8 @@ class HomePageState extends State<HomePage> {
           onPressed: () {
             AddTaskGoalView(
               context,
-              navigateFunction: () =>
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HomePage())),
+              navigateFunction: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage())),
             );
           },
           label: Text('ADD'),
@@ -286,71 +240,66 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-
   /**
    * funciton for filling in goalWidgetsArray
    */
-  void _fillGoalWidgetsArray(BuildContext context, var list,
-      _goalWidgetsArray) {
-    if (activeGoalsCounter == 0) {
-      _goalWidgetsArray.add(CustomAddGoalButton(
-          navigateFunction: () =>
-              Navigator.push(
-                  context, MaterialPageRoute(
-                  builder: (context) => HomePage()))));
-    } else {
-      for (int i = 0; i < list.length; i++) {
-        Goal currentGoal = list[i];
-        if (currentGoal.finished == 0) {
-          _goalWidgetsArray.add(CustomGoalHomeWidget(currentGoal));
-        } else {
-          continue;
-        }
+  void _fillGoalWidgetsArray(BuildContext context) {
+    MyUser.allGoalsMap.forEach((key, value) {
+      Goal currentGoal = MyUser.allGoalsMap["$key"];
+      addToAppropriateArrayOfGoals(currentGoal);
+      if (currentGoal.finished == 0) {
+        activeGoalsCounter++;
+        _goalWidgetsArray.insert(0, CustomGoalHomeWidget(currentGoal));
       }
+    });
+    if (_goalWidgetsArray.length == 0) {
+      _goalWidgetsArray.insert(
+          0,
+          CustomAddGoalButton(
+            navigateFunction: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage())),
+          ));
     }
   }
 
   /**
    * funciton for filling in planWidgetsArray
    */
-  void _fillPlanWidgetsArray(BuildContext context, var list,
-      var _planWidgetsArray) {
-    if (activePlansCounter == 0) {
-      _planWidgetsArray.add(CustomAddPlanButton(
-        navigateFunction: () =>
-            Navigator.push(
-                context, MaterialPageRoute(
-                builder: (context) => HomePage())),
-      ));
-    } else {
-      for (int i = 0; i < list.length; i++) {
-        Plan currentPlan = list[i];
-        if (currentPlan.finished == 0) {
-          _planWidgetsArray.add(CustomPlanHomeWidget(currentPlan));
-        } else {
-          continue;
-        }
+  void _fillPlanWidgetsArray(BuildContext context) {
+    MyUser.allPlansMap.forEach((key, value) {
+      Plan currentPlan = MyUser.allPlansMap["$key"];
+      addToAppropriateArrayOfPlans(currentPlan);
+      if (currentPlan.finished == 0) {
+        activePlansCounter++;
+        _planWidgetsArray.insert(0, CustomPlanHomeWidget(currentPlan));
       }
+    });
+    if (_planWidgetsArray.length == 0) {
+      _planWidgetsArray.insert(
+          0,
+          CustomAddPlanButton(
+            navigateFunction: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage())),
+          ));
     }
   }
 
   /**
    * funciton for filling in ideaWidgetsArray
    */
-  void _fillIdeaWidgetsArray(BuildContext context, var list,
-      var _ideaWidgetsArray) {
-    if (list.length == 0) {
-      _ideaWidgetsArray.add(CustomAddIdeaButton(
-        navigateFunction: () =>
-            Navigator.push(
-                context, MaterialPageRoute(
-                builder: (context) => HomePage())),
-      ));
-    } else {
-      for (int i = 0; i < list.length; i++) {
-        Idea currentIdea = list[i];
-        _ideaWidgetsArray.add(CustomIdeaHomeWidget(currentIdea));
-      }
+  void _fillIdeaWidgetsArray(BuildContext context) {
+    MyUser.allIdeasMap.forEach((key, value) {
+      ideasCounter++;
+      Idea currentIdea = MyUser.allIdeasMap["$key"];
+      _ideaWidgetsArray.insert(0, CustomIdeaHomeWidget(currentIdea));
+    });
+    if (_ideaWidgetsArray.length == 0) {
+      _ideaWidgetsArray.insert(
+          0,
+          CustomAddIdeaButton(
+            navigateFunction: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage())),
+          ));
     }
   }
 }

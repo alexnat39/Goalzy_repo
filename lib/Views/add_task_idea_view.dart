@@ -293,6 +293,9 @@ class AddTaskIdeaView extends StatelessWidget {
 
 Future<void> _addIdea (
     String title, String subtitle, String description, BuildContext context) async {
+
+  String id = "";
+
   title = title.trim();
   subtitle = subtitle.trim();
   if (description == null) {
@@ -320,7 +323,8 @@ Future<void> _addIdea (
     'dateAdded': DateTime.now().toString(),
   }).then((value) {
     _idea.id = value.id.toString();
+    id = value.id.toString();
   });
-  MyUser.allIdeas.add(_idea);
+  MyUser.allIdeasMap["$id"] = _idea;
 
 }

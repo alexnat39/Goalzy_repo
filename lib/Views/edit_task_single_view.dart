@@ -254,13 +254,10 @@ class GoalEditViewPopUp extends StatelessWidget {
 
         _databaseService.updateGoalInFirestore(_goal);
 
-
     }
   }
   void editGoalLocally(Goal goal) {
-      var index = MyUser.allGoals.indexOf(goalPassedIn);
-      MyUser.allGoals[index] = goal;
-    
+      MyUser.allGoalsMap["${goal.id}"] = goal;
   }
 }
 
@@ -550,10 +547,8 @@ class PlanEditViewPopUp extends StatelessWidget {
       
     }
   }
-  
   void editPlanLocally(Plan plan) {
-      var index = MyUser.allPlans.indexOf(planPassedIn);
-      MyUser.allPlans[index] = plan;
+      MyUser.allPlansMap["${plan.id}"] = plan;
   }
 }
 
@@ -772,8 +767,7 @@ class IdeaEditViewPopUp extends StatelessWidget {
     }
   }
   void editIdeaLocally(Idea idea) {
-      var index = MyUser.allIdeas.indexOf(ideaPassedIn);
-      MyUser.allIdeas[index] = idea;
+      MyUser.allIdeasMap["${idea.id}"] = idea;
   }
 }
 

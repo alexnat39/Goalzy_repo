@@ -222,8 +222,7 @@ class AddTaskPlanView extends StatelessWidget {
                                       description =
                                           descriptionController.text;
 
-                                      // _addPlan(context, title, subtitle,
-                                      //     description, deadline);
+
                                       await _addPlan(context, title, subtitle, description, deadline);
 
                                       Navigator.of(context).pop();
@@ -356,6 +355,8 @@ class AddTaskPlanView extends StatelessWidget {
 
 Future<void> _addPlan(BuildContext context, String title, String subtitle,
     String description, DateTime deadline) async {
+  String id = "";
+
   title = title.trim();
   subtitle = subtitle.trim();
 
@@ -388,10 +389,11 @@ Future<void> _addPlan(BuildContext context, String title, String subtitle,
     'color': colorsForPlanWidgets[activePlansCounter % 7].value,
     'dateAdded': DateTime.now().toString(),
   }).then((value) {
+    id = value.id.toString();
     _plan.id = value.id.toString();
   });
 
-  MyUser.allPlans.add(_plan);
+  MyUser.allPlansMap["$id"] = _plan;
 
 }
 

@@ -328,6 +328,9 @@ class AddTaskGoalView extends StatelessWidget {
 
 Future<void> _addGoal(BuildContext context, String title, String subtitle,
     String description, DateTime deadline) async {
+
+  String id = "";
+
   title = title.trim();
   subtitle = subtitle.trim();
 
@@ -359,9 +362,9 @@ Future<void> _addGoal(BuildContext context, String title, String subtitle,
     'color': colorsForGoalWidgets[activeGoalsCounter % 7].value,
     'dateAdded': DateTime.now().toString(),
   }).then((value) {
+    id = value.id.toString();
     _goal.id = value.id.toString();
   });
-  MyUser.allGoals.add(_goal);
-  print(MyUser.allGoals);
+  MyUser.allGoalsMap["$id"] = _goal;
 
 }

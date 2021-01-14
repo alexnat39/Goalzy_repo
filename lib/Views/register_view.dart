@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,10 +16,12 @@ class RegisterPage extends StatefulWidget {
   _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+bool loadingRegister = false;
 
-  final _formKey = GlobalKey<FormState>();
+class _RegisterPageState extends State<RegisterPage> {
+  var _databaseService = DatabaseService();
+
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _nameFormKey = GlobalKey<FormState>();
   final _emailFormKey = GlobalKey<FormState>();
   final _passwordFormKey = GlobalKey<FormState>();
@@ -238,7 +241,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onPressed: () {
+            onPressed: () async {
               _nameFormKey.currentState.validate();
               _emailFormKey.currentState.validate();
               _passwordFormKey.currentState.validate();
@@ -247,10 +250,55 @@ class _RegisterPageState extends State<RegisterPage> {
                   _emailIsValid &&
                   _passwordIsValid &&
                   _rePasswordIsValid) {
-                registerUser(
-                    _usernameController.text.trim(),
-                    _emailController.text.trim(),
-                    _passwordController.text.trim());
+
+                setState(() {
+                  loadingRegister = true;
+                });
+
+                try {
+                  FirebaseAuth auth = FirebaseAuth.instance;
+                  await auth
+                      .createUserWithEmailAndPassword(email: _emailController.text.trim(), password: _passwordController.text.trim())
+                      .then((value) => FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(value.user.uid)
+                      .set({
+                    'uid': value.user.uid,
+                    'email': _emailController.text.trim(),
+                    'name': _usernameController.text.trim(),
+                  }));
+                  MyUser.uid = auth.currentUser.uid.toString();
+                  MyUser.name = _emailController.text.trim();
+                  MyUser.email = _usernameController.text.trim();
+                  setState(() {
+                    loadingRegister = false;
+                  });
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => HomePage()));
+                } catch (e) {
+                  setState(() {
+                    loadingRegister = false;
+                  });
+                  String _errorMessage =
+                  "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
+                  Flushbar(
+                    backgroundColor: Colors.blueGrey[400],
+                    title: "Error",
+                    message: "$_errorMessage",
+                    icon: Icon(
+                      Icons.error_outline,
+                      size: 28,
+                      color: Colors.red[300],
+                    ),
+                    duration: Duration(seconds: 2),
+                  )..show(context);
+
+                  _usernameController.text = "";
+                  _emailController.text = "";
+                  _passwordController.text = "";
+                  _repasswordController.text = "";
+                }
+
               }
             },
           ),
@@ -292,26 +340,68 @@ class _RegisterPageState extends State<RegisterPage> {
       ],
     );
 
-    return Scaffold(
-      key: _scaffoldKey,
-      backgroundColor: Colors.blueGrey[700],
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
-        },
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 36, right: 36),
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                logo,
-                fields,
-                Padding(
-                  padding: EdgeInsets.only(bottom: 150),
-                  child: bottom,
-                ),
-              ],
+    final bodyProgress = Container(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.blueGrey[700],
+        ),
+        alignment: AlignmentDirectional.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 100.0,
+                    width: 100.0,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.teal[300]),
+                      value: null,
+                      strokeWidth: 7.0,
+                      backgroundColor: Colors.blueGrey[600],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 25),
+                    height: 100,
+                    child: Text(
+                      'Loading...',
+                      style: TextStyle(decoration: TextDecoration.none, fontSize: 35, color: Colors.white70),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
+    return WillPopScope(
+      onWillPop: () async => !Navigator.of(context).userGestureInProgress,
+      child: loadingRegister ? bodyProgress : Scaffold(
+        key: _scaffoldKey,
+        backgroundColor: Colors.blueGrey[700],
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(left: 36, right: 36),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  logo,
+                  fields,
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 150),
+                    child: bottom,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -319,51 +409,5 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  //regsters the user inside the firebase database
-  void registerUser(name, email, password) async {
-    try {
-      FirebaseAuth auth = FirebaseAuth.instance;
-      await auth
-          .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => FirebaseFirestore.instance
-          .collection('users')
-          .doc(value.user.uid)
-          .set({
-        'uid': value.user.uid,
-        'email': email,
-        'name': name,
-      }));
-      String uid = auth.currentUser.uid.toString();
-      MyUser.uid = uid;
-      MyUser.name = name;
-      MyUser.email = email;
-      MyUser.allGoals = List<Goal>();
-      MyUser.allPlans = List<Plan>();
-      MyUser.allIdeas = List<Idea>();
 
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
-    } catch (e) {
-      print(e);
-      String _errorMessage =
-      "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
-      Flushbar(
-        backgroundColor: Colors.blueGrey[400],
-        title: "Error",
-        message: "$_errorMessage",
-        icon: Icon(
-          Icons.error_outline,
-          size: 28,
-          color: Colors.red[300],
-        ),
-        duration: Duration(seconds: 2),
-      )..show(context);
-
-      _usernameController.text = "";
-      _emailController.text = "";
-      _passwordController.text = "";
-      _repasswordController.text = "";
-      // print(e);
-    }
-  }
 }

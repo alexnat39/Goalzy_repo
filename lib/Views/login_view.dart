@@ -1,22 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:goalzy_app/Database/database_service.dart';
 import 'package:goalzy_app/Models/User.dart';
-import 'package:goalzy_app/Models/goal_class.dart';
-import 'package:goalzy_app/Models/idea_class.dart';
-import 'package:goalzy_app/Models/plan_class.dart';
-import 'package:goalzy_app/Views/home_view.dart';
 import 'package:goalzy_app/Views/register_view.dart';
-
+import 'package:sortedmap/sortedmap.dart';
 import '../main.dart';
+import 'home_view.dart';
 
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
+bool loadingLogin = false;
 
 class _LoginPageState extends State<LoginPage> {
+  var _databaseService = DatabaseService();
+
   final _formKey = GlobalKey<FormState>();
   final _emailFormKey = GlobalKey<FormState>();
   final _passwordFormKey = GlobalKey<FormState>();
@@ -29,6 +30,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+
     final mq = MediaQuery.of(context);
 
     final logo = Image.asset(
@@ -153,6 +155,45 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
+    final bodyProgress = Container(
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.blueGrey[700],
+        ),
+        alignment: AlignmentDirectional.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 100.0,
+                    width: 100.0,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.teal[300]),
+                      value: null,
+                      strokeWidth: 7.0,
+                      backgroundColor: Colors.blueGrey[600],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 25),
+                    height: 100,
+                    child: Text(
+                    'Loading...',
+                    style: TextStyle(decoration: TextDecoration.none, fontSize: 35, color: Colors.white70),
+                  ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
     final loginButton = Container(
         margin: EdgeInsets.only(top: 15),
         child: Material(
@@ -171,12 +212,62 @@ class _LoginPageState extends State<LoginPage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onPressed: () {
+            onPressed: () async {
               _emailFormKey.currentState.validate();
               _passwordFormKey.currentState.validate();
               if (_passwordIsValid && _emailIsValid) {
-                loginUser(_emailController.text.trim(),
-                    _passwordController.text.trim());
+                setState(() {
+                  loadingLogin = true;
+                });
+                try {
+                  FirebaseAuth auth = FirebaseAuth.instance;
+                  dynamic user = (await auth.signInWithEmailAndPassword(
+                    email: _emailController.text.trim(),
+                    password: _passwordController.text.trim(),
+                  )).user;
+                  if (user != null) {
+                    await _databaseService.getUserDataFromFirestore(context, user);
+                    setState(() {
+                      loadingLogin = false;
+                    });
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  }
+                  else {
+                    setState(() {
+                      loadingLogin = false;
+                    });
+                  }
+                } catch (e) {
+                  setState(() {
+                    loadingLogin = false;
+                  });
+                  String _errorMessage =
+                      "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
+                  if (_errorMessage ==
+                      "The password is invalid or the user does not have a password.") {
+                    _errorMessage = "The password is invalid.";
+                  } else if (_errorMessage ==
+                      "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                    _errorMessage = "User not found.";
+                  }
+                  Flushbar(
+                    backgroundColor: Colors.blueGrey[400],
+                    title: "Error",
+                    message: "$_errorMessage",
+                    icon: Icon(
+                      Icons.error_outline,
+                      size: 28,
+                      color: Colors.red[300],
+                    ),
+                    duration: Duration(seconds: 2),
+                  )..show(context);
+                  _emailController.text = "";
+                  _passwordController.text = "";
+                  print(e);
+                }
+                // _databaseService.loginUser(context, _emailController.text.trim(),
+                //     _passwordController.text.trim(), _emailController, _passwordController);
               }
             },
           ),
@@ -218,27 +309,30 @@ class _LoginPageState extends State<LoginPage> {
       ],
     );
 
-    return Scaffold(
-      backgroundColor: Colors.blueGrey[700],
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
-        },
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            padding: EdgeInsets.only(left: 36, right: 36),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  logo,
-                  fields,
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 150),
-                    child: bottom,
-                  ),
-                ],
+    return WillPopScope(
+      onWillPop: () async => !Navigator.of(context).userGestureInProgress,
+      child: loadingLogin ? bodyProgress : Scaffold(
+        backgroundColor: Colors.blueGrey[700],
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+              padding: EdgeInsets.only(left: 36, right: 36),
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    logo,
+                    fields,
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 150),
+                      child: bottom,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -247,130 +341,5 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void loginUser(email, password) async {
-    try {
-      String uid = "";
-      String name = "";
-      activeGoalsCounter = 0;
 
-      FirebaseAuth auth = FirebaseAuth.instance;
-      User user = (await auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      ))
-          .user;
-      uid = user.uid.toString();
-      if (user != null) {
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc("${user.uid}")
-            .get()
-            .then((value) {
-          name = value['name'];
-        });
-
-        MyUser.uid = uid;
-        MyUser.name = name;
-        MyUser.email = email;
-        MyUser.allGoals = new List<Goal>();
-        MyUser.allPlans = new List<Plan>();
-        MyUser.allIdeas = new List<Idea>();
-
-        //filling in goals array
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc("${user.uid}")
-            .collection('goals')
-            .get()
-            .then((QuerySnapshot querySnapshot) => {
-                  querySnapshot.docs.forEach((doc) {
-                    var currentGoal = new Goal();
-                    currentGoal.id = doc.id.toString();
-                    currentGoal.title = doc['title'];
-                    currentGoal.subtitle = doc['subtitle'];
-                    currentGoal.description = doc['description'];
-                    currentGoal.finished = doc['finished'];
-                    currentGoal.deadline = doc['deadline'];
-                    currentGoal.dateAdded = doc['dateAdded'];
-                    currentGoal.color = doc['color'];
-                    if (currentGoal.finished == 0) {
-                      activeGoalsCounter++;
-                    }
-                    MyUser.allGoals.add(currentGoal);
-                  })
-                });
-
-        //filling in plans array
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc("${user.uid}")
-            .collection('plans')
-            .get()
-            .then((QuerySnapshot querySnapshot) => {
-          querySnapshot.docs.forEach((doc) {
-            var currentPlan = new Plan();
-            currentPlan.id = doc.id.toString();
-            currentPlan.title = doc['title'];
-            currentPlan.subtitle = doc['subtitle'];
-            currentPlan.description = doc['description'];
-            currentPlan.finished = doc['finished'];
-            currentPlan.deadline = doc['deadline'];
-            currentPlan.dateAdded = doc['dateAdded'];
-            currentPlan.color = doc['color'];
-            if (currentPlan.finished == 0) {
-              activePlansCounter++;
-            }
-            MyUser.allPlans.add(currentPlan);
-          })
-        });
-
-        //filling in ideas array
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc("${user.uid}")
-            .collection('ideas')
-            .get()
-            .then((QuerySnapshot querySnapshot) => {
-          querySnapshot.docs.forEach((doc) {
-            var currentIdea = new Idea();
-            currentIdea.id = doc.id.toString();
-            currentIdea.title = doc['title'];
-            currentIdea.subtitle = doc['subtitle'];
-            currentIdea.description = doc['description'];
-            currentIdea.dateAdded = doc['dateAdded'];
-            currentIdea.color = doc['color'];
-              ideasCounter++;
-            MyUser.allIdeas.add(currentIdea);
-          })
-        });
-
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
-      }
-    } catch (e) {
-      String _errorMessage =
-          "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
-      if (_errorMessage ==
-          "The password is invalid or the user does not have a password.") {
-        _errorMessage = "The password is invalid.";
-      } else if (_errorMessage ==
-          "There is no user record corresponding to this identifier. The user may have been deleted.") {
-        _errorMessage = "User not found.";
-      }
-      Flushbar(
-        backgroundColor: Colors.blueGrey[400],
-        title: "Error",
-        message: "$_errorMessage",
-        icon: Icon(
-          Icons.error_outline,
-          size: 28,
-          color: Colors.red[300],
-        ),
-        duration: Duration(seconds: 2),
-      )..show(context);
-      _emailController.text = "";
-      _passwordController.text = "";
-      print(e);
-    }
-  }
 }

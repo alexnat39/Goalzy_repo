@@ -136,7 +136,7 @@ class GoalViewPopUp extends StatelessWidget {
                           child: CustomDeleteButton(
                               deleteFunction: () {
                                 _databaseService.deleteGoalFromFirestore(goalPassedIn.id);
-                                MyUser.allGoals.remove(goalPassedIn);
+                                MyUser.allGoalsMap.remove(goalPassedIn.id);
                               },
                               navigateFunction: navigateFunction),
                         ),
@@ -144,9 +144,8 @@ class GoalViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomFinishedButton(
                             finishedFunction: () async {
-                              var index = MyUser.allGoals.indexOf(goalPassedIn);
-                              MyUser.allGoals[index].finished = 1;
-                              _databaseService.finishGoalInFirestore(goalPassedIn);
+                              MyUser.allGoalsMap[goalPassedIn.id].finished = 1;
+                              _databaseService.finishGoalInFirestore(goalPassedIn.id);
                             },
                             navigateFunction: navigateFunction,
                           ),
@@ -292,7 +291,7 @@ class PlanViewPopUp extends StatelessWidget {
                           child: CustomDeleteButton(
                               deleteFunction: () {
                                 _databaseService.deletePlanFromFirestore(planPassedIn.id);
-                                MyUser.allPlans.remove(planPassedIn);
+                                MyUser.allPlansMap.remove(planPassedIn.id);
                               },
                               navigateFunction: navigateFunction),
                         ),
@@ -300,9 +299,8 @@ class PlanViewPopUp extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: CustomFinishedButton(
                             finishedFunction: () async {
-                              var index = MyUser.allPlans.indexOf(planPassedIn);
-                              MyUser.allPlans[index].finished = 1;
-                              _databaseService.finishPlanInFirestore(planPassedIn);
+                              MyUser.allPlansMap[planPassedIn.id].finished = 1;
+                              _databaseService.finishPlanInFirestore(planPassedIn.id);
                             },
                             navigateFunction: navigateFunction,
                           ),
@@ -419,7 +417,7 @@ class IdeaViewPopUp extends StatelessWidget {
                           child: CustomDeleteButton(
                               deleteFunction: () {
                                 _databaseService.deleteIdeaFromFirestore(ideaPassedIn.id);
-                                MyUser.allIdeas.remove(ideaPassedIn);
+                                MyUser.allIdeasMap.remove(ideaPassedIn.id);
                               },
                               navigateFunction: navigateFunction),
                         ),

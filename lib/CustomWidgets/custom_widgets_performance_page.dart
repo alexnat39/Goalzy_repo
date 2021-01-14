@@ -11,14 +11,9 @@ import 'package:tinycolor/tinycolor.dart';
 
 class CustomGoalPerformanceWidget extends StatefulWidget {
 
-  String title;
-  String subtitle;
-  String description;
-  String deadlineString = "";
-  Color color;
   Goal goal;
 
-  CustomGoalPerformanceWidget(this.title, this.subtitle, this.deadlineString, this.description, this.color, this.goal);
+  CustomGoalPerformanceWidget(this.goal);
 
   @override
   _CustomGoalPerformanceWidgetState createState() => _CustomGoalPerformanceWidgetState();
@@ -36,7 +31,7 @@ class _CustomGoalPerformanceWidgetState extends State<CustomGoalPerformanceWidge
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
             side: BorderSide(color: Colors.transparent)),
-        color: widget.color.desaturate(75),
+        color: Color(widget.goal.color).desaturate(75),
         onPressed: () {
           FinishedGoalViewPopUp(widget.goal).build(context);
         },
@@ -50,14 +45,14 @@ class _CustomGoalPerformanceWidgetState extends State<CustomGoalPerformanceWidge
                     Container(
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: Column(
-                        mainAxisAlignment: (widget.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
-                        crossAxisAlignment: (widget.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                        mainAxisAlignment: (widget.goal.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                        crossAxisAlignment: (widget.goal.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
                         children: [
                           Row(
                             children: [
                               Flexible(
                                 child: AutoSizeText(
-                                  widget.title + ": ",
+                                  widget.goal.title + ": ",
                                   style: TextStyle(
                                       fontSize: 15, fontWeight: FontWeight.bold),
                                   overflow: TextOverflow.ellipsis,
@@ -66,7 +61,7 @@ class _CustomGoalPerformanceWidgetState extends State<CustomGoalPerformanceWidge
                               ),
                               Flexible(
                                 child: AutoSizeText(
-                                  widget.subtitle,
+                                  widget.goal.subtitle,
                                   style: TextStyle(
                                       fontSize: 13, fontWeight: FontWeight.normal),
                                   overflow: TextOverflow.ellipsis,
@@ -79,7 +74,7 @@ class _CustomGoalPerformanceWidgetState extends State<CustomGoalPerformanceWidge
                             children: [
                               Flexible(
                                 child: AutoSizeText(
-                                  widget.description,
+                                  widget.goal.description,
                                   style: TextStyle(
                                       fontSize: 10, fontWeight: FontWeight.normal),
                                   overflow: TextOverflow.ellipsis,
@@ -103,7 +98,7 @@ class _CustomGoalPerformanceWidgetState extends State<CustomGoalPerformanceWidge
                           Row(
                             children: [
                               Text(
-                                widget.deadlineString,
+                                widget.goal.deadlineToDateDeadline(),
                                 style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                                 maxLines: 1,
                               ),
@@ -130,16 +125,9 @@ class _CustomGoalPerformanceWidgetState extends State<CustomGoalPerformanceWidge
 
 class CustomPlanPerformanceWidget extends StatefulWidget{
 
-  Color color;
-  String title;
-  String subtitle;
-  String description;
-  String deadlineDateString = "";
-  String deadlineTimeString = "";
   Plan plan;
 
-  CustomPlanPerformanceWidget(this.title, this.subtitle, this.description, this.deadlineDateString,
-      this.deadlineTimeString, this.color, this.plan);
+  CustomPlanPerformanceWidget(this.plan);
   @override
   _CustomPlanPerformanceWidgetState createState() => _CustomPlanPerformanceWidgetState();
 }
@@ -156,7 +144,7 @@ class _CustomPlanPerformanceWidgetState extends State<CustomPlanPerformanceWidge
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
             side: BorderSide(color: Colors.transparent)),
-        color: widget.color.desaturate(75),
+        color: Color(widget.plan.color).desaturate(75),
         onPressed: () {
           FinishedPlanViewPopUp(widget.plan).build(context);
           },
@@ -170,14 +158,14 @@ class _CustomPlanPerformanceWidgetState extends State<CustomPlanPerformanceWidge
                     Container(
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: Column(
-                        mainAxisAlignment: (widget.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
-                        crossAxisAlignment: (widget.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                        mainAxisAlignment: (widget.plan.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                        crossAxisAlignment: (widget.plan.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
                         children: [
                           Row(
                             children: [
                               Flexible(
                                 child: AutoSizeText(
-                                  widget.title + ": ",
+                                  widget.plan.title + ": ",
                                   style: TextStyle(
                                       fontSize: 15, fontWeight: FontWeight.bold),
                                   overflow: TextOverflow.ellipsis,
@@ -186,7 +174,7 @@ class _CustomPlanPerformanceWidgetState extends State<CustomPlanPerformanceWidge
                               ),
                               Flexible(
                                 child: AutoSizeText(
-                                  widget.subtitle,
+                                  widget.plan.subtitle,
                                   style: TextStyle(
                                       fontSize: 13, fontWeight: FontWeight.normal),
                                   overflow: TextOverflow.ellipsis,
@@ -199,7 +187,7 @@ class _CustomPlanPerformanceWidgetState extends State<CustomPlanPerformanceWidge
                             children: [
                               Flexible(
                                 child: AutoSizeText(
-                                  widget.description,
+                                  widget.plan.description,
                                   style: TextStyle(
                                       fontSize: 10, fontWeight: FontWeight.normal),
                                   overflow: TextOverflow.ellipsis,
@@ -223,7 +211,7 @@ class _CustomPlanPerformanceWidgetState extends State<CustomPlanPerformanceWidge
                           Row(
                             children: [
                               Text(
-                                widget.deadlineDateString,
+                                widget.plan.deadlineToDateDeadline(),
                                 style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                                 maxLines: 1,
                               ),
@@ -232,7 +220,7 @@ class _CustomPlanPerformanceWidgetState extends State<CustomPlanPerformanceWidge
                           Row(
                             children: [
                               Text(
-                                widget.deadlineTimeString,
+                                widget.plan.deadlineToTimeDeadline(),
                                 style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 12 : 10, fontWeight: FontWeight.bold),
                                 maxLines: 1,
                               ),

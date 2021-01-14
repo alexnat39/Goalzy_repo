@@ -29,7 +29,6 @@ List sortPlansInDescendingDeadlineOrder(List<Plan> list) {
  * sorting goals and plans by date added
  */
 List sortGoalsInAscendingDateAddedOrder(List<Goal> list) {
-
   list.sort((a,b) => DateFormat("yyyy-MM-dd hh:mm:ss").parse(a.dateAdded).compareTo(DateFormat("yyyy-MM-dd hh:mm:ss").parse(b.dateAdded)));
   return list;
 }

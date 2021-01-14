@@ -24,14 +24,10 @@ import '../Models/idea_class.dart';
  */
 class CustomGoalAllTasksWidget extends StatefulWidget {
 
-  String title;
-  String subtitle;
-  String description;
-  String deadlineString = "";
-  Color color;
+
   Goal goal;
 
-  CustomGoalAllTasksWidget(this.title, this.subtitle, this.deadlineString, this.description, this.color, this.goal);
+  CustomGoalAllTasksWidget(this.goal);
 
   @override
   _CustomGoalAllTasksWidgetState createState() => _CustomGoalAllTasksWidgetState();
@@ -49,7 +45,7 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
             side: BorderSide(color: Colors.transparent)),
-        color: widget.color,
+        color: Color(widget.goal.color),
         onPressed: () {
           GoalViewPopUp(widget.goal, navigateFunction: () => Navigator.push(context,
               MaterialPageRoute(builder: (context) => AllTasksPage(0, null, null, null))),).build(context);
@@ -64,14 +60,14 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
                     Container(
                       width: MediaQuery.of(context).size.width * 0.7,
                       child: Column(
-                        mainAxisAlignment: (widget.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
-                        crossAxisAlignment: (widget.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                        mainAxisAlignment: (widget.goal.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                        crossAxisAlignment: (widget.goal.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
                         children: [
                           Row(
                             children: [
                               Flexible(
                                 child: AutoSizeText(
-                                  widget.title + ": ",
+                                  widget.goal.title + ": ",
                                   style: TextStyle(
                                       fontSize: 15, fontWeight: FontWeight.bold),
                                   overflow: TextOverflow.ellipsis,
@@ -80,7 +76,7 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
                               ),
                               Flexible(
                                 child: AutoSizeText(
-                                  widget.subtitle,
+                                  widget.goal.subtitle,
                                   style: TextStyle(
                                       fontSize: 13, fontWeight: FontWeight.normal),
                                   overflow: TextOverflow.ellipsis,
@@ -93,7 +89,7 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
                             children: [
                               Flexible(
                                 child: AutoSizeText(
-                                  widget.description,
+                                  widget.goal.description,
                                   style: TextStyle(
                                       fontSize: 10, fontWeight: FontWeight.normal),
                                   overflow: TextOverflow.ellipsis,
@@ -117,7 +113,7 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
                           Row(
                             children: [
                               Text(
-                                widget.deadlineString,
+                                widget.goal.deadlineToDateDeadline(),
                                 style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                                 maxLines: 1,
                               ),
@@ -143,19 +139,10 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
  * custom widget for plan (used in all_tasks_view)
  */
 class CustomPlanAllTasksWidget extends StatefulWidget{
-  
-  Color color;
-  String title;
-  String subtitle;
-  String description;
-  String deadlineDateString = "";
-  String deadlineTimeString = "";
-
 
   Plan plan;
 
-  CustomPlanAllTasksWidget(this.title, this.subtitle, this.description, this.deadlineDateString,
-      this.deadlineTimeString, this.color, this.plan);
+  CustomPlanAllTasksWidget(this.plan);
   @override
   _CustomPlanAllTasksWidgetState createState() => _CustomPlanAllTasksWidgetState();
 }
@@ -172,7 +159,7 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
             side: BorderSide(color: Colors.transparent)),
-        color: widget.color,
+        color: Color(widget.plan.color),
         onPressed: () {
           PlanViewPopUp(widget.plan, navigateFunction: () => Navigator.push(context,
               MaterialPageRoute(builder: (context) => AllTasksPage(1, null, null, null))),).build(context);
@@ -187,14 +174,14 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
                       Container(
                         width: MediaQuery.of(context).size.width * 0.7,
                         child: Column(
-                          mainAxisAlignment: (widget.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
-                          crossAxisAlignment: (widget.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+                          mainAxisAlignment: (widget.plan.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+                          crossAxisAlignment: (widget.plan.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
                           children: [
                               Row(
                                 children: [
                                   Flexible(
                                     child: AutoSizeText(
-                                      widget.title + ": ",
+                                      widget.plan.title + ": ",
                                       style: TextStyle(
                                           fontSize: 15, fontWeight: FontWeight.bold),
                                       overflow: TextOverflow.ellipsis,
@@ -203,7 +190,7 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
                                   ),
                                   Flexible(
                                     child: AutoSizeText(
-                                      widget.subtitle,
+                                      widget.plan.subtitle,
                                       style: TextStyle(
                                           fontSize: 13, fontWeight: FontWeight.normal),
                                       overflow: TextOverflow.ellipsis,
@@ -216,7 +203,7 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
                               children: [
                                 Flexible(
                                   child: AutoSizeText(
-                                    widget.description,
+                                    widget.plan.description,
                                     style: TextStyle(
                                         fontSize: 10, fontWeight: FontWeight.normal),
                                     overflow: TextOverflow.ellipsis,
@@ -240,7 +227,7 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
                           Row(
                             children: [
                               Text(
-                                widget.deadlineDateString,
+                                widget.plan.deadlineToDateDeadline(),
                                 style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                                 maxLines: 1,
                               ),
@@ -249,7 +236,7 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
                           Row(
                             children: [
                               Text(
-                                widget.deadlineTimeString,
+                                widget.plan.deadlineToTimeDeadline(),
                                 style: TextStyle(fontSize: (MediaQuery.of(context).size.height > 750) ? 12 : 10, fontWeight: FontWeight.bold),
                                 maxLines: 1,
                               ),
@@ -275,15 +262,10 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
 */
 class CustomIdeaAllTasksWidget extends StatefulWidget{
 
-  Color color;
-  String title;
-  String subtitle;
-  String description;
-
   Idea idea;
 
 
-  CustomIdeaAllTasksWidget(this.title, this.subtitle, this.description, this.color, this.idea);
+  CustomIdeaAllTasksWidget(this.idea);
   
   @override
   _CustomIdeaAllTasksWidgetState createState() => _CustomIdeaAllTasksWidgetState();
@@ -301,7 +283,7 @@ class _CustomIdeaAllTasksWidgetState extends State<CustomIdeaAllTasksWidget> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
             side: BorderSide(color: Colors.transparent)),
-        color: widget.color,
+        color: Color(widget.idea.color),
         onPressed: () {
           IdeaViewPopUp(widget.idea, navigateFunction: () => Navigator.push(context,
               MaterialPageRoute(builder: (context) => AllTasksPage(2, null, null, null))),).build(context);
@@ -310,8 +292,8 @@ class _CustomIdeaAllTasksWidgetState extends State<CustomIdeaAllTasksWidget> {
             padding: EdgeInsets.only(
                 top: MediaQuery.of(context).size.height * 0.005),
             child: Column(
-              mainAxisAlignment: (widget.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
-              crossAxisAlignment: (widget.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
+              mainAxisAlignment: (widget.idea.description.length == 0) ? MainAxisAlignment.center : MainAxisAlignment.start , //Center Column contents vertically,
+              crossAxisAlignment: (widget.idea.description.length == 0) ? CrossAxisAlignment.center : CrossAxisAlignment.start, //Center Column contents horizontally,
               children: [
                 Row(
                   children: [
@@ -320,7 +302,7 @@ class _CustomIdeaAllTasksWidgetState extends State<CustomIdeaAllTasksWidget> {
                         children: [
                           Flexible(
                             child: AutoSizeText(
-                              widget.title + ": ",
+                              widget.idea.title + ": ",
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold),
                               overflow: TextOverflow.ellipsis,
@@ -329,7 +311,7 @@ class _CustomIdeaAllTasksWidgetState extends State<CustomIdeaAllTasksWidget> {
                           ),
                           Flexible(
                             child: AutoSizeText(
-                              widget.subtitle,
+                              widget.idea.subtitle,
                               style: TextStyle(
                                   fontSize: 13, fontWeight: FontWeight.normal),
                               overflow: TextOverflow.ellipsis,
@@ -345,7 +327,7 @@ class _CustomIdeaAllTasksWidgetState extends State<CustomIdeaAllTasksWidget> {
                   children: [
                     Flexible(
                       child: AutoSizeText(
-                        widget.description,
+                        widget.idea.description,
                         style: TextStyle(
                             fontSize: 10, fontWeight: FontWeight.normal),
                         overflow: TextOverflow.ellipsis,

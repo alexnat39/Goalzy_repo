@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/ChartWidgets/plan_percent_indicator.dart';
+import 'package:goalzy_app/Database/database_service.dart';
 import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
 import 'package:goalzy_app/Views/all_tasks_view.dart';
@@ -22,6 +23,7 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  var _databaseService = DatabaseService();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -60,7 +62,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     //     ),
                     //   ),
                     // ),
-                    MaterialButton(onPressed: () => signOut(),
+                    MaterialButton(onPressed: () => _databaseService.signOut(context),
                         child: Row(
                       children: [
                         Icon(Icons.exit_to_app_outlined, color: Colors.white70),
@@ -191,24 +193,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
         ),
       ),
     );
-  }
-  Future<void> signOut() async {
-    MyUser.name = "";
-    MyUser.email = "";
-    MyUser.uid = "";
-    MyUser.allGoals.clear();
-    MyUser.allPlans.clear();
-    MyUser.allIdeas.clear();
-
-    Navigator.pop(context);
-    Navigator.pop(context);
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => LoginPage()));
-    try {
-      await FirebaseAuth.instance.signOut();
-    } catch(e) {
-      print(e);
-    }
   }
 }
 

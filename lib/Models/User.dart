@@ -7,9 +7,15 @@ class MyUser {
   static String uid;
   static String name;
   static String email;
+
   static List<Goal> allGoals;
   static List<Plan> allPlans;
   static List<Idea> allIdeas;
+
+  static Map<String, Goal> allGoalsMap = Map();
+  static Map<String, Plan> allPlansMap = Map();
+  static Map<String, Idea> allIdeasMap = Map();
+
 
 
   //these arrays store all goals & plans user has not yet finished

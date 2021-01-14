@@ -326,6 +326,12 @@
       "languageVersion": "1.11"
     },
     {
+      "name": "sortedmap",
+      "rootUri": "file:///Users/alexnat39/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/sortedmap-0.4.2+1",
+      "packageUri": "lib/",
+      "languageVersion": "1.14"
+    },
+    {
       "name": "source_span",
       "rootUri": "file:///Users/alexnat39/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.0-nullsafety.2",
       "packageUri": "lib/",
@@ -416,7 +422,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-01-11T15:42:46.842963Z",
+  "generated": "2021-01-13T20:13:37.400801Z",
   "generator": "pub",
   "generatorVersion": "2.10.4"
 }

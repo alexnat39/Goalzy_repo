@@ -9,6 +9,7 @@ import 'package:goalzy_app/ChartWidgets/goal_linear_percent_indicator.dart';
 import 'package:goalzy_app/ChartWidgets/plan_bar_chart.dart';
 import 'package:goalzy_app/ChartWidgets/plan_line_chart.dart';
 import 'package:goalzy_app/ChartWidgets/plan_percent_indicator.dart';
+import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/goal_class.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Services/goal_service.dart';
@@ -28,11 +29,9 @@ class PerformancePage extends StatefulWidget {
   _PerformancePageState createState() => _PerformancePageState();
 }
 
-
 List<Widget> _finishedPlanWidgetsArray = new List();
 List<Widget> _finishedGoalWidgetsArray = new List();
-List<Plan> _planList = new List<Plan>();
-List<Goal> _goalList = new List<Goal>();
+
 
 
 
@@ -43,10 +42,15 @@ class _PerformancePageState extends State<PerformancePage> {
     super.initState();
     clearUserPlanArrays();
     clearUserGoalArrays();
+
     activeGoalsCounter = 0;
     activePlansCounter = 0;
-    getAllGoals();
-    getAllPlans();
+
+    _finishedPlanWidgetsArray.clear();
+    _finishedGoalWidgetsArray.clear();
+
+    distributeAllGoals();
+    distributeAllPlans();
   }
 
   final List<Tab> _tabs = [
@@ -55,11 +59,7 @@ class _PerformancePageState extends State<PerformancePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    _finishedPlanWidgetsArray.clear();
-    _finishedGoalWidgetsArray.clear();
 
-    _fillFinishedPlanWidgetsArray(_planList);
-    _fillGoalWidgetsArray(_goalList);
 
     return WillPopScope(
       onWillPop: () async => !Navigator.of(context).userGestureInProgress,
@@ -99,57 +99,46 @@ class _PerformancePageState extends State<PerformancePage> {
       ),
     );
   }
-  GoalService _goalService;
-  //reads all the goals from the SQL database
-  getAllGoals() async {
-    _goalService = GoalService();
-    _goalList = List<Goal>();
-    var goals = await _goalService.readGoals();
-    goals.forEach((goal) {
-      setState(() {
-        var currentGoal = new Goal();
-        currentGoal.id = goal['id'];
-        currentGoal.title = goal['title'];
-        currentGoal.subtitle = goal['subtitle'];
-        currentGoal.description = goal['description'];
-        currentGoal.finished = goal['finished'];
-        currentGoal.deadline = goal['deadline'];
-        currentGoal.dateAdded = goal['dateAdded'];
-        currentGoal.color = goal['color'];
-        //adding goal to the goal widgets array
-        _goalList.insert(0, currentGoal);
-        addToAppropriateArrayOfGoals(currentGoal);
-        if (currentGoal.finished == 0) {
-          activeGoalsCounter++;
-        }
-      });
+
+  //distributes all the goals to appropriate arrays
+  distributeAllGoals() async {
+
+    MyUser.allGoalsMap.forEach((key, value) {
+      Goal currentGoal = MyUser.allGoalsMap["$key"];
+      addToAppropriateArrayOfGoals(currentGoal);
+      if (currentGoal.finished == 0) {
+        activeGoalsCounter++;
+      }
+      if (currentGoal.finished == 1) {
+        _finishedGoalWidgetsArray.insert(0, CustomGoalPerformanceWidget(currentGoal));
+      }
+
     });
   }
 
-  //reads all the plans from the SQL database
-  PlanService _planService;
-  getAllPlans() async {
-    _planService = PlanService();
-    _planList = List<Plan>();
-    var plans = await _planService.readPlans();
-    plans.forEach((plan) {
-      setState(() {
-        var currentPlan = new Plan();
-        currentPlan.id = plan['id'];
-        currentPlan.title = plan['title'];
-        currentPlan.subtitle = plan['subtitle'];
-        currentPlan.description = plan['description'];
-        currentPlan.finished = plan['finished'];
-        currentPlan.deadline = plan['deadline'];
-        currentPlan.dateAdded = plan['dateAdded'];
-        currentPlan.color = plan['color'];
-        //adding goal to the goal widgets array
-        _planList.insert(0, currentPlan);
-        addToAppropriateArrayOfPlans(currentPlan);
-        if (currentPlan.finished == 0) {
-          activePlansCounter++;
+  //distributes all the plans to appropriate arrays
+  distributeAllPlans() async {
+    final now = DateTime.now();
+    DateTime getDate(DateTime d) => DateTime(d.year, d.month, d.day);
+    //gets dates when current week starts and ends
+    final startOfWeek = getDate(now.subtract(Duration(days: now.weekday - 1)));
+    final endOfWeek =
+    getDate(now.add(Duration(days: DateTime.daysPerWeek - now.weekday + 1)));
+
+
+    MyUser.allPlansMap.forEach((key, value) {
+      Plan currentPlan = MyUser.allPlansMap["$key"];
+      addToAppropriateArrayOfPlans(currentPlan);
+      if (currentPlan.finished == 0) {
+        activePlansCounter++;
+      }
+      if (currentPlan.finished == 1) {
+        DateTime tempDate = new DateFormat("yyyy-MM-dd hh:mm:ss").parse(currentPlan.deadline);
+        if (tempDate.isAfter(startOfWeek) &&
+            tempDate.isBefore(endOfWeek)) {
+          _finishedPlanWidgetsArray.insert(0, CustomPlanPerformanceWidget(currentPlan));
         }
-      });
+      }
     });
   }
 }
@@ -284,65 +273,42 @@ class _PlanPerformancePageState extends State<PlanPerformancePage> {
 }
 
 
+// /**
+//  * funciton for filling in planWidgetsArray
+//  */
+// void _fillFinishedPlanWidgetsArray(list) {
+//   final now = DateTime.now();
+//   DateTime getDate(DateTime d) => DateTime(d.year, d.month, d.day);
+//
+//   //gets dates when current week starts and ends
+//   final startOfWeek = getDate(now.subtract(Duration(days: now.weekday - 1)));
+//   final endOfWeek =
+//   getDate(now.add(Duration(days: DateTime.daysPerWeek - now.weekday + 1)));
+//
+//   for (int i = 0; i < list.length; i++) {
+//       Plan currentPlan = list[i];
+//       DateTime tempDate = new DateFormat("yyyy-MM-dd hh:mm:ss").parse(currentPlan.deadline);
+//       if (currentPlan.finished == 1 && tempDate.isAfter(startOfWeek) &&
+//           tempDate.isBefore(endOfWeek)) {
+//         _finishedPlanWidgetsArray.add(CustomPlanPerformanceWidget(currentPlan));
+//       } else {
+//         continue;
+//       }
+//     }
+// }
 
-
-
-/**
- * funciton for filling in planWidgetsArray
- */
-void _fillFinishedPlanWidgetsArray(list) {
-  final now = DateTime.now();
-  DateTime getDate(DateTime d) => DateTime(d.year, d.month, d.day);
-
-  //gets dates when current week starts and ends
-  final startOfWeek = getDate(now.subtract(Duration(days: now.weekday - 1)));
-  final endOfWeek =
-  getDate(now.add(Duration(days: DateTime.daysPerWeek - now.weekday + 1)));
-
-  for (int i = 0; i < list.length; i++) {
-      Plan currentPlan = list[i];
-      DateTime tempDate = new DateFormat("yyyy-MM-dd hh:mm:ss").parse(currentPlan.deadline);
-
-      if (currentPlan.finished == 1 && tempDate.isAfter(startOfWeek) &&
-          tempDate.isBefore(endOfWeek)) {
-        String deadlineDateString =
-            "" + DateFormat('yyyy-MM-dd').format(tempDate);
-        String deadlineTimeString =
-            "" + DateFormat.Hm().format(tempDate);
-        _finishedPlanWidgetsArray.add(CustomPlanPerformanceWidget(
-            currentPlan.title,
-            currentPlan.subtitle,
-            currentPlan.description,
-            deadlineDateString,
-            deadlineTimeString,
-            Color(currentPlan.color),
-            currentPlan));
-      } else {
-        continue;
-      }
-    }
-    _finishedPlanWidgetsArray = new List.from(_finishedPlanWidgetsArray.reversed);
-}
-
-/**
- * funciton for filling in goalWidgetsArray
- */
-void _fillGoalWidgetsArray(list) {
-  for (int i = 0; i < list.length; i++) {
-    Goal currentGoal = list[i];
-    if (currentGoal.finished == 1) {
-      DateTime tempDate = new DateFormat("yyyy-MM-dd hh:mm:ss").parse(currentGoal.deadline);
-      String deadlineString = "" + DateFormat('yyyy-MM-dd').format(tempDate);
-      _finishedGoalWidgetsArray.add(CustomGoalPerformanceWidget(
-          currentGoal.title,
-          currentGoal.subtitle,
-          deadlineString,
-          currentGoal.description,
-          Color(currentGoal.color),
-          currentGoal));
-    }
-  }
-}
+// /**
+//  * funciton for filling in goalWidgetsArray
+//  */
+// void _fillFinishedGoalWidgetsArray(list) {
+//
+//   for (int i = 0; i < list.length; i++) {
+//     Goal currentGoal = list[i];
+//     if (currentGoal.finished == 1) {
+//       _finishedGoalWidgetsArray.add(CustomGoalPerformanceWidget(currentGoal));
+//     }
+//   }
+// }
 
 
 
