@@ -3,13 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/ChartWidgets/plan_percent_indicator.dart';
-import 'package:goalzy_app/Database/database_service.dart';
+import 'package:goalzy_app/Services/database_service.dart';
 import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Views/add_task_goal_view.dart';
 import 'package:goalzy_app/Views/all_tasks_view.dart';
 import 'package:goalzy_app/Views/home_view.dart';
-import 'package:goalzy_app/Views/login_view.dart';
 import 'package:goalzy_app/Views/performance_view.dart';
+import 'package:goalzy_app/Views/settings_view.dart';
 
 /**
  * builds out a drawer of the app
@@ -46,29 +46,24 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           color: Colors.grey[300]),
                     ),
                     Spacer(),
-                    // ClipOval(
-                    //   child: Material(
-                    //     color: Colors.blueGrey[700], // button color
-                    //     child: InkWell(
-                    //       splashColor: Colors.grey, // inkwell color
-                    //       child: SizedBox(
-                    //           width: MediaQuery.of(context).size.width * 0.1,
-                    //           height: MediaQuery.of(context).size.width * 0.1,
-                    //           child: Icon(Icons.settings_rounded,
-                    //               color: Colors.grey[300])),
-                    //       onTap: () {
-                    //         //todo launch settings page
-                    //       },
-                    //     ),
-                    //   ),
-                    // ),
-                    MaterialButton(onPressed: () => _databaseService.signOut(context),
-                        child: Row(
-                      children: [
-                        Icon(Icons.exit_to_app_outlined, color: Colors.white70),
-                        Text(" Sign Out", style: TextStyle(color: Colors.white70, fontSize: 14, decoration: TextDecoration.underline)),
-                      ],
-                    )),
+                    ClipOval(
+                      child: Material(
+                        color: Colors.blueGrey[700], // button color
+                        child: InkWell(
+                          splashColor: Colors.grey, // inkwell color
+                          child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              height: MediaQuery.of(context).size.width * 0.1,
+                              child: Icon(Icons.settings_rounded,
+                                  color: Colors.grey[300])),
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => SettingsPage()));
+                          },
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -181,6 +176,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           height: MediaQuery.of(context).size.height * 0.005,
                         ),
                         SideBarPerformanceButton(),
+                        MaterialButton(onPressed: () => _databaseService.signOut(context),
+                            child: Row(
+                              children: [
+                                Icon(Icons.exit_to_app_outlined, color: Colors.white70),
+                                Text(" Sign Out", style: TextStyle(color: Colors.white70, fontSize: 14, decoration: TextDecoration.underline)),
+                              ],
+                            )),
                       ],
                     ),
                   ),
@@ -229,7 +231,7 @@ Widget addSidebarButton(BuildContext context, String title, Color color) {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AllTasksPage(0, null, null, null)));
+                  MaterialPageRoute(builder: (context) => AllTasksPage(0)));
               break;
             }
           case "Plans":
@@ -237,7 +239,7 @@ Widget addSidebarButton(BuildContext context, String title, Color color) {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AllTasksPage(1, null, null, null)));
+                  MaterialPageRoute(builder: (context) => AllTasksPage(1)));
               break;
             }
           case "Ideas":
@@ -245,7 +247,7 @@ Widget addSidebarButton(BuildContext context, String title, Color color) {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AllTasksPage(2, null, null, null)));
+                  MaterialPageRoute(builder: (context) => AllTasksPage(2)));
               break;
             }
         }

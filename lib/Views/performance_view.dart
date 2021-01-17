@@ -12,8 +12,6 @@ import 'package:goalzy_app/ChartWidgets/plan_percent_indicator.dart';
 import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/goal_class.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
-import 'package:goalzy_app/Services/goal_service.dart';
-import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:intl/intl.dart';
 import '../fill_arrays_functions.dart';
 import '../main.dart';

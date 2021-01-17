@@ -48,7 +48,7 @@ class _CustomGoalAllTasksWidgetState extends State<CustomGoalAllTasksWidget> {
         color: Color(widget.goal.color),
         onPressed: () {
           GoalViewPopUp(widget.goal, navigateFunction: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AllTasksPage(0, null, null, null))),).build(context);
+              MaterialPageRoute(builder: (context) => AllTasksPage(0))),).build(context);
         },
         child: Padding(
             padding: EdgeInsets.only(
@@ -162,7 +162,7 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
         color: Color(widget.plan.color),
         onPressed: () {
           PlanViewPopUp(widget.plan, navigateFunction: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AllTasksPage(1, null, null, null))),).build(context);
+              MaterialPageRoute(builder: (context) => AllTasksPage(1))),).build(context);
           },
         child: Padding(
             padding: EdgeInsets.only(
@@ -263,8 +263,6 @@ class _CustomPlanAllTasksWidgetState extends State<CustomPlanAllTasksWidget> {
 class CustomIdeaAllTasksWidget extends StatefulWidget{
 
   Idea idea;
-
-
   CustomIdeaAllTasksWidget(this.idea);
   
   @override
@@ -286,7 +284,7 @@ class _CustomIdeaAllTasksWidgetState extends State<CustomIdeaAllTasksWidget> {
         color: Color(widget.idea.color),
         onPressed: () {
           IdeaViewPopUp(widget.idea, navigateFunction: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AllTasksPage(2, null, null, null))),).build(context);
+              MaterialPageRoute(builder: (context) => AllTasksPage(2))),).build(context);
         },
         child: Padding(
             padding: EdgeInsets.only(

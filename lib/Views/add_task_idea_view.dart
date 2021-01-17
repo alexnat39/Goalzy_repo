@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:goalzy_app/Models/User.dart';
-import 'package:goalzy_app/Services/idea_service.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../CustomWidgets/custom_widgets_add_task_view.dart';
 import '../constants.dart';

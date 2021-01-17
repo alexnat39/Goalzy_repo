@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flushbar/flushbar.dart';
@@ -10,12 +12,25 @@ import 'package:goalzy_app/Models/plan_class.dart';
 import 'package:goalzy_app/Views/home_view.dart';
 import 'package:goalzy_app/Views/login_view.dart';
 import 'package:goalzy_app/fill_arrays_functions.dart';
+import 'package:intl/intl.dart';
+
 
 import '../main.dart';
+import '../sort_functions.dart';
 
 class DatabaseService {
 
   CollectionReference users = FirebaseFirestore.instance.collection("users");
+
+  /**
+   * function for sending reset password email
+   */
+  Future sendPasswordResetEmail(email) {
+    return FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
+
+
 
   /**
    * function signs the user out of the app
@@ -161,12 +176,12 @@ class DatabaseService {
     MyUser.name = name;
     MyUser.email = email;
 
-    await fillUserDataFromFirestore(user);
+    await fillUserArraysFromFirestore(user);
 
   }
 
 
-  fillUserDataFromFirestore(user) async {
+  fillUserArraysFromFirestore(user) async {
     //filling in goals array
     await FirebaseFirestore.instance
         .collection('users')
@@ -184,10 +199,14 @@ class DatabaseService {
         currentGoal.deadline = doc['deadline'];
         currentGoal.dateAdded = doc['dateAdded'];
         currentGoal.color = doc['color'];
-        if (currentGoal.finished == 0) {
-          activeGoalsCounter++;
+        if (DateFormat("yyyy-MM-dd hh:mm:ss").parse(currentGoal.deadline).difference(DateTime.now()).inDays > 700) {
+          deleteGoalFromFirestore(currentGoal.id);
+        } else {
+          if (currentGoal.finished == 0) {
+            activeGoalsCounter++;
+          }
+          MyUser.allGoalsMap[doc.id.toString()] = currentGoal;
         }
-        MyUser.allGoalsMap[doc.id.toString()] = currentGoal;
       })
     });
 
@@ -208,10 +227,14 @@ class DatabaseService {
         currentPlan.deadline = doc['deadline'];
         currentPlan.dateAdded = doc['dateAdded'];
         currentPlan.color = doc['color'];
-        if (currentPlan.finished == 0) {
-          activePlansCounter++;
+        if (DateFormat("yyyy-MM-dd hh:mm:ss").parse(currentPlan.deadline).difference(DateTime.now()).inDays > 400) {
+          deletePlanFromFirestore(currentPlan.id);
+        } else {
+          if (currentPlan.finished == 0) {
+            activePlansCounter++;
+          }
+          MyUser.allPlansMap[doc.id.toString()] = currentPlan;
         }
-        MyUser.allPlansMap[doc.id.toString()] = currentPlan;
       })
     });
 
@@ -235,6 +258,9 @@ class DatabaseService {
         MyUser.allIdeasMap[doc.id.toString()] = currentIdea;
       })
     });
+    sortMyUserAllGoalsMapByDateAddedAscendingOrder();
+    sortMyUserAllPlansMapByDateAddedAscendingOrder();
+    sortMyUserAllIdeasMapByDateAddedAscendingOrder();
   }
 
 

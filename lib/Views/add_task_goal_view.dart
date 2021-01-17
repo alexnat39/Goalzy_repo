@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:goalzy_app/Models/User.dart';
-import 'package:goalzy_app/Services/goal_service.dart';
 import 'package:goalzy_app/Views/home_view.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../CustomWidgets/custom_widgets_add_task_view.dart';

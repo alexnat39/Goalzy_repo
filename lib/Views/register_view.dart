@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:goalzy_app/Database/database_service.dart';
+import 'package:goalzy_app/Services/database_service.dart';
 import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/goal_class.dart';
 import 'package:goalzy_app/Models/idea_class.dart';
@@ -222,86 +222,80 @@ class _RegisterPageState extends State<RegisterPage> {
 
     final registerButton = Container(
         margin: EdgeInsets.only(top: 15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25.0),
-        ),
-        child: Material(
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(25.0),
+        child: RaisedButton(
           color: Colors.white70,
-          child: MaterialButton(
-            minWidth: mq.size.width / 1.2,
-            padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
-            child: Text(
-              "Register",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+          padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              side: BorderSide(color: Colors.transparent)),          child: Text(
+            "Register",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
-            onPressed: () async {
-              _nameFormKey.currentState.validate();
-              _emailFormKey.currentState.validate();
-              _passwordFormKey.currentState.validate();
-              _rePasswordFormKey.currentState.validate();
-              if (_nameIsValid &&
-                  _emailIsValid &&
-                  _passwordIsValid &&
-                  _rePasswordIsValid) {
-
-                setState(() {
-                  loadingRegister = true;
-                });
-
-                try {
-                  FirebaseAuth auth = FirebaseAuth.instance;
-                  await auth
-                      .createUserWithEmailAndPassword(email: _emailController.text.trim(), password: _passwordController.text.trim())
-                      .then((value) => FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(value.user.uid)
-                      .set({
-                    'uid': value.user.uid,
-                    'email': _emailController.text.trim(),
-                    'name': _usernameController.text.trim(),
-                  }));
-                  MyUser.uid = auth.currentUser.uid.toString();
-                  MyUser.name = _emailController.text.trim();
-                  MyUser.email = _usernameController.text.trim();
-                  setState(() {
-                    loadingRegister = false;
-                  });
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => HomePage()));
-                } catch (e) {
-                  setState(() {
-                    loadingRegister = false;
-                  });
-                  String _errorMessage =
-                  "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
-                  Flushbar(
-                    backgroundColor: Colors.blueGrey[400],
-                    title: "Error",
-                    message: "$_errorMessage",
-                    icon: Icon(
-                      Icons.error_outline,
-                      size: 28,
-                      color: Colors.red[300],
-                    ),
-                    duration: Duration(seconds: 2),
-                  )..show(context);
-
-                  _usernameController.text = "";
-                  _emailController.text = "";
-                  _passwordController.text = "";
-                  _repasswordController.text = "";
-                }
-
-              }
-            },
           ),
+          onPressed: () async {
+            _nameFormKey.currentState.validate();
+            _emailFormKey.currentState.validate();
+            _passwordFormKey.currentState.validate();
+            _rePasswordFormKey.currentState.validate();
+            if (_nameIsValid &&
+                _emailIsValid &&
+                _passwordIsValid &&
+                _rePasswordIsValid) {
+
+              setState(() {
+                loadingRegister = true;
+              });
+
+              try {
+                FirebaseAuth auth = FirebaseAuth.instance;
+                await auth
+                    .createUserWithEmailAndPassword(email: _emailController.text.trim(), password: _passwordController.text.trim())
+                    .then((value) => FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(value.user.uid)
+                    .set({
+                  'uid': value.user.uid,
+                  'email': _emailController.text.trim(),
+                  'name': _usernameController.text.trim(),
+                }));
+                MyUser.uid = auth.currentUser.uid.toString();
+                MyUser.name = _emailController.text.trim();
+                MyUser.email = _usernameController.text.trim();
+                setState(() {
+                  loadingRegister = false;
+                });
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => HomePage()));
+              } catch (e) {
+                setState(() {
+                  loadingRegister = false;
+                });
+                String _errorMessage =
+                "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
+                Flushbar(
+                  backgroundColor: Colors.blueGrey[400],
+                  title: "Error",
+                  message: "$_errorMessage",
+                  icon: Icon(
+                    Icons.error_outline,
+                    size: 28,
+                    color: Colors.red[300],
+                  ),
+                  duration: Duration(seconds: 2),
+                )..show(context);
+
+                _usernameController.text = "";
+                _emailController.text = "";
+                _passwordController.text = "";
+                _repasswordController.text = "";
+              }
+
+            }
+          },
         ));
 
     final bottom = Column(

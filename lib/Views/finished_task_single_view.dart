@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:goalzy_app/Database/database_service.dart';
+import 'package:goalzy_app/Services/database_service.dart';
 import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
-import 'package:goalzy_app/Services/goal_service.dart';
-import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/performance_view.dart';
 import '../CustomWidgets/custom_widgets_single_task_view.dart';
 import '../Models/goal_class.dart';
@@ -17,7 +15,7 @@ class FinishedGoalViewPopUp extends StatelessWidget {
 
   Goal goalPassedIn;
   String deadlineString;
-var _databaseService = DatabaseService();
+  var _databaseService = DatabaseService();
   FinishedGoalViewPopUp(this.goalPassedIn);
 
   @override

@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:goalzy_app/CustomWidgets/custom_drawer.dart';
 import 'package:goalzy_app/CustomWidgets/custom_widget_all_tasks_view.dart';
 import 'package:goalzy_app/CustomWidgets/custom_widgets_home_view.dart';
-import 'package:goalzy_app/Database/database_service.dart';
+import 'package:goalzy_app/Services/database_service.dart';
 import 'package:goalzy_app/Models/User.dart';
 import 'package:goalzy_app/Models/plan_class.dart';
-import 'package:goalzy_app/Services/goal_service.dart';
-import 'package:goalzy_app/Services/idea_service.dart';
-import 'package:goalzy_app/Services/plan_service.dart';
 import 'package:goalzy_app/Views/add_task_idea_view.dart';
 import 'package:goalzy_app/Views/add_task_plan_view.dart';
 import '../Models/goal_class.dart';
@@ -22,12 +19,9 @@ class AllTasksPage extends StatefulWidget {
 
   int currentPageIndex;
 
-  var goalListToDisplay;
-  var planListToDisplay;
-  var ideaListToDisplay;
 
-  AllTasksPage(this.currentPageIndex, this.goalListToDisplay,
-      this.planListToDisplay, this.ideaListToDisplay);
+
+  AllTasksPage(this.currentPageIndex);
 
   _AllTasksPageState createState() => _AllTasksPageState();
 }
@@ -54,15 +48,6 @@ class _AllTasksPageState extends State<AllTasksPage> {
     planList.clear();
     ideaList.clear();
 
-
-    if (widget.goalListToDisplay != null) {
-      goalList = widget.goalListToDisplay;
-    } if (widget.planListToDisplay != null) {
-      planList = widget.planListToDisplay;
-    }
-    if (widget.ideaListToDisplay != null) {
-      ideaList = widget.ideaListToDisplay;
-    }
 
 
     final List<Tab> _tabs = [
@@ -93,7 +78,7 @@ class _AllTasksPageState extends State<AllTasksPage> {
               navigateFunction: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => AllTasksPage(0, null, null, null))),
+                      builder: (context) => AllTasksPage(0))),
             ),
           ),
           appBar: AppBar(
@@ -252,90 +237,88 @@ void choiceAction(BuildContext context, var currentIndex, String value) {
   if (value == "Ascending Date Added") {
     //ascending is swapped with descending because we reverse a widgets array
     if (currentIndex == 0) {
-      var newGoalList = sortGoalsInDescendingDateAddedOrder(goalList);
+      sortMyUserAllGoalsMapByDateAddedAscendingOrder();
       Navigator.of(context).pop();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AllTasksPage(0, newGoalList, null, null)));
+              builder: (context) => AllTasksPage(0)));
     }
     if (currentIndex == 1) {
-      var newPlanList = sortPlansInDescendingDateAddedOrder(planList);
+      sortMyUserAllPlansMapByDateAddedAscendingOrder();
       Navigator.of(context).pop();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AllTasksPage(1, null, newPlanList, null)));
+              builder: (context) => AllTasksPage(1)));
     }
     if (currentIndex == 2) {
-      var newIdeaList = sortIdeasInDescendingDateAddedOrder(ideaList);
+      sortMyUserAllIdeasMapByDateAddedAscendingOrder();
       Navigator.of(context).pop();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AllTasksPage(2, null, null, newIdeaList)));
+              builder: (context) => AllTasksPage(2)));
     }
   } else if (value == "Descending Date Added") {
     //descending is swapped with ascending because we reverse a widgets array
     if (currentIndex == 0) {
-      var newGoalList = sortGoalsInAscendingDateAddedOrder(goalList);
+      sortMyUserAllGoalsMapByDateAddedDescendingOrder();
       Navigator.of(context).pop();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AllTasksPage(0, newGoalList, null, null)));
+              builder: (context) => AllTasksPage(0)));
     }
     if (currentIndex == 1) {
-      var newPlanList = sortPlansInAscendingDateAddedOrder(planList);
+      sortMyUserAllPlansMapByDateAddedDescendingOrder();
       Navigator.of(context).pop();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AllTasksPage(1, null, newPlanList, null)));
+              builder: (context) => AllTasksPage(1)));
     }
     if (currentIndex == 2) {
-      var newIdeaList = sortIdeasInAscendingDateAddedOrder(ideaList);
+      sortMyUserAllIdeasMapByDateAddedDescendingOrder();
       Navigator.of(context).pop();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AllTasksPage(2, null, null, newIdeaList)));
+              builder: (context) => AllTasksPage(2)));
     }
   } else if (value == "Ascending Deadline") {
     //ascending is swapped with descending because we reverse a widgets array
     if (currentIndex == 0) {
-      var newGoalList = sortGoalsInDescendingDeadlineOrder(goalList);
+      sortMyUserAllGoalsMapByDeadlineAscendingOrder();
       Navigator.of(context).pop();
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => AllTasksPage(0, newGoalList, null, null)));
+          context, MaterialPageRoute(builder: (context) => AllTasksPage(0)));
     }
     if (currentIndex == 1) {
-      var newPlanList = sortPlansInDescendingDeadlineOrder(planList);
+      sortMyUserAllPlansMapByDeadlineAscendingOrder();
       Navigator.of(context).pop();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AllTasksPage(1, null, newPlanList, null)));
+              builder: (context) => AllTasksPage(1)));
     }
   } else if (value == "Descending Deadline") {
     if (currentIndex == 0) {
       //descending is swapped with ascending because we reverse a widgets array
-      var newGoalList = sortGoalsInAscendingDeadlineOrder(goalList);
+      sortMyUserAllGoalsMapByDeadlineDescendingOrder();
       Navigator.of(context).pop();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AllTasksPage(0, newGoalList, null, null)));
+              builder: (context) => AllTasksPage(0)));
     }
     if (currentIndex == 1) {
-      var newPlanList = sortPlansInAscendingDeadlineOrder(planList);
+      sortMyUserAllPlansMapByDeadlineDescendingOrder();
       Navigator.of(context).pop();
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => AllTasksPage(1, null, newPlanList, null)));
+              builder: (context) => AllTasksPage(1)));
     }
   }
 }
@@ -362,7 +345,7 @@ class _AllTasksGoalsState extends State<AllTasksGoals> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            AllTasksPage(0, null, null, null))),
+                            AllTasksPage(0))),
               ),
               Text("Add your first goal",
                   style: TextStyle(color: Colors.grey[300], fontSize: 25)),
@@ -380,7 +363,7 @@ class _AllTasksGoalsState extends State<AllTasksGoals> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            AllTasksPage(0, null, null, null))),
+                            AllTasksPage(0))),
               );
             },
             label: Text('ADD'),
@@ -515,7 +498,7 @@ class _AllTasksPlansState extends State<AllTasksPlans> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            AllTasksPage(1, null, null, null))),
+                            AllTasksPage(1))),
               ),
               Text("Add your first plan",
                   style: TextStyle(color: Colors.grey[300], fontSize: 25)),
@@ -533,7 +516,7 @@ class _AllTasksPlansState extends State<AllTasksPlans> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            AllTasksPage(1, null, null, null))),
+                            AllTasksPage(1))),
               );
             },
             label: Text('ADD'),
@@ -669,7 +652,7 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    AllTasksPage(2, null, null, null))),
+                                    AllTasksPage(2))),
                   ),
                   Text("Add your first idea",
                       style: TextStyle(color: Colors.grey[300], fontSize: 25)),
@@ -688,7 +671,7 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    AllTasksPage(2, null, null, null))),
+                                    AllTasksPage(2))),
                   );
                 },
                 label: Text('ADD'),
@@ -840,18 +823,14 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
    * funciton for filling in goalWidgetsArray
    */
   void _fillGoalWidgetsArray(widget) {
-    if (widget.goalListToDisplay != null) {
-      widget.goalListToDisplay .forEach((currentGoal) => _goalWidgetsArray.insert(0, CustomGoalAllTasksWidget(currentGoal)));
-    } else {
       MyUser.allGoalsMap.forEach((key, value) {
         Goal currentGoal = MyUser.allGoalsMap["$key"];
         if (currentGoal.finished == 0) {
-            activeGoalsCounter++;
-            goalList.insert(0, currentGoal);
+          goalList.insert(0, currentGoal);
+          activeGoalsCounter++;
           _goalWidgetsArray.insert(0, CustomGoalAllTasksWidget(currentGoal));
         }
       });
-    }
   }
 
   /**
@@ -861,16 +840,11 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
     MyUser.allPlansMap.forEach((key, value) {
       Plan currentPlan = MyUser.allPlansMap["$key"];
       if (currentPlan.finished == 0) {
-        if (widget.planListToDisplay == null) {
-          activePlansCounter++;
-          planList.insert(0, currentPlan);
-        }
+        planList.insert(0, currentPlan);
+        activePlansCounter++;
         _planWidgetsArray.insert(0, CustomPlanAllTasksWidget(currentPlan));
       }
     });
-    if (widget.planListToDisplay != null) {
-      planList = widget.planListToDisplay;
-    }
   }
 
   /**
@@ -879,13 +853,9 @@ class _AllTasksIdeasState extends State<AllTasksIdeas> {
   void _fillIdeaWidgetsArray(widget) {
     MyUser.allIdeasMap.forEach((key, value) {
       Idea currentIdea = MyUser.allIdeasMap["$key"];
-      if (widget.ideaListToDisplay == null) {
+      ideaList.insert(0, currentIdea);
         ideasCounter++;
-        ideaList.insert(0, currentIdea);
-      }
       _ideaWidgetsArray.insert(0, CustomIdeaAllTasksWidget(currentIdea));
     });
-    if (widget.ideaListToDisplay != null) {
-      ideaList = widget.ideaListToDisplay;
-    }
+
   }

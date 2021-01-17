@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:goalzy_app/Database/database_service.dart';
+import 'package:goalzy_app/Services/database_service.dart';
 import 'package:goalzy_app/Models/User.dart';
+import 'package:goalzy_app/Views/forgot_password_view.dart';
 import 'package:goalzy_app/Views/register_view.dart';
-import 'package:sortedmap/sortedmap.dart';
 import '../main.dart';
 import 'home_view.dart';
 
@@ -137,7 +137,9 @@ class _LoginPageState extends State<LoginPage> {
                       .copyWith(color: Colors.white),
                 ),
                 onPressed: () {
-                  //showAlertDialog(context);
+                  Navigator.pop(context);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ForgotPasswordPage()));
                 }),
           ],
         ),
@@ -196,81 +198,79 @@ class _LoginPageState extends State<LoginPage> {
 
     final loginButton = Container(
         margin: EdgeInsets.only(top: 15),
-        child: Material(
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(25.0),
+        child: RaisedButton(
           color: Colors.white70,
-          child: MaterialButton(
-            minWidth: mq.size.width / 1.2,
-            padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
-            child: Text(
-              "Login",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+          padding: EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              side: BorderSide(color: Colors.transparent)),
+          child: Text(
+            "Login",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
-            onPressed: () async {
-              _emailFormKey.currentState.validate();
-              _passwordFormKey.currentState.validate();
-              if (_passwordIsValid && _emailIsValid) {
-                setState(() {
-                  loadingLogin = true;
-                });
-                try {
-                  FirebaseAuth auth = FirebaseAuth.instance;
-                  dynamic user = (await auth.signInWithEmailAndPassword(
-                    email: _emailController.text.trim(),
-                    password: _passwordController.text.trim(),
-                  )).user;
-                  if (user != null) {
-                    await _databaseService.getUserDataFromFirestore(context, user);
-                    setState(() {
-                      loadingLogin = false;
-                    });
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
-                  }
-                  else {
-                    setState(() {
-                      loadingLogin = false;
-                    });
-                  }
-                } catch (e) {
+          ),
+          onPressed: () async {
+            _emailFormKey.currentState.validate();
+            _passwordFormKey.currentState.validate();
+            if (_passwordIsValid && _emailIsValid) {
+              setState(() {
+                loadingLogin = true;
+              });
+              try {
+                FirebaseAuth auth = FirebaseAuth.instance;
+                dynamic user = (await auth.signInWithEmailAndPassword(
+                  email: _emailController.text.trim(),
+                  password: _passwordController.text.trim(),
+                )).user;
+                if (user != null) {
+                  await _databaseService.getUserDataFromFirestore(context, user);
                   setState(() {
                     loadingLogin = false;
                   });
-                  String _errorMessage =
-                      "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
-                  if (_errorMessage ==
-                      "The password is invalid or the user does not have a password.") {
-                    _errorMessage = "The password is invalid.";
-                  } else if (_errorMessage ==
-                      "There is no user record corresponding to this identifier. The user may have been deleted.") {
-                    _errorMessage = "User not found.";
-                  }
-                  Flushbar(
-                    backgroundColor: Colors.blueGrey[400],
-                    title: "Error",
-                    message: "$_errorMessage",
-                    icon: Icon(
-                      Icons.error_outline,
-                      size: 28,
-                      color: Colors.red[300],
-                    ),
-                    duration: Duration(seconds: 2),
-                  )..show(context);
-                  _emailController.text = "";
-                  _passwordController.text = "";
-                  print(e);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomePage()));
                 }
-                // _databaseService.loginUser(context, _emailController.text.trim(),
-                //     _passwordController.text.trim(), _emailController, _passwordController);
+                else {
+                  setState(() {
+                    loadingLogin = false;
+                  });
+                }
+              } catch (e) {
+                setState(() {
+                  loadingLogin = false;
+                });
+                String _errorMessage =
+                    "$e".substring("$e".lastIndexOf("]") + 2, "$e".length);
+                if (_errorMessage ==
+                    "The password is invalid or the user does not have a password.") {
+                  _errorMessage = "The password is invalid.";
+                } else if (_errorMessage ==
+                    "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                  _errorMessage = "User not found.";
+                }
+                Flushbar(
+                  backgroundColor: Colors.blueGrey[400],
+                  title: "Error",
+                  message: "$_errorMessage",
+                  icon: Icon(
+                    Icons.error_outline,
+                    size: 28,
+                    color: Colors.red[300],
+                  ),
+                  duration: Duration(seconds: 2),
+                )..show(context);
+                _emailController.text = "";
+                _passwordController.text = "";
+                print(e);
               }
-            },
-          ),
+              // _databaseService.loginUser(context, _emailController.text.trim(),
+              //     _passwordController.text.trim(), _emailController, _passwordController);
+            }
+          },
         ));
 
     final bottom = Column(
