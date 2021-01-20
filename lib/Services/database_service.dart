@@ -21,6 +21,41 @@ import '../sort_functions.dart';
 class DatabaseService {
 
   CollectionReference users = FirebaseFirestore.instance.collection("users");
+  var user = FirebaseAuth.instance.currentUser;
+
+
+  /**
+   * delete the user from firebase auth and firestore
+   */
+  Future deleteUserAccountFirebaseAuth() async {
+    await user.delete();
+  }
+  Future deleteUserAccountFirestore(BuildContext context, String id) async {
+    await users.doc(MyUser.uid).delete();
+  }
+
+  /**
+   * edit the user name in firestore
+   */
+  Future updateUserNameInFirestore(String newName) async {
+    await users.doc(MyUser.uid).update({"name" : newName});
+  }
+  /**
+   * updates User email in firestore database and firebase auth
+   */
+  Future updateEmailInFirebaseAuth(String newEmail) async {
+      await user.updateEmail(newEmail);
+  }
+  Future updateEmailInFirestore(String newEmail) async {
+    await users.doc(MyUser.uid).update({"email": newEmail});
+  }
+
+  /**
+   * updates User's password in firebase auth
+   */
+  Future updatePasswordInFirebaseAuth(String newPassword) async {
+    await user.updatePassword(newPassword);
+  }
 
   /**
    * function for sending reset password email
@@ -28,8 +63,6 @@ class DatabaseService {
   Future sendPasswordResetEmail(email) {
     return FirebaseAuth.instance.sendPasswordResetEmail(email: email);
   }
-
-
 
 
   /**
@@ -40,6 +73,7 @@ class DatabaseService {
     MyUser.name = "";
     MyUser.email = "";
     MyUser.uid = "";
+    MyUser.password = "";
 
     MyUser.allGoalsMap.clear();
     MyUser.allPlansMap.clear();
@@ -48,8 +82,8 @@ class DatabaseService {
     clearUserPlanArrays();
     clearUserGoalArrays();
 
-    Navigator.pop(context);
-    Navigator.pop(context);
+     Navigator.pop(context);
+     Navigator.pop(context);
 
     activeGoalsCounter = 0;
     activePlansCounter = 0;

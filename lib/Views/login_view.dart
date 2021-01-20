@@ -31,7 +31,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
 
-    final mq = MediaQuery.of(context);
 
     final logo = Image.asset(
       "Assets/Images/transparent_logo.png",
@@ -228,9 +227,11 @@ class _LoginPageState extends State<LoginPage> {
                 )).user;
                 if (user != null) {
                   await _databaseService.getUserDataFromFirestore(context, user);
+                  MyUser.password = _passwordController.text.trim();
                   setState(() {
                     loadingLogin = false;
                   });
+                  Navigator.pop(context);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => HomePage()));
                 }
@@ -267,8 +268,6 @@ class _LoginPageState extends State<LoginPage> {
                 _passwordController.text = "";
                 print(e);
               }
-              // _databaseService.loginUser(context, _emailController.text.trim(),
-              //     _passwordController.text.trim(), _emailController, _passwordController);
             }
           },
         ));

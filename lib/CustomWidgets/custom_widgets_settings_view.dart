@@ -20,6 +20,7 @@ class _RegularSettingsTileState extends State<RegularSettingsTile> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Colors.blueGrey[500],
       onTap: widget.onPressFunction,
       child: Container(
           padding: EdgeInsets.only(left: 10, right: 10),
@@ -35,12 +36,13 @@ class _RegularSettingsTileState extends State<RegularSettingsTile> {
           width: MediaQuery.of(context).size.width,
           child: Row(children: [
             widget.icon,
-            Text("  ${widget.title}"),
+            Text("  ${widget.title}", style: TextStyle(color: Colors.white70)),
             Spacer(),
-            Text("${widget.subtitle}  "),
+            Text("${widget.subtitle}  ", style: TextStyle(color: Colors.white70)),
             Icon(
               Icons.arrow_forward_ios_sharp,
               size: 15,
+              color: Colors.white70,
             ),
           ])),
     );
@@ -62,6 +64,7 @@ class _ScreamingSettingsTileState extends State<ScreamingSettingsTile> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Colors.blueGrey[500],
       onTap: widget.onPressFunction,
       child: Container(
           padding: EdgeInsets.only(left: 10, right: 10),
@@ -112,7 +115,7 @@ class _ToggleSettingsTileState extends State<ToggleSettingsTile> {
       width: MediaQuery.of(context).size.width,
       child: Row(children: [
         widget.icon,
-        Text("  ${widget.title}"),
+        Text("  ${widget.title}", style: TextStyle(color: Colors.white70),),
         Spacer(),
         FlutterSwitch(
           activeColor: Colors.blue[200],

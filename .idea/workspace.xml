@@ -2,57 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3640bc8a-1436-480b-8214-c50edc451081" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ios/Runner/Runner.entitlements" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Runner/RunnerProfile.entitlements" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/build/XCBuildData/232616266b7cdac822993c353046034e-desc.xcbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/build/XCBuildData/232616266b7cdac822993c353046034e-manifest.xcbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/build/XCBuildData/579bca807c4a3b1eadc194579935963b-desc.xcbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/build/XCBuildData/579bca807c4a3b1eadc194579935963b-manifest.xcbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/build/XCBuildData/6ec123c29707f62a25ae70e5cdf14473-desc.xcbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/build/XCBuildData/6ec123c29707f62a25ae70e5cdf14473-manifest.xcbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/build/XCBuildData/d96e954430fecd4609bfb7ffab90883d-desc.xcbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/build/XCBuildData/d96e954430fecd4609bfb7ffab90883d-manifest.xcbuild" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_settings_view.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Services/push_notification_service.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Views/forgot_password_view.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Views/settings_view.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/CustomWidgets/confirm_delete_dialog.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/change_email_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/change_name_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/Views/change_password_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/build/XCBuildData/8da7ac19672c8a490fb2845bc0cd5d77-desc.xcbuild" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/build/XCBuildData/8da7ac19672c8a490fb2845bc0cd5d77-manifest.xcbuild" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/build/XCBuildData/961fa13971906d4686952a000f0caaf1-desc.xcbuild" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/build/XCBuildData/961fa13971906d4686952a000f0caaf1-manifest.xcbuild" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/build/XCBuildData/BuildDescriptionCacheIndex-4c88fce424ef633789eca8f3b532cc6f" beforeDir="false" afterPath="$PROJECT_DIR$/ios/build/XCBuildData/BuildDescriptionCacheIndex-4c88fce424ef633789eca8f3b532cc6f" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/build/XCBuildData/bc347fe07af649709033a3ebc22a00b1-desc.xcbuild" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/build/XCBuildData/bc347fe07af649709033a3ebc22a00b1-manifest.xcbuild" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/build/XCBuildData/build.db" beforeDir="false" afterPath="$PROJECT_DIR$/ios/build/XCBuildData/build.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/build/XCBuildData/c6a2dc5ce774d727909fd14489ccaa0c-desc.xcbuild" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/build/XCBuildData/c6a2dc5ce774d727909fd14489ccaa0c-manifest.xcbuild" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_drawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widget_all_tasks_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widget_all_tasks_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Database/database_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/database_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Repositories/database_connection.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Repositories/repository.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Services/goal_service.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Services/idea_service.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Services/plan_service.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/active_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/active_task_single_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/add_task_goal_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/add_task_goal_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/add_task_idea_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/add_task_idea_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/add_task_plan_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/add_task_plan_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/all_tasks_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/all_tasks_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/edit_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/edit_task_single_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/finished_task_single_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/finished_task_single_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/home_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/home_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_settings_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_settings_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Models/User.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Models/User.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Services/database_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/database_service.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Views/login_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/login_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/performance_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/performance_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Views/register_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/register_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sort_functions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sort_functions.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Views/settings_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/settings_view.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610619848057</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="added settings page + added dependencies for push notifications">
+      <created>1610883197036</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1610883197036</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -322,7 +291,8 @@
     <MESSAGE value="added goals to firestore database (created adding and retrieving functions for goals)" />
     <MESSAGE value="added edit tasks functions and connected them to firebase" />
     <MESSAGE value="created loading view pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="created loading view pages" />
+    <MESSAGE value="added settings page + added dependencies for push notifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="added settings page + added dependencies for push notifications" />
   </component>
   <component name="WindowStateProjectService">
     <state x="208" y="23" width="1024" height="823" key="#Project_Structure" timestamp="1607775203407">
@@ -361,38 +331,38 @@
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="474" y="197" key="FileChooserDialogImpl/0.23.1440.823@0.23.1440.823" timestamp="1608320196191" />
-    <state width="1398" height="43" key="GridCell.Tab.0.bottom" timestamp="1610876568818">
+    <state width="1398" height="244" key="GridCell.Tab.0.bottom" timestamp="1611151727221">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="43" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1610876568818" />
+    <state width="1398" height="244" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1611151727221" />
     <state width="1398" height="529" key="GridCell.Tab.0.bottom/0.23.1440.824@0.23.1440.824" timestamp="1610724254447" />
     <state width="1398" height="264" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1610016095396" />
     <state width="1398" height="94" key="GridCell.Tab.0.bottom/0.23.1440.827@0.23.1440.827" timestamp="1609944248289" />
-    <state width="1398" height="43" key="GridCell.Tab.0.center" timestamp="1610876568817">
+    <state width="1398" height="244" key="GridCell.Tab.0.center" timestamp="1611151727221">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="43" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1610876568817" />
+    <state width="1398" height="244" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1611151727221" />
     <state width="1398" height="529" key="GridCell.Tab.0.center/0.23.1440.824@0.23.1440.824" timestamp="1610724254446" />
     <state width="1398" height="264" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1610016095395" />
     <state width="1398" height="94" key="GridCell.Tab.0.center/0.23.1440.827@0.23.1440.827" timestamp="1609944248288" />
-    <state width="1398" height="43" key="GridCell.Tab.0.left" timestamp="1610876568816">
+    <state width="1398" height="244" key="GridCell.Tab.0.left" timestamp="1611151727220">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="43" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1610876568816" />
+    <state width="1398" height="244" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1611151727220" />
     <state width="1398" height="529" key="GridCell.Tab.0.left/0.23.1440.824@0.23.1440.824" timestamp="1610724254446" />
     <state width="1398" height="264" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1610016095395" />
     <state width="1398" height="94" key="GridCell.Tab.0.left/0.23.1440.827@0.23.1440.827" timestamp="1609944248287" />
-    <state width="1398" height="43" key="GridCell.Tab.0.right" timestamp="1610876568818">
+    <state width="1398" height="244" key="GridCell.Tab.0.right" timestamp="1611151727221">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="43" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1610876568818" />
+    <state width="1398" height="244" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1611151727221" />
     <state width="1398" height="529" key="GridCell.Tab.0.right/0.23.1440.824@0.23.1440.824" timestamp="1610724254447" />
     <state width="1398" height="264" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1610016095396" />
     <state width="1398" height="94" key="GridCell.Tab.0.right/0.23.1440.827@0.23.1440.827" timestamp="1609944248289" />
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1610619851392">
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1610883203917">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.823@0.23.1440.823" timestamp="1610619851392" />
+    <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.823@0.23.1440.823" timestamp="1610883203917" />
     <state x="320" y="174" key="Vcs.Push.Dialog.v2/0.23.1440.824@0.23.1440.824" timestamp="1610444806912" />
     <state x="131" y="58" width="1240" height="623" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1610806291818">
       <screen x="0" y="23" width="1440" height="823" />

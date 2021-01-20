@@ -7,6 +7,7 @@ class MyUser {
   static String uid;
   static String name;
   static String email;
+  static String password;
 
   static List<Goal> allGoals;
   static List<Plan> allPlans;

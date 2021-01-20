@@ -263,11 +263,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   'name': _usernameController.text.trim(),
                 }));
                 MyUser.uid = auth.currentUser.uid.toString();
-                MyUser.name = _emailController.text.trim();
-                MyUser.email = _usernameController.text.trim();
+                MyUser.email = _emailController.text.trim();
+                MyUser.name = _usernameController.text.trim();
+                MyUser.password = _passwordController.text.trim();
                 setState(() {
                   loadingRegister = false;
                 });
+                Navigator.pop(context);
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => HomePage()));
               } catch (e) {
