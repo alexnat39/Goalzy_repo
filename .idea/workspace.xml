@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3640bc8a-1436-480b-8214-c50edc451081" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/CustomWidgets/confirm_delete_dialog.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Views/change_email_view.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Views/change_name_view.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/Views/change_password_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_settings_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/CustomWidgets/custom_widgets_settings_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Models/User.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Models/User.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Services/database_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Services/database_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/login_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/login_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Views/register_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/register_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Views/settings_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/settings_view.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +47,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -71,6 +61,15 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Assets/Images" />
     </key>
+  </component>
+  <component name="RunManager" selected="Flutter.main.dart">
+    <configuration name="Unnamed" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application" nameIsGenerated="true">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Dart Command Line App.Unnamed" />
+      <item itemvalue="Flutter.main.dart" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
@@ -273,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610883197036</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="added backend for settings page to edit user data">
+      <created>1611154555714</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1611154555715</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -292,13 +298,19 @@
     <MESSAGE value="added edit tasks functions and connected them to firebase" />
     <MESSAGE value="created loading view pages" />
     <MESSAGE value="added settings page + added dependencies for push notifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="added settings page + added dependencies for push notifications" />
+    <MESSAGE value="added backend for settings page to edit user data" />
+    <option name="LAST_COMMIT_MESSAGE" value="added backend for settings page to edit user data" />
   </component>
   <component name="WindowStateProjectService">
     <state x="208" y="23" width="1024" height="823" key="#Project_Structure" timestamp="1607775203407">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="208" y="23" width="1024" height="823" key="#Project_Structure/0.23.1440.823@0.23.1440.823" timestamp="1607775203407" />
+    <state x="184" y="96" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611696251999">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="184" y="96" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.823@0.23.1440.823" timestamp="1611696072095" />
+    <state x="184" y="96" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.824@0.23.1440.824" timestamp="1611696251999" />
     <state x="302" y="129" key="#com.intellij.ide.fileTemplates.ui.ConfigureTemplatesDialog" timestamp="1608320233720">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
@@ -318,47 +330,56 @@
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="458" y="188" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.823@0.23.1440.823" timestamp="1610699785317" />
+    <state x="100" y="123" width="1240" height="623" key="AVDManager" timestamp="1611867984092">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="100" y="123" width="1240" height="623" key="AVDManager/0.23.1440.823@0.23.1440.823" timestamp="1611867984092" />
+    <state x="100" y="123" width="1240" height="623" key="AVDManager/0.23.1440.824@0.23.1440.824" timestamp="1611696240481" />
     <state x="583" y="207" key="AndroidProcessChooserDialog" timestamp="1608139059481">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="583" y="207" key="AndroidProcessChooserDialog/0.23.1440.823@0.23.1440.823" timestamp="1608139059481" />
-    <state x="339" y="36" key="CommitChangelistDialog2" timestamp="1610883195828">
+    <state x="339" y="36" key="CommitChangelistDialog2" timestamp="1611154554810">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.823@0.23.1440.823" timestamp="1610883195828" />
+    <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.823@0.23.1440.823" timestamp="1611154554810" />
     <state x="339" y="36" key="CommitChangelistDialog2/0.23.1440.824@0.23.1440.824" timestamp="1610444801995" />
     <state x="474" y="197" key="FileChooserDialogImpl" timestamp="1608320196191">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="474" y="197" key="FileChooserDialogImpl/0.23.1440.823@0.23.1440.823" timestamp="1608320196191" />
-    <state width="1398" height="244" key="GridCell.Tab.0.bottom" timestamp="1611151727221">
+    <state width="1398" height="54" key="GridCell.Tab.0.bottom" timestamp="1611328643485">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1611151727221" />
+    <state width="1398" height="54" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1611328643485" />
     <state width="1398" height="529" key="GridCell.Tab.0.bottom/0.23.1440.824@0.23.1440.824" timestamp="1610724254447" />
     <state width="1398" height="264" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1610016095396" />
     <state width="1398" height="94" key="GridCell.Tab.0.bottom/0.23.1440.827@0.23.1440.827" timestamp="1609944248289" />
-    <state width="1398" height="244" key="GridCell.Tab.0.center" timestamp="1611151727221">
+    <state width="1398" height="54" key="GridCell.Tab.0.center" timestamp="1611328643485">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1611151727221" />
+    <state width="1398" height="54" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1611328643485" />
     <state width="1398" height="529" key="GridCell.Tab.0.center/0.23.1440.824@0.23.1440.824" timestamp="1610724254446" />
     <state width="1398" height="264" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1610016095395" />
     <state width="1398" height="94" key="GridCell.Tab.0.center/0.23.1440.827@0.23.1440.827" timestamp="1609944248288" />
-    <state width="1398" height="244" key="GridCell.Tab.0.left" timestamp="1611151727220">
+    <state width="1398" height="54" key="GridCell.Tab.0.left" timestamp="1611328643484">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1611151727220" />
+    <state width="1398" height="54" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1611328643484" />
     <state width="1398" height="529" key="GridCell.Tab.0.left/0.23.1440.824@0.23.1440.824" timestamp="1610724254446" />
     <state width="1398" height="264" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1610016095395" />
     <state width="1398" height="94" key="GridCell.Tab.0.left/0.23.1440.827@0.23.1440.827" timestamp="1609944248287" />
-    <state width="1398" height="244" key="GridCell.Tab.0.right" timestamp="1611151727221">
+    <state width="1398" height="54" key="GridCell.Tab.0.right" timestamp="1611328643485">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
-    <state width="1398" height="244" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1611151727221" />
+    <state width="1398" height="54" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1611328643485" />
     <state width="1398" height="529" key="GridCell.Tab.0.right/0.23.1440.824@0.23.1440.824" timestamp="1610724254447" />
     <state width="1398" height="264" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1610016095396" />
     <state width="1398" height="94" key="GridCell.Tab.0.right/0.23.1440.827@0.23.1440.827" timestamp="1609944248289" />
+    <state x="221" y="73" key="SettingsEditor" timestamp="1611696240029">
+      <screen x="0" y="23" width="1440" height="824" />
+    </state>
+    <state x="221" y="73" key="SettingsEditor/0.23.1440.824@0.23.1440.824" timestamp="1611696240029" />
     <state x="320" y="174" key="Vcs.Push.Dialog.v2" timestamp="1610883203917">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
@@ -382,6 +403,10 @@
       <screen x="0" y="23" width="1440" height="823" />
     </state>
     <state x="260" y="23" width="852" height="823" key="find.popup/0.23.1440.823@0.23.1440.823" timestamp="1608320203851" />
+    <state x="418" y="230" key="git4idea.merge.GitPullDialog" timestamp="1611867621795">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="418" y="230" key="git4idea.merge.GitPullDialog/0.23.1440.823@0.23.1440.823" timestamp="1611867621795" />
     <state x="371" y="57" key="new project wizard" timestamp="1608057368114">
       <screen x="0" y="23" width="1440" height="823" />
     </state>
@@ -396,16 +421,5 @@
     <state x="385" y="172" width="670" height="675" key="search.everywhere.popup/0.23.1440.823@0.23.1440.823" timestamp="1610610910073" />
     <state x="385" y="172" width="670" height="676" key="search.everywhere.popup/0.23.1440.824@0.23.1440.824" timestamp="1609584892594" />
     <state x="385" y="172" width="670" height="676" key="search.everywhere.popup/0.23.1440.825@0.23.1440.825" timestamp="1608805917330" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/Views/add_task_plan_view.dart</url>
-          <line>277</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
